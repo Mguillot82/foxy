@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_05_140758) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_05_141230) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_140758) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "catches", force: :cascade do |t|
+    t.string "location"
+    t.bigint "animal_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["animal_id"], name: "index_catches_on_animal_id"
+    t.index ["user_id"], name: "index_catches_on_user_id"
+  end
+
   create_table "collections", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -41,6 +51,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_140758) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
+  create_table "collections_catches", force: :cascade do |t|
+    t.bigint "collection_id", null: false
+    t.bigint "catch_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["catch_id"], name: "index_collections_catches_on_catch_id"
+    t.index ["collection_id"], name: "index_collections_catches_on_collection_id"
   end
 
   create_table "taxonomies", force: :cascade do |t|
@@ -63,5 +82,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_140758) do
   end
 
   add_foreign_key "animals", "taxonomies"
+  add_foreign_key "catches", "animals"
+  add_foreign_key "catches", "users"
   add_foreign_key "collections", "users"
+  add_foreign_key "collections_catches", "catches"
+  add_foreign_key "collections_catches", "collections"
 end
