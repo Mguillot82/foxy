@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_05_141230) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_05_141633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_141230) do
     t.index ["collection_id"], name: "index_collections_catches_on_collection_id"
   end
 
+  create_table "friendships", force: :cascade do |t|
+    t.string "status"
+    t.bigint "user_id", null: false
+    t.bigint "friend_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
+  create_table "got_badges", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "badge_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["badge_id"], name: "index_got_badges_on_badge_id"
+    t.index ["user_id"], name: "index_got_badges_on_user_id"
+  end
+
   create_table "taxonomies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -87,4 +106,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_141230) do
   add_foreign_key "collections", "users"
   add_foreign_key "collections_catches", "catches"
   add_foreign_key "collections_catches", "collections"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "got_badges", "badges"
+  add_foreign_key "got_badges", "users"
 end
