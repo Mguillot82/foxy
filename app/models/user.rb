@@ -10,5 +10,5 @@ class User < ApplicationRecord
   has_many :badges, through: :got_badges
   has_many :friendships
 
-  validates :username, presence: true
+  validates :username, presence: true, uniqueness: true
 end
