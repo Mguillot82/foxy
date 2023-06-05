@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+# Order of creation :
+# Taxonomy.new
+# User.new
+# Badge.new
+# Animal.new
+# Collection.new
+# Catch.new
+# Collections_catch.new
+# Got_badge.new
+# Friendship.new
