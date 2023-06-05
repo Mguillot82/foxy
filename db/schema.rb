@@ -10,9 +10,82 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_05_131832) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_05_141633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "animals", force: :cascade do |t|
+    t.string "name"
+    t.string "scientific_name"
+    t.string "description"
+    t.string "location"
+    t.bigint "taxonomy_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["taxonomy_id"], name: "index_animals_on_taxonomy_id"
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "condition"
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "catches", force: :cascade do |t|
+    t.string "location"
+    t.bigint "animal_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["animal_id"], name: "index_catches_on_animal_id"
+    t.index ["user_id"], name: "index_catches_on_user_id"
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
+  create_table "collections_catches", force: :cascade do |t|
+    t.bigint "collection_id", null: false
+    t.bigint "catch_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["catch_id"], name: "index_collections_catches_on_catch_id"
+    t.index ["collection_id"], name: "index_collections_catches_on_collection_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.string "status"
+    t.bigint "user_id", null: false
+    t.bigint "friend_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
+  create_table "got_badges", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "badge_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["badge_id"], name: "index_got_badges_on_badge_id"
+    t.index ["user_id"], name: "index_got_badges_on_user_id"
+  end
+
+  create_table "taxonomies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -20,10 +93,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_131832) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "animals", "taxonomies"
+  add_foreign_key "catches", "animals"
+  add_foreign_key "catches", "users"
+  add_foreign_key "collections", "users"
+  add_foreign_key "collections_catches", "catches"
+  add_foreign_key "collections_catches", "collections"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "got_badges", "badges"
+  add_foreign_key "got_badges", "users"
 end
