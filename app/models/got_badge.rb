@@ -1,4 +1,4 @@
 class GotBadge < ApplicationRecord
-  belongs_to :user
-  belongs_to :badge
+  belongs_to :user, dependent: :destroy
+  belongs_to :badge, dependent: :destroy
 end
