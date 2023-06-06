@@ -184,3 +184,17 @@ BADGES[3].each do |category|
     puts "Badges created #{badge.name}"
   end
 end
+
+User.all.each do |user|
+  3.times do
+    badge_id = Badge.first.id.to_i + rand(19)
+    got_badges = GotBadge.new(
+      {
+        badge_id:,
+        user_id: user.id
+      }
+    )
+    got_badges.save!
+  end
+  puts "Got Badges for user #{user.username} created"
+end
