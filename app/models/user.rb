@@ -3,12 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :catches
-  has_many :collections
+  has_many :catches, dependent: :destroy
+  has_many :collections, dependent: :destroy
   has_many :animals, through: :catches
-  has_many :got_badges
+  has_many :got_badges, dependent: :destroy
   has_many :badges, through: :got_badges
-  has_many :friendships
+  has_many :friendships, dependent: :destroy
   has_one_attached :photo
 
   validates :username, presence: true, uniqueness: true
