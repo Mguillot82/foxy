@@ -1,9 +1,13 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+@import url("https://use.typekit.net/pgv4opb.css");
 
 // Define fonts for body and headers
-$body-font: "Work Sans", "Helvetica", "sans-serif";
-$headers-font: "Nunito", "Helvetica", "sans-serif";
+$body-font: "Proxima nova", "Helvetica", "sans-serif";
+$headers-font: "Proxima nova", "Helvetica", "sans-serif";
+
+h1, h2, h3 {
+  font-weight: bold!important;
+}
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
