@@ -1,4 +1,4 @@
 class CollectionsCatch < ApplicationRecord
-  belongs_to :collection, dependent: :destroy
-  belongs_to :catch, dependent: :destroy
+  belongs_to :collection
+  belongs_to :catch
 end
