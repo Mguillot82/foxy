@@ -1,7 +1,6 @@
 class Friendship < ApplicationRecord
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
   belongs_to :friend, class_name: "User",
-                      foreign_key: "friend_id",
-                      dependent: :destroy
+                      foreign_key: "friend_id"
   validates :status, presence: true
 end
