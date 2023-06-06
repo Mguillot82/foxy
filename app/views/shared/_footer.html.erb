@@ -1,0 +1,36 @@
+<%# FOOTER %>
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-4 ps-md-0 mb-30">
+        <ul id="about-us-padding" class="ul-secondary ul-flex-col-end">
+          <li><%= link_to "About us", "/about" %></li>
+          <li><%= link_to "Legal notice", "/legal" %></li>
+          <li><%= link_to "Press", "/#" %></li>
+        </ul>
+      </div>
+      <div class="col-4 ps-md-0 mb-30">
+        <ul class="ul-secondary ul-flex-col-center">
+          <li><%= link_to "Contact us", "/", class: "" %></li>
+          <div id="icons-hover" class="d-flex">
+            <div>
+              <li><%= link_to "", "/", class: "fa-brands fa-facebook" %></li>
+            </div>
+            <div>
+              <li><%= link_to "", "/", class: "fa-brands fa-twitter" %></li>
+            </div>
+            <div>
+              <li><%= link_to "", "/", class: "fa-brands fa-instagram" %></li>
+            </div>
+          </div>
+        </ul>
+      </div>
+      <div class="col-4 ps-md-0 mb-30">
+        <ul class="ul-secondary .ul-flex-col-start">
+          <li><%= link_to "Support us !", "/", class: "" %></li>
+          <li><%= link_to "Suscribe", "/", class: "btn btn-secondary" %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
