@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :got_badges
   has_many :badges, through: :got_badges
   has_many :friendships
+  has_one_attached :photo
 
   validates :username, presence: true, uniqueness: true
 end
