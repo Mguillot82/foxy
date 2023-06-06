@@ -41,8 +41,6 @@ require 'faker'
       username:,
       email:,
       password:,
-      first_name:,
-      last_name:
     }
   )
   user.save!
