@@ -15,13 +15,13 @@ require 'faker'
 
 # Friendship.destroy_all
 # Got_badge.destroy_all
-# Collections_catch.destroy_all
-# Catch.destroy_all
-# Collection.destroy_all
-# Animal.destroy_all
-# Badge.destroy_all
-# Taxonomy.destroy_all
-# User.destroy_all
+CollectionsCatch.destroy_all
+Catch.destroy_all
+Collection.destroy_all
+Animal.destroy_all
+Badge.destroy_all
+Taxonomy.destroy_all
+User.destroy_all
 
 10.times do
   puts "Creating user..."
@@ -40,7 +40,7 @@ require 'faker'
     {
       username:,
       email:,
-      password:,
+      password:
     }
   )
   user.save!
@@ -61,7 +61,7 @@ FAKER_CREATURE = [
   },
   {
     species: 'Bird',
-    name: 'common_family_name',
+    name: 'common_family_name'
   },
   {
     species: 'Horse',
@@ -73,6 +73,16 @@ FAKER_CREATURE = [
   }
 ]
 
+BADGES = [
+    ["first", "bronze", "silver", "gold"],
+    ["You have caught one of its kind",
+      "You have caught five of its kind",
+      "You have caught ten of its kind",
+      "You have caught twenty of its kind"],
+    [1,5,10,20],
+    ['Cat', 'Dog', 'Bird', 'Horse', 'Animal']
+]
+
 puts "Loading taxons..."
 TAXONOMY.each do |name|
   taxon = Taxonomy.new(
@@ -80,41 +90,104 @@ TAXONOMY.each do |name|
       name:
     }
   )
+  taxon.save!
   puts "#{taxon} created !"
 end
 
 puts "____________________________"
 
 puts "Creating animal..."
-
-Taxonomy.all.each do |taxon|
-  FAKER_CREATURE.each do |creature|
-    animal = Animal.new(
-      {
-        taxonomy_id: taxon.id,
-        name: Faker::Creature.const_get(taxon.name).send(creature.name) ,
-        scientific_name: Faker::Military.space_force_rank,
-        description: Faker::Lorem.paragraph(sentence_count: 3, supplemental: true, random_sentences_to_add: 3),
-        location: Faker::Address.country
-      }
-    )
+FAKER_CREATURE.each do |creature|
+  taxon = Taxonomy.find_by(name: creature[:species])
+  animal = Animal.new(
+    {
+      taxonomy_id: taxon.id,
+      name: Faker::Creature.const_get(creature[:species]).send(creature[:name]),
+      scientific_name: Faker::Military.space_force_rank,
+      description: Faker::Lorem.paragraph(sentence_count: 3, supplemental: true, random_sentences_to_add: 3),
+      location: Faker::Address.country
+    }
+  )
+  if animal.save
+    puts "#{animal} created !"
   end
 end
 
 puts "____________________________"
 
+puts "Creating catches"
 User.all.each do |user|
   puts "Creating catches for #{user.username} ..."
   Animal.all.each do |animal|
-    puts "Creating catches for #{animal.name} ..."
     5.times do
       catch = Catch.new(
-        user_id: user.id,
-        animal_id: animal.id,
-        location: Faker::Address.city
+        {
+          user_id: user.id,
+          animal_id: animal.id,
+          location: Faker::Address.city
+        }
       )
+      catch.save!
+      puts "#{catch} created !"
     end
   end
 end
 
+
 puts "____________________________"
+
+puts "Creating collection..."
+User.all.each do |user|
+  collection = Collection.new(
+    {
+      user_id: user.id,
+      name: Faker::Ancient.primordial,
+      description: Faker::Lorem.paragraph(sentence_count: 3, supplemental: true, random_sentences_to_add: 3)
+    }
+  )
+  collection.save!
+  puts "#{collection.name} created for #{user.username}"
+end
+
+puts "____________________________"
+
+puts "Creating collections_catches..."
+
+Collection.all.each do |collection|
+  Catch.all.each do |catch|
+    next if catch.user_id == collection.user_id
+
+    collection_catch = CollectionsCatch.new(
+      catch_id: catch.user_id,
+      collection_id: collection.user_id
+    )
+    puts "collection catch #{collection_catch.catch_id} added in  #{collection.name}"
+  end
+end
+
+
+#  BADGES[3].each do |category|
+#    puts "category"
+#    BADGES[0].each do |name|
+#      puts "name"
+#      BADGES[1].each do |description|
+#        puts "description"
+#        next if n = name
+#        BADGES[2].each do |condition|
+#          puts "condition"
+#          next if n = name
+#          n = name
+#          badge = Badge.new(
+#            {
+#              name: "#{name} #{category}",
+#              description:,
+#              condition:,
+#              category:
+#            }
+#          )
+#          badge.save!
+#          puts "Badges created #{badge.name}"
+#        end
+#      end
+#    end
+#  end

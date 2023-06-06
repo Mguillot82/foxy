@@ -25,6 +25,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_065817) do
     t.index ["taxonomy_id"], name: "index_animals_on_taxonomy_id"
   end
 
+  create_table "badges", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "condition"
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "catches", force: :cascade do |t|
     t.string "location"
     t.bigint "animal_id", null: false
@@ -33,6 +42,43 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_065817) do
     t.datetime "updated_at", null: false
     t.index ["animal_id"], name: "index_catches_on_animal_id"
     t.index ["user_id"], name: "index_catches_on_user_id"
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_collections_on_user_id"
+  end
+
+  create_table "collections_catches", force: :cascade do |t|
+    t.bigint "collection_id", null: false
+    t.bigint "catch_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["catch_id"], name: "index_collections_catches_on_catch_id"
+    t.index ["collection_id"], name: "index_collections_catches_on_collection_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.string "status"
+    t.bigint "user_id", null: false
+    t.bigint "friend_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
+  create_table "got_badges", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "badge_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["badge_id"], name: "index_got_badges_on_badge_id"
+    t.index ["user_id"], name: "index_got_badges_on_user_id"
   end
 
   create_table "taxonomies", force: :cascade do |t|
