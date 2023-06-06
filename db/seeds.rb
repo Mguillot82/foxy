@@ -79,7 +79,7 @@ BADGES = [
       "You have caught five of its kind",
       "You have caught ten of its kind",
       "You have caught twenty of its kind"],
-    [1,5,10,20],
+    [1, 5, 10, 20],
     ['Cat', 'Dog', 'Bird', 'Horse', 'Animal']
 ]
 
@@ -168,6 +168,9 @@ end
 index = 0
 BADGES[3].each do |category|
   BADGES[0].each do |name|
+    if index > 3
+      index = 0
+    end
     badge = Badge.new(
       {
         name: "#{category} #{name}",
@@ -177,6 +180,7 @@ BADGES[3].each do |category|
       }
     )
     index += 1
+    badge.save!
     puts "Badges created #{badge.name}"
   end
 end
