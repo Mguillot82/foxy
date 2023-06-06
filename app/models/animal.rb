@@ -6,5 +6,4 @@ class Animal < ApplicationRecord
   validates :scientific_name, presence: true, uniqueness: true
   validates :description, presence: true
   validates :location, presence: true
-  validates :photo, presence: true
 end
