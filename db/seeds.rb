@@ -79,7 +79,7 @@ BADGES = [
       "You have caught five of its kind",
       "You have caught ten of its kind",
       "You have caught twenty of its kind"],
-    [1,5,10,20],
+    [1, 5, 10, 20],
     ['Cat', 'Dog', 'Bird', 'Horse', 'Animal']
 ]
 
@@ -165,29 +165,22 @@ Collection.all.each do |collection|
   end
 end
 
-
-#  BADGES[3].each do |category|
-#    puts "category"
-#    BADGES[0].each do |name|
-#      puts "name"
-#      BADGES[1].each do |description|
-#        puts "description"
-#        next if n = name
-#        BADGES[2].each do |condition|
-#          puts "condition"
-#          next if n = name
-#          n = name
-#          badge = Badge.new(
-#            {
-#              name: "#{name} #{category}",
-#              description:,
-#              condition:,
-#              category:
-#            }
-#          )
-#          badge.save!
-#          puts "Badges created #{badge.name}"
-#        end
-#      end
-#    end
-#  end
+index = 0
+BADGES[3].each do |category|
+  BADGES[0].each do |name|
+    if index > 3
+      index = 0
+    end
+    badge = Badge.new(
+      {
+        name: "#{category} #{name}",
+        description: BADGES[1][index],
+        condition: BADGES[2][index],
+        category:
+      }
+    )
+    index += 1
+    badge.save!
+    puts "Badges created #{badge.name}"
+  end
+end
