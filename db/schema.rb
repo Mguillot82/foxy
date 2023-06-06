@@ -58,4 +58,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_065817) do
   add_foreign_key "animals", "taxonomies"
   add_foreign_key "catches", "animals"
   add_foreign_key "catches", "users"
+  add_foreign_key "collections", "users"
+  add_foreign_key "collections_catches", "catches"
+  add_foreign_key "collections_catches", "collections"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
+  add_foreign_key "got_badges", "badges"
+  add_foreign_key "got_badges", "users"
 end
