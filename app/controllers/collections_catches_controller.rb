@@ -1,0 +1,2 @@
+class CollectionsCatchesController < ApplicationController
+end
