@@ -1,26 +1,6 @@
 
 .footer {
-  grid-row-start: 2 ;
-  grid-row-end: 3;
-  background: $primary;
-  padding: 0px 50px;
-  margin-top: 20px;
-  color: $background;
-  // a {
-  //   color: $background;
-  //   text-decoration: none;
-  //   padding: 4px;
-  //   margin-bottom: 4px;
-  // }
-  // a:hover {
-  //   text-decoration: none;
-  //   margin-bottom: 4px;
-  //   border-radius: 20px;
-  // }
-  // #about-us-padding a:hover {
-  //   padding: 8px;
-  // }
-  // #icons-hover a:hover {
-  //   color: $secondary;
-  // }
+  width: 360px;
+  height: 70px;
+  background-color: $primary;
 }
