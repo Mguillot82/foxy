@@ -1,0 +1,43 @@
+<h1>User Profile</h1>
+
+<p><strong>Username:</strong> <%= @user.username %></p>
+
+<p><strong>Email:</strong> <%= @user.email %></p>
+
+<p><strong>Photo:</strong></p>
+<%= image_tag @user.photo if @user.photo.attached? %>
+
+<h2>Catches</h2>
+<ul>
+  <% @user.catches.each do |catch| %>
+    <li><%= catch.name %></li>
+  <% end %>
+</ul>
+
+<h2>Collections</h2>
+<ul>
+  <% @user.collections.each do |collection| %>
+    <li><%= collection.name %></li>
+  <% end %>
+</ul>
+
+<h2>Animals</h2>
+<ul>
+  <% @user.animals.each do |animal| %>
+    <li><%= animal.name %></li>
+  <% end %>
+</ul>
+
+<h2>Badges</h2>
+<ul>
+  <% @user.badges.each do |badge| %>
+    <li><%= badge.name %></li>
+  <% end %>
+</ul>
+
+<h2>Friendships</h2>
+<ul>
+  <% @user.friendships.each do |friendship| %>
+    <li><%= friendship.friend.username %></li>
+  <% end %>
+</ul>
