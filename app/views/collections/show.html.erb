@@ -1,0 +1,15 @@
+<h1><%= @collection.name.capitalize %></h1>
+
+<ul>
+    <li>Description : <%= @collection.description %></li>
+</ul>
+
+<div class='btn btn-outline-secondary'>Edit a collection</div>
+<div>
+  <%= render 'form_edit', collection: @collection %>
+</div>
+
+<%# add js to open the editor %>
+
+<%# add a button to add photos to collection %>
+<%# add a button to delete photos from collection %>
