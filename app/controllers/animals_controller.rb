@@ -4,23 +4,23 @@ class AnimalsController < ApplicationController
   # animal GET    /animals/:id(.:format)  animals#show
 
   before_action :set_animal, only: %i[show]
-  before_action :set_user, only: %i[create]
 
   def create
-    @animal = Animal.new(animal_params)
+    @animal = Animal.find_or_create_by(animal_params)
+    authorize @animal
     if @animal.save!
-      redirect_to catches_path(@user)
+      redirect_to general_user_collections_path(current_user)
     else
-      render catches_path(@user), status: :unprocessable_entity
+      render general_user_collections_path(current_user), status: :unprocessable_entity
     end
   end
 
   def show
-    @animal
+    authorize @animal
   end
 
   def index
-    @animals = Animal.all
+    @animals = policy_scope(Animal)
   end
 
   private
@@ -31,9 +31,5 @@ class AnimalsController < ApplicationController
 
   def set_animal
     @animal = Animal.find(params[:id])
-  end
-
-  def set_user
-    @user = User.find(params[:user_id])
   end
 end
