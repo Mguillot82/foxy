@@ -1,7 +1,7 @@
 class AnimalsController < ApplicationController
-  # animals GET    /animals(.:format) animals#index                                                                                animals#index
-  #         POST   /animals(.:format) animals#create                                                                  animals#create
-  # animal GET    /animals/:id(.:format)  animals#show                                                                animals#show
+  # animals GET    /animals(.:format) animals#index
+  #         POST   /animals(.:format) animals#create
+  # animal GET    /animals/:id(.:format)  animals#show
 
   before_action :set_animal, only: %i[show]
   before_action :set_user, only: %i[create]
