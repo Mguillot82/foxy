@@ -1,2 +1,18 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div data-controller="home">
+  <h1>Home</h1>
+  <div class='camera' >
+    <video data-home-target="camera"></video>
+    <button data-home-target="button_picture" data-action="click->home#take_photo" id="startbutton">Take photo</button>
+  </div>
+  <div class="photo">
+    <canvas id="canvas"> </canvas>
+    <div class="output">
+      <img id="photo" class='d-none' data-home-target="photo"/>
+    </div>
+    <div data-home-target="buttons_accept_refuse" class='d-none' >
+      <button id="startbutton" data-action="click->home#refuse">Refuser</button>
+      <button id="startbutton" data-action="click->home#accept">Accepter</button>
+    </div>
+  </div>
+
+</div>
