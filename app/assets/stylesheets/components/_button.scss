@@ -14,12 +14,12 @@
   border-color: $secondary-light!important;
   color: white!important;
   &:hover {
-    color: $secondary!important;
-    background-color: $secondary-light!important;
+    color: $dark!important;
+    background-color: $primary-light!important;
     border-color: $primary!important;
   }
 }
 
-// .btn-large {
-
-// }
+.btn-large {
+  width: 100%;
+}
