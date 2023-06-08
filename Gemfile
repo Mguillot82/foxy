@@ -32,6 +32,9 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# PgSearch builds named scopes that take advantage of PostgreSQL's full text search.
+gem 'pg_search'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
