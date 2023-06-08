@@ -2,6 +2,7 @@ class Animal < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :animal_search,
                   against: %i[name location],
+                  associated_against: { taxonomy: %i[name] },
                   using: { tsearch: { prefix: true } }
 
   belongs_to :taxonomy
