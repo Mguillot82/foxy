@@ -46,13 +46,20 @@ export default class extends Controller {
   }
 
   accept() {
-    let image = this.photoTarget.src
+    let photo = this.photoTarget.src
+    let params = {
+      image: ( {
+        uri: photo,
+        name: "photo.jpeg",
+        type: "image/jpeg"
+      } ),
+    };
     // console.dir(image)
     // let base64ImageContent = image.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
     // let blob = this.base64ToBlob(base64ImageContent, 'image/jpeg');
     // console.log(image);
-    let formData = new FormData("image", image);
-    // formData.append('image', image);
+    let formData = new FormData();
+    formData.append('body', params);
     // const req = new Request("https://api.inaturalist.org/v2/computervision/score_image",{
     //   method: "POST",
     //   headers: {'accept': 'application/json',
