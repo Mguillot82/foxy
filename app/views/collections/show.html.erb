@@ -1,5 +1,8 @@
 <h1><%= @collection.name.capitalize %></h1>
 
+<div class="btn btn-outline-secondary">
+  <%= link_to 'Back to collections', user_collections_path(current_user) %>
+</div>
 <ul>
     <li>Description : <%= @collection.description %></li>
 </ul>

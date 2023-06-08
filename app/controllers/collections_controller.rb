@@ -11,8 +11,8 @@ class CollectionsController < ApplicationController
 
   def general
     @collection = current_user.collections.first
-    raise
-    @collection.
+    @collection.catches
+    # raise
     authorize @collection
   end
 
