@@ -9,7 +9,7 @@ class AnimalsController < ApplicationController
     @animal = Animal.find_or_create_by(animal_params)
     authorize @animal
     respond_to do |format|
-      format.json { render json: @animal.to_json }
+      format.json { render json: @animal }
     end
   end
 
@@ -18,7 +18,12 @@ class AnimalsController < ApplicationController
   end
 
   def index
-    @animals = policy_scope(Animal)
+    if params[:query].present?
+      @animals = policy_scope(Animal).animal_search(params[:query])
+    else
+      @animals = policy_scope(Animal)
+
+    end
   end
 
   private

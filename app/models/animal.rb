@@ -1,4 +1,9 @@
 class Animal < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :animal_search,
+                  against: %i[name location],
+                  using: { tsearch: { prefix: true } }
+
   belongs_to :taxonomy
   has_many :catches, dependent: :destroy
 
