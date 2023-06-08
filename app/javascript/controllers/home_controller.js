@@ -5,6 +5,9 @@ export default class extends Controller {
   static targets = ['camera', 'photo', 'button_picture', 'buttons_accept_refuse']
 
   connect() {
+    navigator.geolocation.getCurrentPosition(localisation);
+    console.log(localisation);
+
     navigator.mediaDevices
       .getUserMedia({video: true})
       .then((stream) => {
@@ -47,61 +50,48 @@ export default class extends Controller {
 
   accept() {
     let photo = this.photoTarget.src
-    let params = {
-      image: ( {
-        uri: photo,
-        name: "photo.jpeg",
-        type: "image/jpeg"
-      } ),
-    };
-    // console.dir(image)
-    // let base64ImageContent = image.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
-    // let blob = this.base64ToBlob(base64ImageContent, 'image/jpeg');
-    // console.log(image);
+    let base64ImageContent = photo.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+    let blob = this.base64ToBlob(base64ImageContent, 'image/jpeg');
     let formData = new FormData();
-    formData.append('body', params);
-    // const req = new Request("https://api.inaturalist.org/v2/computervision/score_image",{
-    //   method: "POST",
-    //   headers: {'accept': 'application/json',
-    //             'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODYyMzc3MDh9.VpnwTIDJrwkqdyyaaGgebj1KWlUcKL4BXgpjh_r-QSe-hijfo-y3IL1YSZ2cfd7k3GXi15kgrGQpAIR2ZIJBBQ',
-    //             'Content-Type': 'multipart/form-data'},
-    //   body: formData
-    //   })
-    // console.log(formData.get('image'))
-    // console.dir(req)
+    formData.set('image', blob);
+    formData.set('fields', 'all')
     fetch("https://api.inaturalist.org/v2/computervision/score_image",{
       method: "POST",
       headers: {'accept': 'application/json',
-                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODYyMzc3MDh9.VpnwTIDJrwkqdyyaaGgebj1KWlUcKL4BXgpjh_r-QSe-hijfo-y3IL1YSZ2cfd7k3GXi15kgrGQpAIR2ZIJBBQ',
-                'Content-Type': 'multipart/form-data'},
+                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODYyMzc3MDh9.VpnwTIDJrwkqdyyaaGgebj1KWlUcKL4BXgpjh_r-QSe-hijfo-y3IL1YSZ2cfd7k3GXi15kgrGQpAIR2ZIJBBQ'},
       body: formData
       })
     .then(response => response.json())
-    .then((data) => {
-      console.log(data)
+    .then((api_data) => {
+      this.#createTaxonomy(api_data)
+
     })
   }
 
-//   base64ToBlob(base64, mime)
-//   {
-//     mime = mime || '';
-//     var sliceSize = 1024;
-//     var byteChars = window.atob(base64);
-//     var byteArrays = [];
+  #createTaxonomy(api_data) {
+    console.log(api_data)
+  }
 
-//     for (var offset = 0, len = byteChars.length; offset < len; offset += sliceSize) {
-//         var slice = byteChars.slice(offset, offset + sliceSize);
+  base64ToBlob(base64, mime)
+  {
+    mime = mime || '';
+    var sliceSize = 1024;
+    var byteChars = window.atob(base64);
+    var byteArrays = [];
 
-//         var byteNumbers = new Array(slice.length);
-//         for (var i = 0; i < slice.length; i++) {
-//             byteNumbers[i] = slice.charCodeAt(i);
-//         }
+    for (var offset = 0, len = byteChars.length; offset < len; offset += sliceSize) {
+        var slice = byteChars.slice(offset, offset + sliceSize);
 
-//         var byteArray = new Uint8Array(byteNumbers);
+        var byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
 
-//         byteArrays.push(byteArray);
-//     }
+        var byteArray = new Uint8Array(byteNumbers);
 
-//     return new Blob(byteArrays, {type: mime});
-// }
+        byteArrays.push(byteArray);
+    }
+
+    return new Blob(byteArrays, {type: mime});
+}
 }
