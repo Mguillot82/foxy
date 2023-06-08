@@ -8,10 +8,8 @@ class AnimalsController < ApplicationController
   def create
     @animal = Animal.find_or_create_by(animal_params)
     authorize @animal
-    if @animal.save!
-      redirect_to general_user_collections_path(current_user)
-    else
-      render general_user_collections_path(current_user), status: :unprocessable_entity
+    respond_to do |format|
+      format.json { render json: @animal.to_json }
     end
   end
 
