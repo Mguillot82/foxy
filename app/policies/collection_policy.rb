@@ -25,7 +25,7 @@ class CollectionPolicy < ApplicationPolicy
   end
 
   def general?
-    user.id == record[0].user_id || user.friendships.find_by(friend_id: record[0].user_id)
+    user.id == record[0].user_id || (user.friendships.find_by(friend_id: record[0].user_id) && (user.friendships.find_by(friend_id: record[0].user_id).status == 'accepted'))
   end
 
   def create?

@@ -10,10 +10,7 @@ class CollectionsController < ApplicationController
   end
 
   def general
-    # if user_id == current_user
-    # @collection = current_user.collections.first
     @collection = CollectionPolicy::Scope.new(current_user, Collection, User.find(params[:user_id])).resolve
-    # raise
     authorize @collection
   end
 
