@@ -1,7 +1,7 @@
 <h1>All catches</h1>
 
 <ul>
-  <% @collection.catches.each do |catch| %>
+  <% @collection[0].catches.each do |catch| %>
     <%= cl_image_tag catch.photo.key, height: 300, width: 400, crop: :fill %>
     <%= catch.location %>
   <% end %>

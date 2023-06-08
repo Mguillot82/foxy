@@ -1,8 +1,18 @@
 class CollectionPolicy < ApplicationPolicy
   class Scope < Scope
+    def initialize(user, scope, friend)
+      @user = user
+      @scope = scope
+      @friend = friend
+    end
     # NOTE: Be explicit about which records you allow access to!
+
     def resolve
-      scope.where(user_id: user.id)
+      if user.id == @friend.id
+        scope.where(user_id: user.id)
+      else
+        scope.where(user_id: @friend.id)
+      end
     end
   end
 
@@ -15,7 +25,7 @@ class CollectionPolicy < ApplicationPolicy
   end
 
   def general?
-    user.id == record.user_id
+    user.id == record[0].user_id || user.friendships.find_by(friend_id: record[0].user_id)
   end
 
   def create?
