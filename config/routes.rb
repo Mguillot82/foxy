@@ -34,4 +34,5 @@ Rails.application.routes.draw do
 
   resources :got_badges, only: [:create]
 
+  resources :friends, only: [:index, :show]
 end
