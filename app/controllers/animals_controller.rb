@@ -8,10 +8,8 @@ class AnimalsController < ApplicationController
   def create
     @animal = Animal.find_or_create_by(animal_params)
     authorize @animal
-    if @animal.save!
-      redirect_to general_user_collections_path(current_user)
-    else
-      render general_user_collections_path(current_user), status: :unprocessable_entity
+    respond_to do |format|
+      format.json { render json: @animal }
     end
   end
 
@@ -20,7 +18,12 @@ class AnimalsController < ApplicationController
   end
 
   def index
-    @animals = policy_scope(Animal)
+    if params[:query].present?
+      @animals = policy_scope(Animal).animal_search(params[:query])
+    else
+      @animals = policy_scope(Animal)
+
+    end
   end
 
   private
