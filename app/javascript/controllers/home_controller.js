@@ -5,8 +5,11 @@ export default class extends Controller {
   static targets = ['camera', 'photo', 'button_picture', 'buttons_accept_refuse']
 
   connect() {
-    navigator.geolocation.getCurrentPosition(localisation);
-    console.log(localisation);
+    navigator.geolocation
+    .getCurrentPosition((position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+    });
 
     navigator.mediaDevices
       .getUserMedia({video: true})
@@ -71,6 +74,8 @@ export default class extends Controller {
   #createTaxonomy(api_data) {
     console.log(api_data)
   }
+
+
 
   base64ToBlob(base64, mime)
   {
