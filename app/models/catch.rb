@@ -6,7 +6,7 @@ class Catch < ApplicationRecord
 
   validates :location, presence: true
 
-  geocoded_by :city_location
+  geocoded_by :location
   after_validation :geocode, if:
   :will_save_change_to_address?
 end
