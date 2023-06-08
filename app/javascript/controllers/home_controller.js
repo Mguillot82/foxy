@@ -61,7 +61,7 @@ export default class extends Controller {
     fetch("https://api.inaturalist.org/v2/computervision/score_image",{
       method: "POST",
       headers: {'accept': 'application/json',
-                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODYyMzc3MDh9.VpnwTIDJrwkqdyyaaGgebj1KWlUcKL4BXgpjh_r-QSe-hijfo-y3IL1YSZ2cfd7k3GXi15kgrGQpAIR2ZIJBBQ'},
+                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODYzMjQ3Mjh9.1EGH_5w1C3C2lnqLnXbS8wbiOWZ8OW3JCvl7vD2T-e0LiyfaeBvF3SjoGqtEyOtXaiBbhIVsTy8ILqkba-NLuA'},
       body: formData
       })
     .then(response => response.json())
@@ -72,7 +72,22 @@ export default class extends Controller {
   }
 
   #createTaxonomy(api_data) {
-    console.log(api_data)
+    console.log(api_data);
+    let token = document.querySelector('meta[name=csrf-token]').content;
+    console.log(token);
+    let taxonomy = api_data.results[0].taxon.iconic_taxon_name;
+    fetch('/taxonomies', {
+      method: "POST",
+      header : {
+        'Content-Type': 'application/json',
+        'csrf-token': token
+      },
+      body: taxonomy
+    })
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data)
+    })
   }
 
 
