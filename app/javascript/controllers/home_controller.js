@@ -45,20 +45,29 @@ export default class extends Controller {
     this.connect();
   }
 
-  accept(event) {
+  accept() {
     let image = this.photoTarget.src
-    let base64ImageContent = image.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
-    let blob = this.base64ToBlob(base64ImageContent, 'image/jpeg');
-    console.log(blob)
-    let formData = new FormData();
-    formData.append('image', image);
-    console.log(formData)
+    // console.dir(image)
+    // let base64ImageContent = image.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+    // let blob = this.base64ToBlob(base64ImageContent, 'image/jpeg');
+    // console.log(image);
+    let formData = new FormData("image", image);
+    // formData.append('image', image);
+    // const req = new Request("https://api.inaturalist.org/v2/computervision/score_image",{
+    //   method: "POST",
+    //   headers: {'accept': 'application/json',
+    //             'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODYyMzc3MDh9.VpnwTIDJrwkqdyyaaGgebj1KWlUcKL4BXgpjh_r-QSe-hijfo-y3IL1YSZ2cfd7k3GXi15kgrGQpAIR2ZIJBBQ',
+    //             'Content-Type': 'multipart/form-data'},
+    //   body: formData
+    //   })
+    // console.log(formData.get('image'))
+    // console.dir(req)
     fetch("https://api.inaturalist.org/v2/computervision/score_image",{
       method: "POST",
       headers: {'accept': 'application/json',
                 'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODYyMzc3MDh9.VpnwTIDJrwkqdyyaaGgebj1KWlUcKL4BXgpjh_r-QSe-hijfo-y3IL1YSZ2cfd7k3GXi15kgrGQpAIR2ZIJBBQ',
                 'Content-Type': 'multipart/form-data'},
-      body: JSON.stringify({'image': base64ImageContent, "fields": "all"})
+      body: formData
       })
     .then(response => response.json())
     .then((data) => {
@@ -66,26 +75,26 @@ export default class extends Controller {
     })
   }
 
-  base64ToBlob(base64, mime)
-  {
-    mime = mime || '';
-    var sliceSize = 1024;
-    var byteChars = window.atob(base64);
-    var byteArrays = [];
+//   base64ToBlob(base64, mime)
+//   {
+//     mime = mime || '';
+//     var sliceSize = 1024;
+//     var byteChars = window.atob(base64);
+//     var byteArrays = [];
 
-    for (var offset = 0, len = byteChars.length; offset < len; offset += sliceSize) {
-        var slice = byteChars.slice(offset, offset + sliceSize);
+//     for (var offset = 0, len = byteChars.length; offset < len; offset += sliceSize) {
+//         var slice = byteChars.slice(offset, offset + sliceSize);
 
-        var byteNumbers = new Array(slice.length);
-        for (var i = 0; i < slice.length; i++) {
-            byteNumbers[i] = slice.charCodeAt(i);
-        }
+//         var byteNumbers = new Array(slice.length);
+//         for (var i = 0; i < slice.length; i++) {
+//             byteNumbers[i] = slice.charCodeAt(i);
+//         }
 
-        var byteArray = new Uint8Array(byteNumbers);
+//         var byteArray = new Uint8Array(byteNumbers);
 
-        byteArrays.push(byteArray);
-    }
+//         byteArrays.push(byteArray);
+//     }
 
-    return new Blob(byteArrays, {type: mime});
-}
+//     return new Blob(byteArrays, {type: mime});
+// }
 }
