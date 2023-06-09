@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'about',  to: 'pages#about'
 
   resources :users, only: [:show] do
-    resources :collections, except: [:destroy] do
+    resources :collections, except: %i[new] do
       collection do
         get 'general'
       end
@@ -33,5 +33,4 @@ Rails.application.routes.draw do
   resources :taxonomies, only: [:create]
 
   resources :got_badges, only: [:create]
-
 end
