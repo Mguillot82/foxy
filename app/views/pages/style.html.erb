@@ -25,3 +25,14 @@
 <i class="fa-solid fa-check icon icon-accept"></i>
 <i class="fa-solid fa-xmark icon icon-refuse"></i>
 <i class="fa-solid fa-trash-can icon icon-delete"></i>
+
+<nav class="navbar">
+  <div class="navbar-logo">
+    <img src=<%= image_path('Foxyvert.png') %> alt="Logo Vert">
+  </div>
+  <div class="navbar-profile">
+    <a href="<%= userprofile_path %>">
+      <img src=<%= image_tag @user.photo if @user.photo.attached? %> alt="Photo de profil">
+    </a>
+  </div>
+</nav>
