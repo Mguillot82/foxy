@@ -1,9 +1,9 @@
 class CollectionPolicy < ApplicationPolicy
   class Scope < Scope
-    def initialize(user, scope, friend)
+    def initialize(user, scope, friend = nil)
       @user = user
       @scope = scope
-      @friend = friend
+      @friend = friend || user
     end
     # NOTE: Be explicit about which records you allow access to!
 
