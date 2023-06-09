@@ -1,0 +1,40 @@
+<h1>Friends#show</h1>
+<p>Find me in app/views/friends/show.html.erb</p>
+<h1>Friend Profile</h1>
+
+<p><strong>Username:</strong> <%= @friend.username %></p>
+
+<p><strong>Email:</strong> <%= @friend.email %></p>
+
+<p><strong>Photo:</strong></p>
+<%= image_tag @friend.photo if @friend.photo.attached? %>
+
+<h2>Catches</h2>
+<ul>
+  <% @friend.catches.each do |catch| %>
+    <li><%= catch.name %></li>
+  <% end %>
+</ul>
+
+<h2>Collections</h2>
+<ul>
+  <% @friend.collections.each do |collection| %>
+    <li><%= collection.name %></li>
+  <% end %>
+</ul>
+
+<h2>Animals</h2>
+<ul>
+  <% @friend.animals.each do |animal| %>
+    <li><%= animal.name %></li>
+  <% end %>
+</ul>
+
+<h2>Badges</h2>
+<ul>
+  <% @friend.badges.each do |badge| %>
+    <li><%= badge.name %></li>
+  <% end %>
+</ul>
+
+<%=link_to 'back to friendships' , friendship_path %>

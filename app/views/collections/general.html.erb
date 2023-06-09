@@ -1,0 +1,13 @@
+<h1>Collection générale</h1>
+
+
+
+<h1>All catches</h1>
+
+<ul>
+  <% @collection[0].catches.each do |catch| %>
+    <%= cl_image_tag catch.photo.key, height: 300, width: 400, crop: :fill %>
+    <%= catch.animal.name %>
+    <%= catch.location %>
+  <% end %>
+</ul>

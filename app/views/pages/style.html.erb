@@ -25,3 +25,38 @@
 <i class="fa-solid fa-check icon icon-accept"></i>
 <i class="fa-solid fa-xmark icon icon-refuse"></i>
 <i class="fa-solid fa-trash-can icon icon-delete"></i>
+
+<hr>
+
+<nav class="navbar">
+  <div class="navbar-logo">
+    <img src=<%= image_path('Foxyvert.png') %> alt="Logo Vert">
+  </div>
+  <div class="navbar-profile">
+    <a href=<%= user_path(current_user) %> >
+      <%= cl_image_tag current_user.photo.key if current_user.photo.attached? %>
+    </a>
+  </div>
+</nav>
+
+<br>
+
+<nav class="navbarpages">
+  <div class="navbarpages-logo">
+    <img src=<%= image_path('Foxybeige.png') %> alt="Logo Beige">
+  </div>
+  <div class="navbarpages-profile">
+    <a href=<%= user_path(current_user) %> >
+      <%= cl_image_tag current_user.photo.key if current_user.photo.attached? %>
+    </a>
+  </div>
+</nav>
+
+<hr>
+
+<%= render 'shared/cards_general_collection' %>
+<%= render 'shared/cards_collection' %>
+
+<hr>
+
+

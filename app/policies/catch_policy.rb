@@ -1,4 +1,4 @@
-class TaxonomyPolicy < ApplicationPolicy
+class CatchPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
@@ -7,6 +7,6 @@ class TaxonomyPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    record.user.id == user.id
   end
 end
