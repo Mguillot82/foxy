@@ -4,8 +4,9 @@ class TaxonomyPolicy < ApplicationPolicy
     # def resolve
     #   scope.all
     # end
-    def create?
-      true
-    end
+  end
+
+  def create?
+    true
   end
 end
