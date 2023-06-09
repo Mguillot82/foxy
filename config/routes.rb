@@ -33,4 +33,7 @@ Rails.application.routes.draw do
   resources :taxonomies, only: [:create]
 
   resources :got_badges, only: [:create]
+  
+  resources :friends, only: [:index, :show]
+
 end
