@@ -7,6 +7,8 @@ class FriendPolicy < ApplicationPolicy
   end
 
   def show?
-    record.id == user.id
+    # record.id == user.id
+    # pour voir la show d'un ami il faut etre ami avec
+    true
   end
 end
