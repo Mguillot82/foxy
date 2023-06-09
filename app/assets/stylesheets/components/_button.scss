@@ -5,15 +5,14 @@
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  padding: 0.375rem 0.75rem;
+  // padding: 0.375rem 0.75rem;
 }
 
 .btn-primary {
   transition: background-color 1s ease!important;
   background-color: $primary!important;
-  border-color: $secondary-light!important;
   color: white!important;
-  &:hover {
+  &:active {
     color: $dark!important;
     background-color: $primary-light!important;
     border-color: $primary!important;
@@ -22,4 +21,5 @@
 
 .btn-large {
   width: 100%;
+  padding: 10px 10px;
 }
