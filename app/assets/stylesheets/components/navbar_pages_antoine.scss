@@ -1,23 +1,23 @@
-.navbar {
+.navbarpages {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 40px;
-  background-color: #f0f0f0;
+  height: 70px;
+  background-color: #283618;
   padding: 0 10px;
 }
 
-.navbar-logo img {
+.navbarpages-logo img {
   height: 60px;
 }
 
-.navbar-profile img {
+.navbarpages-profile img {
   width: 60px;
   height: 60px;
   border-radius: 50%;
 }
 
-.navbar-profile a {
+.navbarpages-profile a {
   display: block;
   height: 90%;
 }
