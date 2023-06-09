@@ -22,7 +22,6 @@ class AnimalsController < ApplicationController
       @animals = policy_scope(Animal).animal_search(params[:query])
     else
       @animals = policy_scope(Animal)
-
     end
   end
 
