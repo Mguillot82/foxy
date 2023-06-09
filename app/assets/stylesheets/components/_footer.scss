@@ -1,0 +1,24 @@
+.footer-container {
+  height: 70px;
+  width: 360px;
+  background-color: $primary;
+  color: $secondary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+
+  .col {
+    display: flex;
+    justify-content: center;
+  }
+}

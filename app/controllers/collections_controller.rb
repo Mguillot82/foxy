@@ -1,7 +1,6 @@
 class CollectionsController < ApplicationController
   def index
     @collections = policy_scope(Collection)
-    @collection = Collection.new
   end
 
   def show
