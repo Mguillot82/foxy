@@ -1,0 +1,10 @@
+<nav class="navbarpages">
+  <div class="navbarpages-logo">
+    <img src=<%= image_path('Foxybeige.png') %> alt="Logo Beige">
+  </div>
+  <div class="navbarpages-profile">
+    <a href=<%= user_path(current_user) %> >
+      <%= cl_image_tag current_user.photo.key if current_user.photo.attached? %>
+    </a>
+  </div>
+</nav>
