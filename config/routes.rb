@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/style', to: 'pages#style'
 
   resources :users, only: [:show] do
-    resources :collections, except: %i[new destroy] do
+    resources :collections, except: %i[new] do
       collection do
         get 'general'
       end
