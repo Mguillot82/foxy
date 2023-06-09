@@ -1,7 +1,7 @@
 .cards {
   display: grid;
-  grid-gap: 16px;
-  grid-template-columns: 1fr;
+  // grid-gap: 16px;
+  grid-template-columns: 1fr auto;
   grid-auto-flow: row dense;
   grid-auto-rows: auto;
   padding: 10px 10px;
@@ -16,6 +16,7 @@
   overflow: hidden;
   background-color: $background;
   box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  padding: 10px 10px;
   // a {
   //   position: absolute;
   //   height: 100%;
@@ -23,19 +24,18 @@
   // }
 }
 
-.cards-collection {
-  display: grid;
-  grid-gap: 8px;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-flow: row dense;
-  grid-auto-rows: auto;
-  padding: 10px 10px;
-}
+// .cards-collection {
+//   display: grid;
+//   grid-gap: 8px;
+//   grid-template-columns: 1fr 1fr;
+//   grid-auto-flow: row dense;
+//   grid-auto-rows: auto;
+//   padding: 10px 10px;
+// }
 
-.card-collection {
-  padding: 10px;
-
-}
+// .card-collection {
+//   padding: 10px;
+// }
 
 .card:active {
   transition: all 0.250s ease;
@@ -72,10 +72,8 @@
   font-size: 24px;
   color: $background;
   text-shadow: 0px 0px 1px $primary;
-  // margin-left: 16px;
-  // margin-bottom: 0px;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 15px;
 
 }
 
