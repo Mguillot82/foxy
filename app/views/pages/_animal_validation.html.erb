@@ -1,0 +1,10 @@
+<div class="card-content">
+  <img src=<%= animal.photo_url%> alt="">
+  <div class="card-title"><%= animal.name%></div>
+  <div class="card-address"><%= animal.scientific_name %></div>
+  <div class="card-rating">C'est un bel animal</div>
+  <div class="card-price">Toulouse</div>
+
+  <%= button_to "Refuser", root_path %>
+  <button data-action="click->home#createTaxonomy" >Valider</button>
+</div>
