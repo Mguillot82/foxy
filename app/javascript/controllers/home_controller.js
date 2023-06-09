@@ -73,7 +73,7 @@ export default class extends Controller {
 
   #createTaxonomy(api_data) {
     console.log(api_data);
-    let token = document.querySelector('meta[name=csrf-token]').content;
+    let token = document.getElementsByName('csrf-token')[0].content;
     console.log(token);
     let taxonomy = api_data.results[0].taxon.iconic_taxon_name;
     fetch('/taxonomies', {
