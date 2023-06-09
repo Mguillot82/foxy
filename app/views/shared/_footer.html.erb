@@ -6,31 +6,40 @@
 
   <%# Friends %>
     <div class="col">
-        F
+      <%= link_to friends_path do %>
+        <i class="fa-solid fa-user-group icon icon-footer"></i>
+      <% end %>
     </div>
   <%# /Friends %>
 
   <%# Collections %>
     <div class="col">
-        C
+      <%= link_to user_collections_path(current_user) do %>
+        <i class="fa-solid fa-layer-group icon icon-footer"></i>
+      <% end %>
+      </a>
     </div>
   <%# /Collections %>
 
   <%# Photo %>
     <div class="col">
-        P
+      <%= link_to root_path do %>
+        <i class="fa-solid fa-camera icon icon-footer"></i>
+      <% end %>
     </div>
   <%# /Photo %>
 
   <%# Search %>
     <div class="col">
-        S
+        <i class="fa-solid fa-magnifying-glass icon icon-footer"></i>
     </div>
   <%# /Search %>
 
   <%# Settings %>
     <div class="col">
-        S
+      <%= link_to settings_path do %>
+        <i class="fa-solid fa-gear icon icon-footer"></i>
+      <% end %>
     </div>
   <%# /Settings %>
 
