@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :collections_catches, only: %i[create]
   end
 
-  resources :animals, only: %i[show index create]
+  resources :animals, only: %i[show index new create]
 
   resources :catches, only: %i[create] do
     resources :animals, only: [:show], controller: 'catches/animals'
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   resources :taxonomies, only: [:create]
 
   resources :got_badges, only: [:create]
-  
+
   resources :friends, only: [:index, :show]
 
 end
