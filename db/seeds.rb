@@ -13,8 +13,47 @@ require 'faker'
 # Got_badge.new
 # Friendship.new
 
-# Friendship.destroy_all
-# Got_badge.destroy_all
+TAXONOMY = ['Cat', 'Dog', 'Bird', 'Horse', 'Animal']
+FAKER_CREATURE = [
+  {
+    species: 'Cat',
+    name: 'breed'
+  },
+  {
+    species: 'Dog',
+    name: 'breed'
+  },
+  {
+    species: 'Bird',
+    name: 'common_family_name'
+  },
+  {
+    species: 'Horse',
+    name: 'breed'
+  },
+  {
+    species: 'Animal',
+    name: 'name'
+  }
+]
+
+BADGES = [
+    ["first", "bronze", "silver", "gold"],
+    ["You have caught one of its kind",
+      "You have caught five of its kind",
+      "You have caught ten of its kind",
+      "You have caught twenty of its kind"],
+    [1, 5, 10, 20],
+    ['Cat', 'Dog', 'Bird', 'Horse', 'Animal']
+]
+FRIENDSHIPS = [
+  "pending",
+  "accepted",
+  "refused"
+]
+
+Friendship.destroy_all
+GotBadge.destroy_all
 CollectionsCatch.destroy_all
 Catch.destroy_all
 Collection.destroy_all
@@ -49,39 +88,7 @@ end
 
 puts "____________________________"
 
-TAXONOMY = ['Cat', 'Dog', 'Bird', 'Horse', 'Animal']
-FAKER_CREATURE = [
-  {
-    species: 'Cat',
-    name: 'breed'
-  },
-  {
-    species: 'Dog',
-    name: 'breed'
-  },
-  {
-    species: 'Bird',
-    name: 'common_family_name'
-  },
-  {
-    species: 'Horse',
-    name: 'breed'
-  },
-  {
-    species: 'Animal',
-    name: 'name'
-  }
-]
 
-BADGES = [
-    ["first", "bronze", "silver", "gold"],
-    ["You have caught one of its kind",
-      "You have caught five of its kind",
-      "You have caught ten of its kind",
-      "You have caught twenty of its kind"],
-    [1,5,10,20],
-    ['Cat', 'Dog', 'Bird', 'Horse', 'Animal']
-]
 
 puts "Loading taxons..."
 TAXONOMY.each do |name|
@@ -91,7 +98,7 @@ TAXONOMY.each do |name|
     }
   )
   taxon.save!
-  puts "#{taxon} created !"
+  puts "#{taxon.name} created !"
 end
 
 puts "____________________________"
@@ -109,7 +116,7 @@ FAKER_CREATURE.each do |creature|
     }
   )
   if animal.save
-    puts "#{animal} created !"
+    puts "#{animal.name} created !"
   end
 end
 
@@ -119,7 +126,7 @@ puts "Creating catches"
 User.all.each do |user|
   puts "Creating catches for #{user.username} ..."
   Animal.all.each do |animal|
-    5.times do
+    2.times do
       catch = Catch.new(
         {
           user_id: user.id,
@@ -128,15 +135,15 @@ User.all.each do |user|
         }
       )
       catch.save!
-      puts "#{catch} created !"
+      puts "#{catch.location} created !"
     end
   end
 end
 
-
 puts "____________________________"
 
 puts "Creating collection..."
+
 User.all.each do |user|
   collection = Collection.new(
     {
@@ -153,41 +160,71 @@ puts "____________________________"
 
 puts "Creating collections_catches..."
 
-Collection.all.each do |collection|
-  Catch.all.each do |catch|
-    next if catch.user_id == collection.user_id
+Catch.all.each do |catch|
+  Collection.all.each do |collection|
+    next if catch.user_id != collection.user_id
 
     collection_catch = CollectionsCatch.new(
-      catch_id: catch.user_id,
-      collection_id: collection.user_id
+      catch_id: catch.id,
+      collection_id: collection.id
     )
-    puts "collection catch #{collection_catch.catch_id} added in  #{collection.name}"
+    collection_catch.save!
+    puts "collection catch #{collection_catch.catch_id} added in  #{collection.id}"
   end
 end
 
+index = 0
+BADGES[3].each do |category|
+  BADGES[0].each do |name|
+    if index > 3 then index = 0 end
+    badge = Badge.new(
+      {
+        name: "#{category} #{name}",
+        description: BADGES[1][index],
+        condition: BADGES[2][index],
+        category:
+      }
+    )
+    index += 1
+    badge.save!
+    puts "Badges created #{badge.name}"
+  end
+end
 
-#  BADGES[3].each do |category|
-#    puts "category"
-#    BADGES[0].each do |name|
-#      puts "name"
-#      BADGES[1].each do |description|
-#        puts "description"
-#        next if n = name
-#        BADGES[2].each do |condition|
-#          puts "condition"
-#          next if n = name
-#          n = name
-#          badge = Badge.new(
-#            {
-#              name: "#{name} #{category}",
-#              description:,
-#              condition:,
-#              category:
-#            }
-#          )
-#          badge.save!
-#          puts "Badges created #{badge.name}"
-#        end
-#      end
-#    end
-#  end
+puts "____________________________"
+
+puts "Creating Got Badges..."
+
+User.all.each do |user|
+  3.times do
+    badge_id = Badge.first.id.to_i + rand(19)
+    got_badges = GotBadge.new(
+      {
+        badge_id:,
+        user_id: user.id
+      }
+    )
+    got_badges.save!
+  end
+  puts "Got Badges for user #{user.username} created"
+end
+
+puts "____________________________"
+
+puts "Creating collections_catches..."
+
+User.all.each do |user|
+  5.times do
+    friend_id = User.first.id.to_i + rand(10)
+    status = FRIENDSHIPS[rand(0..2)]
+    friendship = Friendship.new(
+      {
+        user_id: user.id,
+        status:,
+        friend_id:
+      }
+    )
+    friendship.save!
+  end
+  puts "Got friendships for user #{user.username} created"
+end

@@ -4,5 +4,6 @@ class Badge < ApplicationRecord
   validates :condition, presence: true
   validates :category, presence: true
 
+  has_many :got_badges, dependent: :destroy
   has_one_attached :photo
 end
