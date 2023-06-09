@@ -1,0 +1,8 @@
+
+<%= render "searchbar" %>
+<% if !@animals.empty? %>
+  <div class="txt-title-primary">Here's our referenced animals !</div>
+<% else %>
+  <div>Sorry, we did not find any results...</div>
+<% end %>
+<%= render "animals" %>
