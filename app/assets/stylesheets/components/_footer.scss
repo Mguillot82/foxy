@@ -1,6 +1,21 @@
-
-.footer {
-  width: 360px;
+.footer-container {
   height: 70px;
+  width: 360px;
   background-color: $primary;
+  color: $secondary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+
+  .col {
+    display: flex;
+    justify-content: center;
+  }
 }
