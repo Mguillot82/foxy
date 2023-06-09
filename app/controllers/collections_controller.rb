@@ -11,6 +11,7 @@ class CollectionsController < ApplicationController
 
   def general
     @collection = CollectionPolicy::Scope.new(current_user, Collection, User.find(params[:user_id])).resolve
+    @animals = @collection.first.catches.map(&:animal)
     authorize @collection
   end
 
