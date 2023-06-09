@@ -11,14 +11,14 @@
   </head>
 
   <body>
-    <% if current_page?(root_path) %>
-      <%= render "shared/navbar_home_antoine" %>
-    <% else %>
-      <%= render "shared/navbar_pages_antoine" %>
-    <% end %>
+    <%# <% if current_page?(root_path) %>
+      <%# <%= render "shared/navbar_home_antoine" %>
+    <%# <% else %>
+      <%# <%= render "shared/navbar_pages_antoine" %>
+    <%# <% end %>
+    <%= render "shared/navbar" %>
     <%= render "shared/flashes" %>
     <%= render "shared/footer" %>
-
     <%= yield %>
   </body>
 
