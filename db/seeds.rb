@@ -44,8 +44,8 @@ FAKER_CREATURE = [
 ]
 
 BADGES = [
-  #["first", "bronze", "silver", "gold"],
-  #[
+  # ["first", "bronze", "silver", "gold"],
+  # [
   #  "You have caught one of its kind",
   #   "You have caught five of its kind",
   #   "You have caught ten of its kind",
@@ -227,7 +227,7 @@ BADGES = [
 FRIENDSHIPS = [
   "pending",
   "accepted",
-  "refused"
+  "rejected"
 ]
 
 Friendship.destroy_all
