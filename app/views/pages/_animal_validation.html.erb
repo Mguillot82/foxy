@@ -1,10 +1,13 @@
-<div class="card-content">
-  <img src=<%= animal.photo_url%> alt="">
-  <div class="card-title"><%= animal.name%></div>
-  <div class="card-address"><%= animal.scientific_name %></div>
-  <div class="card-rating">C'est un bel animal</div>
-  <div class="card-price">Toulouse</div>
-
-  <%= button_to "Refuser", root_path %>
-  <button data-action="click->home#createTaxonomy" >Valider</button>
+<div >
+  <div class="background-home" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= animal.photo_url%>)">
+  </div>
+  <div class="container">
+    <h1><%= animal.name%></h1>
+    <p><%= animal.scientific_name %></p>
+    <p class='text-primary-light'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio beatae tenetur nesciunt eveniet aliquid nam temporibus repellendus delectus quae perspiciatis, accusamus est unde iste cum impedit nostrum quisquam molestias neque.</p>
+    <div class="d-flex justify-content-evenly">
+      <%= button_to "Refuser", root_path, class:'btn btn-outline-secondary btn-home-acceptrefuse' %>
+      <button data-action="click->home#createTaxonomy" class = "btn btn-secondary btn-home-acceptrefuse" >Valider</button>
+    </div>
+  </div>
 </div>
