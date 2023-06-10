@@ -1,0 +1,8 @@
+<div>
+  <ul>
+    <% @animals.each do |animal| %>
+      <li><%= animal.photo_url %></li>
+      <li><%= animal.name %></li>
+    <% end %>
+  </ul>
+</div>
