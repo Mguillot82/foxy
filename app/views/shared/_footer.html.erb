@@ -1,44 +1,75 @@
 
 
 <%# FOOTER %>
-  <div class="footer-container">
+<div class="footer-container">
   <div class="row">
 
   <%# Friends %>
     <div class="col">
-      <%= link_to friends_path do %>
-        <i class="fa-solid fa-user-group icon icon-footer"></i>
+      <% if current_page?(friends_path) %>
+        <%= link_to friends_path do %>
+          <i class="fa-solid fa-user-group icon icon-footer active"></i>
+        <% end %>
+      <% else %>
+        <%= link_to friends_path do %>
+          <i class="fa-solid fa-user-group icon icon-footer"></i>
+        <% end %>
       <% end %>
     </div>
   <%# /Friends %>
 
   <%# Collections %>
     <div class="col">
-      <%= link_to user_collections_path(current_user) do %>
-        <i class="fa-solid fa-layer-group icon icon-footer"></i>
+      <% if current_page?(root_path) %>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-layer-group icon icon-footer active"></i>
+        <% end %>
+      <% else %>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-layer-group icon icon-footer"></i>
+        <% end %>
       <% end %>
-      </a>
     </div>
   <%# /Collections %>
 
-  <%# Photo %>
+  <%# Home %>
     <div class="col">
-      <%= link_to root_path do %>
-        <i class="fa-solid fa-camera icon icon-footer"></i>
+      <% if current_page?(root_path) %>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-camera icon icon-footer active"></i>
+        <% end %>
+      <% else %>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-camera icon icon-footer"></i>
+        <% end %>
       <% end %>
     </div>
-  <%# /Photo %>
+  <%# /Home %>
 
   <%# Search %>
     <div class="col">
-        <i class="fa-solid fa-magnifying-glass icon icon-footer"></i>
+      <% if current_page?(root_path) %>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-magnifying-glass icon icon-footer active"></i>
+        <% end %>
+      <% else %>
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-magnifying-glass icon icon-footer"></i>
+        <% end %>
+      <% end %>
     </div>
   <%# /Search %>
 
   <%# Settings %>
     <div class="col">
-      <%= link_to settings_path do %>
-        <i class="fa-solid fa-gear icon icon-footer"></i>
+      <% if current_page?(settings_path) %>
+        <%= link_to settings_path do %>
+          <i class="fa-solid fa-gear icon icon-footer active"></i>
+        <% end %>
+      <% else %>
+        <%= link_to settings_path do %>
+          <i class="fa-solid fa-gear icon icon-footer"></i>
+        <% end %>
       <% end %>
     </div>
   <%# /Settings %>
