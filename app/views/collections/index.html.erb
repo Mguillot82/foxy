@@ -1,8 +1,12 @@
 <h1>Collections</h1>
 
 <ul><% @collections.each do |collection| %>
-      <li>Title : <%= link_to collection.name, user_collection_path(current_user, collection) %></li>
-      <%= link_to 'Delete a collection', collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-secondary' %>
+      <% if collection == current_user.collections[0] %>
+        <li>Title : <%= link_to collection.name, user_collection_path(current_user, collection) %></li>
+      <% else %>
+        <li>Title : <%= link_to collection.name, user_collection_path(current_user, collection) %></li>
+        <%= link_to 'Delete a collection', collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-secondary' %>
+      <% end %>
     <% end %>
 </ul>
 
