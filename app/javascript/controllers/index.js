@@ -7,9 +7,5 @@ import { application } from "./application"
 import HomeController from "./home_controller"
 application.register("home", HomeController)
 
-import { Application } from "@hotwired/stimulus"
-import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
-
-window.Stimulus = Application.start()
-const context = require.context("./controllers", true, /\.js$/)
-Stimulus.load(definitionsFromContext(context))
+import IndexCollectionController from "./index_collection_controller"
+application.register("index-collection", IndexCollectionController)
