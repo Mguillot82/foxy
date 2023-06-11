@@ -6,11 +6,11 @@
 <ul>
     <li>Description : <%= @collection.description %></li>
     <%# should add something to display not all animals but only those chosen %>
-    <% @animals.each do |animal| %>
-      <li><%= animal.photo_url %></li>
-      <li><%= animal.name %></li>
-      <%= link_to 'Delete an animal', collection_path(@collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-secondary' %>
-    <% end %>
+    <%# <% @animals.each do |animal| %>
+      <%# <li><%= animal.photo_url</li> %>
+      <%# <li><%= animal.name</li> %>
+      <%# <%= link_to 'Delete an animal', collection_path(@collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-secondary' %>
+    <%# <% end %>
 </ul>
 
 <div data-controller='show-collection'>

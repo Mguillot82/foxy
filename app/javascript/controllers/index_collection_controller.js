@@ -4,7 +4,6 @@ export default class extends Controller {
   static targets = ['form']
 
   connect() {
-    console.log("Hi it works!!")
   }
 
   revealFormEdit(event) {
