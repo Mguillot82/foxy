@@ -9,12 +9,12 @@
   </div>
 
     <%# <%= render 'form_create', collection: @collection %>
-    <div class="d-none"
-         data-index-collection-target='name'>
-      <%= simple_form_for [current_user, Collection.new] do |f| %>
-        <%= f.input :name %>
-        <%= f.input :description %>
-        <%= f.submit :create, class: "btn btn-success text-white" %>
-      <% end %>
-    </div>
+  <div class="d-none"
+       data-index-collection-target= "form">
+    <%= simple_form_for [current_user, Collection.new] do |f| %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.submit :create, class: "btn btn-success text-white" %>
+    <% end %>
+  </div>
 </div>
