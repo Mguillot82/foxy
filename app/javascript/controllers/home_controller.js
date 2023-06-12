@@ -61,7 +61,7 @@ export default class extends Controller {
     fetch("https://api.inaturalist.org/v2/computervision/score_image",{
       method: "POST",
       headers: {'accept': 'application/json',
-                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODY0MTIzOTN9.3nP8VC3Ug9lKiudhrEnbFwIfBrYtOVxK1vO7W1g859PciDNFjaHW4DCN2IwiOKdvc6vDuHANXH7qKdHVtBKM6g'},
+                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODY2Mzk1NTh9.wqNDI26Syqrhji-RIiBIoTMMjUgXaP07NQN7KVFZVXUoj59p32c0AV_iDEMa3ZgvfiIpOSuewqcBV_Yv-OFPFA'},
       body: formData
       })
     .then(response => response.json())
