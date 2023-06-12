@@ -22,6 +22,11 @@
   }
 }
 
+.active {
+  background-color: $background;
+  color: $primary;
+}
+
 .icon-accept {
   background-color: $green;
   color: $white;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Foxy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,16 +10,14 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
-
-  <body>
-    <%# <% if current_page?(root_path) %>
-      <%# <%= render "shared/navbar_home_antoine" %>
-    <%# <% else %>
-      <%# <%= render "shared/navbar_pages_antoine" %>
-    <%# <% end %>
-    <%= render "shared/navbar" %>
+  <body class="footer-content">
+    <% if current_page?(root_path) %>
+      <%= render "shared/navbar_home_antoine" %>
+    <% else %>
+      <%= render "shared/navbar_pages_antoine" %>
+    <% end %>
     <%= render "shared/flashes" %>
-    <%= render "shared/footer" %>
     <%= yield %>
+    <%= render "shared/footer" %>
   </body>
 </html>
