@@ -1,43 +1,140 @@
-<h1>User Profile</h1>
+<%# <div class="menu-select">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </div>
+    </div>
+  </div>
+</nav>
+</div>
+<br> %>
 
-<p><strong>Username:</strong> <%= @user.username %></p>
+<div class="profile-container">
+  <div class="profile-pic">
+    <%= image_tag @user.photo if @user.photo.attached? %>
+  </div>
+  <br>
+  <p><strong>Username:</strong> <%= @user.username %></p>
 
-<p><strong>Email:</strong> <%= @user.email %></p>
+  <p><strong>Email:</strong> <%= @user.email %></p>
 
-<p><strong>Photo:</strong></p>
-<%= image_tag @user.photo if @user.photo.attached? %>
+  <%# <h2>Catches</h2> %>
+  <%# <ul>
+    <% @user.catches.each do |catch| %>
+      <%# <li><%= catch.location %>
+      <%# </li> %>
 
-<h2>Catches</h2>
-<ul>
-  <% @user.catches.each do |catch| %>
-    <li><%= catch.location %></li>
-  <% end %>
-</ul>
+    <%# <% end %>
+  <%# </ul> %>
 
-<h2>Collections</h2>
-<ul>
-  <% @user.collections.each do |collection| %>
-    <li><%= collection.name %></li>
-  <% end %>
-</ul>
+  <h2>Collections</h2>
+  <ul>
+    <% @user.collections.each do |collection| %>
+      <li><%= collection.name %></li>
+    <% end %>
+  </ul>
 
-<h2>Animals</h2>
-<ul>
-  <% @user.animals.each do |animal| %>
-    <li><%= animal.name %></li>
-  <% end %>
-</ul>
+  <%# <h2>Animals</h2> %>
+  <%# <ul> %>
+    <%# <% @user.animals.each do |animal| %>
+      <%# <li><%= animal.name %>
+      <%# </li> %>
+    <%# <% end %>
+  </ul>
 
-<h2>Badges</h2>
-<ul>
-  <% @user.badges.each do |badge| %>
-    <li><%= badge.name %></li>
-  <% end %>
-</ul>
+   <h2>Badges</h2>
+  <ul>
+    <% @user.badges.each do |badge| %>
+      <li><%= badge.name %></li>
+    <% end %>
+  </ul>
 
-<h2>Friendships</h2>
-<ul>
-  <% @user.friendships.each do |friendship| %>
-    <li><%= friendship.friend.username %></li>
-  <% end %>
-</ul>
+  <%# <h2>Friendships</h2> %>
+  <ul>
+    <% @user.friendships.each do |friendship| %>
+      <li><%= friendship.friend.username %></li>
+    <% end %>
+  </ul>
+
+<p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr>
+<p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr>
+</div>
