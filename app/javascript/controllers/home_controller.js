@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { DirectUpload } from "@rails/activestorage"
 
 // Connects to data-controller="home"
 export default class extends Controller {
@@ -12,7 +13,8 @@ export default class extends Controller {
     });
 
     navigator.mediaDevices
-      .getUserMedia({video: {width: screen.width, height: screen.height, facingMode: { exact: "environment" }}})
+      .getUserMedia({video: {width: screen.width, height: screen.height}})
+      // .getUserMedia({video: {width: screen.width, height: screen.height, facingMode: { exact: "environment" }}})
       .then((stream) => {
         this.stream = stream
         this.cameraTarget.srcObject = stream;
@@ -126,6 +128,7 @@ export default class extends Controller {
 
   #createCatch(api_data, taxon_data, animal_data) {
     let token = document.getElementsByName('csrf-token')[0].content;
+    this.uploadFile(this.cameraTarget.src)
     fetch('/catches', {
       method: "POST",
       headers : {
@@ -133,7 +136,7 @@ export default class extends Controller {
         'Content-Type': 'application/json',
         'X-CSRF-Token': token
       },
-      body: JSON.stringify({'catch' : {'animal_id': animal_data.id, 'latitude': this.latitude, 'longitude': this.longitude, 'photo': this.cameraTarget}})
+      body: JSON.stringify({'catch' : {'animal_id': animal_data.id, 'latitude': this.latitude, 'longitude': this.longitude, 'photo': this.coverBlob}})
     })
     .then(response => response.json())
     .then((catch_data) => {
@@ -163,5 +166,18 @@ export default class extends Controller {
     }
 
     return new Blob(byteArrays, {type: mime});
-}
+  }
+
+  uploadFile(file) {
+    const url = "/rails/active_storage/direct_uploads";
+    const upload = new DirectUpload(file, url);
+
+    upload.create((error, blob) => {
+      if (error) {
+        console.log(error);
+      } else {
+        this.coverBlob = blob.signed_id;
+      }
+    })
+  }
 }

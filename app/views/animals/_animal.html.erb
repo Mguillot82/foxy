@@ -1,0 +1,16 @@
+<div class="card-animal-background" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= @animal.photo_url%>)">
+</div>
+<div class="card-animal-content">
+  <div class="card-animal-name">
+    <div class="card-animal-title"><%= @animal.name%></div>
+  </div>
+  <div class="card-animal-taxons">
+    <div class="card-animal-title-secondary"><%= @animal.scientific_name%></div>
+    <div class="card-animal-title-taxonomy"><%= @animal.taxonomy.name%></div>
+  </div>
+  <div class="card-animal-description"><%= @animal.description%></div>
+  <div class="card-animal-locations">
+    <div class="card-animal-title-secondary">Geographic location</div>
+    <div class="card-animal-location"><%= @animal.location %></div>
+  </div>
+</div>
