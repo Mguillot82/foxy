@@ -17,25 +17,7 @@
   background-color: $background;
   box-shadow: 0 0 4px rgba(0,0,0,0.2);
   padding: 10px 10px;
-  // a {
-  //   position: absolute;
-  //   height: 100%;
-  //   width: 100%;
-  // }
 }
-
-// .cards-collection {
-//   display: grid;
-//   grid-gap: 8px;
-//   grid-template-columns: 1fr 1fr;
-//   grid-auto-flow: row dense;
-//   grid-auto-rows: auto;
-//   padding: 10px 10px;
-// }
-
-// .card-collection {
-//   padding: 10px;
-// }
 
 .card:active {
   transition: all 0.250s ease;
@@ -45,16 +27,6 @@
   .card-name {
     color: $background;
   }
-  // .card-content {
-  //   border-radius: 12px;
-  //   color: $background;
-  // }
-  // .card-address {
-  //   color: $background;
-  // }
-  // .card-price {
-  //   color: $background;
-  // }
 }
 
 .card-img {
@@ -74,53 +46,46 @@
   text-shadow: 0px 0px 1px $primary;
   text-align: center;
   padding-top: 15px;
+}
+
+.card-animal {
+  margin: 0 0 0 16px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+}
+
+.card-animal-title {
+  color: $primary;
+  font-size: 24px;
+  font-weight: 900;
+  justify-self: center;
+}
+
+.card-animal-sn {
 
 }
 
-// .card-content {
-//   display: grid;
-//   justify-items: start;
-//   align-items: center;
-//   padding:8px;
-//   grid-template-columns: 3fr 1fr;
-//   grid-template-rows: 1fr 1fr 1fr 1fr;
-//   background-color: rgba($primary-light, $alpha: 0.1);
-//   i {
-//     align-self: end;
-//     grid-column: 2;
-//     grid-row: 2;
-//     color: $yellow;
-//     margin-right: 8px;
-//   }
-// }
+.card-animal-location {
 
+}
 
-// .card-address {
-//   align-self: start;
-//   grid-column: 1;
-//   grid-row: 2;
-//   margin-left: 20px;
-//   font-size: 16px;
-//   font-style: italic;
-//   color: $primary-light;
+.card-animal-description {
 
-// }
+}
 
-// .card-rating {
-//   justify-self: center;
-//   grid-column: 2;
-//   grid-row: 3;
-//   margin-right: 8px;
-//   font-weight:bold;
-//   font-size: 16px;
+.card-animal-locations {
 
-// }
+}
 
-// .card-price {
-//   margin-left: 20px;
-//   grid-column: 1;
-//   grid-row: 3;
-//   font-weight: bold;
-//   font-size: 16px;
-//   color: $primary;
-// }
+.card-animal-location {
+
+}
+
+.card-animal-categories {
+
+}
+
+.card-animal-category {
+
+}

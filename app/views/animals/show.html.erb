@@ -1,8 +1,16 @@
-<div class="card-content">
-<img src= <%= @animal.photo_url %> alt="">
-  <div class="card-title"><%= @animal.name%></div>
-  <div class="card-address"><%= @animal.scientific_name%></div>
-  <div class="card-rating"><%= @animal.description%></div>
-  <div class="card-price"><%= @animal.location %></div>
-  <div><%= @animal.taxonomy.name%></div>
+
+<div class="card-animal">
+  <div class="banner-animal">
+    <img src= <%= @animal.photo_url %> alt="">
+  </div>
+  <div class="card-animal-title txt-title"><%= @animal.name%></div>
+  <div class="card-animal-sn"><%= @animal.scientific_name%></div>
+  <div class="card-animal-categories">
+    <div class="card-animal-categoy"><%= @animal.taxonomy.name%></div>
+    <div class="card-animal-category"></div>
+  </div>
+  <div class="card-animal-description"><%= @animal.description%></div>
+  <div class="card-animal-locations">
+    <div class="card-animal-location"><%= @animal.location %></div>
+  </div>
 </div>
