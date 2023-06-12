@@ -2,12 +2,12 @@
   <div class="animal-search">
     <div class="card-animal-title">Search</div>
     <%= render "searchbar" %>
+    <% if !@animals.empty? %>
+      <div class="card-animal-subtitle">Here's our referenced animals !</div>
+    <% else %>
+      <div class="card-animal-subtitle">Sorry, we did not find any results...</div>
+    <% end %>
   </div>
-  <% if !@animals.empty? %>
-    <div class="txt-title-primary">Here's our referenced animals !</div>
-  <% else %>
-    <div>Sorry, we did not find any results...</div>
-  <% end %>
   <div>
     <%= render "animals" %>
   </div>
