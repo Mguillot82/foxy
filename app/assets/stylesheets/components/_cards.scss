@@ -17,25 +17,7 @@
   background-color: $background;
   box-shadow: 0 0 4px rgba(0,0,0,0.2);
   padding: 10px 10px;
-  // a {
-  //   position: absolute;
-  //   height: 100%;
-  //   width: 100%;
-  // }
 }
-
-// .cards-collection {
-//   display: grid;
-//   grid-gap: 8px;
-//   grid-template-columns: 1fr 1fr;
-//   grid-auto-flow: row dense;
-//   grid-auto-rows: auto;
-//   padding: 10px 10px;
-// }
-
-// .card-collection {
-//   padding: 10px;
-// }
 
 .card:active {
   transition: all 0.250s ease;
@@ -45,16 +27,6 @@
   .card-name {
     color: $background;
   }
-  // .card-content {
-  //   border-radius: 12px;
-  //   color: $background;
-  // }
-  // .card-address {
-  //   color: $background;
-  // }
-  // .card-price {
-  //   color: $background;
-  // }
 }
 
 .card-img {
@@ -74,53 +46,111 @@
   text-shadow: 0px 0px 1px $primary;
   text-align: center;
   padding-top: 15px;
-
 }
 
-// .card-content {
-//   display: grid;
-//   justify-items: start;
-//   align-items: center;
-//   padding:8px;
-//   grid-template-columns: 3fr 1fr;
-//   grid-template-rows: 1fr 1fr 1fr 1fr;
-//   background-color: rgba($primary-light, $alpha: 0.1);
-//   i {
-//     align-self: end;
-//     grid-column: 2;
-//     grid-row: 2;
-//     color: $yellow;
-//     margin-right: 8px;
-//   }
-// }
 
 
-// .card-address {
-//   align-self: start;
-//   grid-column: 1;
-//   grid-row: 2;
-//   margin-left: 20px;
-//   font-size: 16px;
-//   font-style: italic;
-//   color: $primary-light;
+.card-animal {
+  height: 100%;
+  margin: 0 0 16px 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba($color: $background, $alpha: 0.2);
+}
 
-// }
+.card-banner-animal {
+  height: 120px;
+  background-color: black;
+  background-position: center;
+  background-size: cover;
+}
 
-// .card-rating {
-//   justify-self: center;
-//   grid-column: 2;
-//   grid-row: 3;
-//   margin-right: 8px;
-//   font-weight:bold;
-//   font-size: 16px;
+.card-hr {
+  margin:0 ;
+  width: 80%;
+}
 
-// }
+.card-animal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 16px;
+}
 
-// .card-price {
-//   margin-left: 20px;
-//   grid-column: 1;
-//   grid-row: 3;
-//   font-weight: bold;
-//   font-size: 16px;
-//   color: $primary;
-// }
+.card-animal-title {
+  color: $primary;
+  font-size: 24px;
+  font-weight: 900;
+  align-self: flex-start;
+  margin: 0px 8px 4px 8px;
+}
+
+.card-animal-title-secondary {
+  color: $primary;
+  font-size: 16px;
+  font-weight: 500;
+  align-self: flex-start;
+  margin: 8px 0px 0px 0px;
+}
+
+.card-animal-title-taxonomy {
+  color: $primary;
+  font-size: 16px;
+  font-weight: 400;
+  align-self: flex-start;
+  padding: 8px 16px;
+  background-color: rgba($color: $background, $alpha: 0.6);
+  border: solid 1px rgba($color: $primary, $alpha: 0.5);
+  border-radius: 24px;
+  margin: 16px 0px 0px 0px;
+}
+
+.card-animal-subtitle {
+  color: $primary-light;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.card-animal-name {
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 16px 8px 16px 8px;
+}
+
+.card-animal-taxons {
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 8px 16px 8px;
+}
+
+.card-animal-description {
+  max-width: 90%;
+  margin: 16px 8px 16px 8px;
+  color: $primary-light;
+  font-weight: 200;
+  text-align: justify;
+}
+
+.card-animal-locations {
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 16px 8px 16px 8px;
+}
+
+.card-animal-location {
+  color: $primary;
+  font-weight: 400;
+  align-self: flex-start;
+  padding: 8px 16px;
+  background-color: rgba($color: $background, $alpha: 0.6);
+  border: solid 1px rgba($color: $primary, $alpha: 0.5);
+  border-radius: 24px;
+  margin: 16px 0px 0px 0px;
+}
