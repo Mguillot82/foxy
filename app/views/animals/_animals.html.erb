@@ -1,13 +1,16 @@
 <div class="animal-cards-list">
     <% @animals.each do |animal| %>
         <div class="animal-card">
+          <div class="animal-link">
           <%= link_to "", animal_path(animal.id) %>
+          </div>
           <% if false %>
             <div class="animal-card-image" style="background-image : url(<%= cl_image_path animal.photo.key, height: 300, width: 400, crop: :fill %>)"></div>
           <% else %>
             <div class="animal-card-image" style="background-image : url('https://t4.ftcdn.net/jpg/04/50/96/23/240_F_450962330_w4RDU0GCIeKy0QvSxBuJ0MHp4mkuXWts.jpg')"></div>
           <% end %>
           <div class="animal-name"><%= animal.name %></div>
+          <div class="animal-empty-block"></div>
         </div>
     <% end  %>
 </div>
