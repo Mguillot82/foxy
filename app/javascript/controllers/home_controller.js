@@ -119,6 +119,7 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then((animal_data) => {
+      console.log(animal_data);
       this.#createCatch(api_data, taxon_data, animal_data);
     })
   }
@@ -132,7 +133,7 @@ export default class extends Controller {
         'Content-Type': 'application/json',
         'X-CSRF-Token': token
       },
-      body: JSON.stringify({'catch' : {'animal': animal_data.id, 'latitude': this.latitude, 'longitude': this.longitude}})
+      body: JSON.stringify({'catch' : {'animal_id': animal_data.id, 'latitude': this.latitude, 'longitude': this.longitude, 'photo': this.cameraTarget}})
     })
     .then(response => response.json())
     .then((catch_data) => {
