@@ -13,11 +13,11 @@ Rails.application.routes.draw do
         get 'general'
       end
     end
-    resources :friendships, only: %i[index create]
+    # resources :friendships, only: %i[index create]
   end
 
   resources :collections, only: [:destroy] do
-    resources :collections_catches, only: %i[create]
+    # resources :collections_catches, only: %i[create]
   end
 
   resources :animals, only: %i[show index new create]
@@ -26,14 +26,13 @@ Rails.application.routes.draw do
     resources :animals, only: [:show], controller: 'catches/animals'
   end
 
-  resources :collections_catches, only: [:destroy]
+  # resources :collections_catches, only: [:destroy]
 
-  resources :friendships, only: [:destroy]
+  # resources :friendships, only: [:destroy]
 
   resources :taxonomies, only: [:create]
 
-  resources :got_badges, only: [:create]
+  # resources :got_badges, only: [:create]
 
   resources :friends, only: [:index, :show]
-
 end

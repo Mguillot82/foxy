@@ -10,12 +10,19 @@
         <i class="fa-solid fa-user-group icon icon-footer"></i>
       <% end %>
     </div>
-  <%# /Friends %>
+  <% /Friends %>
 
   <%# Collections %>
     <div class="col">
-      <%= link_to root_path do %>
+      <% if user_signed_in? %>
+        <%= link_to user_collections_path(current_user) do %>
+          <i class="fa-solid fa-layer-group icon icon-footer"></i>
+        <% end %>
+      <% else %>
+        <%= link_to root_path do %>
+
         <i class="fa-solid fa-layer-group icon icon-footer"></i>
+        <% end %>
       <% end %>
     </div>
   <%# /Collections %>

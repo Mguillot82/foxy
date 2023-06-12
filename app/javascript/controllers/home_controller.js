@@ -12,7 +12,7 @@ export default class extends Controller {
     });
 
     navigator.mediaDevices
-      .getUserMedia({video: true})
+      .getUserMedia({video: {width: screen.width, height: screen.height}})
       .then((stream) => {
         this.stream = stream
         this.cameraTarget.srcObject = stream;
@@ -61,7 +61,7 @@ export default class extends Controller {
     fetch("https://api.inaturalist.org/v2/computervision/score_image",{
       method: "POST",
       headers: {'accept': 'application/json',
-                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODYzMjQ3Mjh9.1EGH_5w1C3C2lnqLnXbS8wbiOWZ8OW3JCvl7vD2T-e0LiyfaeBvF3SjoGqtEyOtXaiBbhIVsTy8ILqkba-NLuA'},
+                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODY2Mzk1NTh9.wqNDI26Syqrhji-RIiBIoTMMjUgXaP07NQN7KVFZVXUoj59p32c0AV_iDEMa3ZgvfiIpOSuewqcBV_Yv-OFPFA'},
       body: formData
       })
     .then(response => response.json())
@@ -73,7 +73,7 @@ export default class extends Controller {
       fetch('/animals/new?' + new URLSearchParams({
         'animal[name]': api_data.results[0].taxon.english_common_name,
         'animal[scientific_name]': api_data.results[0].taxon.name,
-        'animal[photo_url]': api_data.results[0].taxon.default_photo.url,
+        'animal[photo_url]': api_data.results[0].taxon.default_photo.medium_url,
     }), {
         headers: {"Accept": "text/plain"}
       })
@@ -107,7 +107,7 @@ export default class extends Controller {
     let animal_name = api_data.results[0].taxon.english_common_name;
     let animal_scientific_name = api_data.results[0].taxon.name;
     let animal_taxon = taxon_data.id;
-    let animal_photo = api_data.results[0].taxon.default_photo.url;
+    let animal_photo = api_data.results[0].taxon.default_photo.medium_url;
     fetch('/animals', {
       method: "POST",
       headers : {
