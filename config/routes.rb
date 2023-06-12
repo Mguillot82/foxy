@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'style', to: 'pages#style'
   get 'settings', to: 'pages#settings'
-  get 'about',  to: 'pages#about'
+  get 'about', to: 'pages#about'
 
   resources :users, only: [:show] do
     resources :collections, except: %i[new] do
