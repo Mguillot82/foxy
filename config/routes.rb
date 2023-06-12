@@ -2,11 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :users, only: [] do
+    get 'settings', to: 'settings#index'
+  end
 
   get 'style', to: 'pages#style'
   get 'settings', to: 'pages#settings'
   get 'about', to: 'pages#about'
-  get 'settings', to: 'settings#index'
+
 
   resources :users, only: [:show] do
     resources :collections, except: %i[new] do
