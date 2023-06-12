@@ -1,9 +1,10 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller, fetch } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ['form', 'animal']
 
   connect() {
+    this.catchId = []
   }
 
   revealFormEdit(event) {
@@ -13,7 +14,18 @@ export default class extends Controller {
 
   revealAnimals(event) {
     event.preventDefault();
-    console.log('ca marche pas!')
     this.animalTarget.classList.remove("d-none")
+  }
+
+  addCatch(e) {
+    this.index = this.catchId.indexOf(e.params.id)
+    if (this.catchId.includes(e.params.id)) {
+      delete this.catchId[this.index]
+    } else {
+      this.catchId.push(e.params.id)
+    }
+    console.log(this.catchId)
+    const url = '/'
+    fetch()
   }
 }

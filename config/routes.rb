@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   end
 
   resources :collections, only: [:destroy] do
+    member do
+      post 'add_catch'
+    end
     # resources :collections_catches, only: %i[create]
   end
 

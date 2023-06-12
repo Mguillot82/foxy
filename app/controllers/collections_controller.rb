@@ -1,12 +1,18 @@
 class CollectionsController < ApplicationController
+  before_action :set_collection, only: %i[show add_catch update destroy]
+
   def index
     @collections = policy_scope(Collection)
   end
 
   def show
-    @collection = Collection.find(params[:id])
-    @animals = @collection.catches.map(&:animal)
+    @catches = @collection.catches
+    @catches_all = Catch.where(user_id: current_user)
     authorize @collection
+  end
+
+  def add_catch
+    
   end
 
   def general
@@ -27,7 +33,6 @@ class CollectionsController < ApplicationController
   end
 
   def update
-    @collection = Collection.find(params[:id])
     if @collection.update(collection_params)
       authorize @collection
       redirect_to user_collection_path(current_user, @collection)
@@ -37,7 +42,6 @@ class CollectionsController < ApplicationController
   end
 
   def destroy
-    @collection = Collection.find(params[:id])
     @collection.destroy
     authorize @collection
 
@@ -48,5 +52,9 @@ class CollectionsController < ApplicationController
 
   def collection_params
     params.require(:collection).permit(:name, :description)
+  end
+
+  def set_collection
+    @collection = Collection.find(params[:id])
   end
 end
