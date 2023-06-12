@@ -1,10 +1,6 @@
 <h1>Collections</h1>
 
-<ul><% @collections.each do |collection| %>
-      <li>Title : <%= link_to collection.name, user_collection_path(current_user, collection) %></li>
-      <%= link_to 'Delete a collection', collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-secondary' %>
-    <% end %>
-</ul>
+<%= render 'shared/cards_collection' %>
 
 <div class='btn btn-outline-secondary'>Add a collection</div>
 <div>
