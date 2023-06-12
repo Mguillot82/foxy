@@ -25,14 +25,31 @@
 .icon-accept {
   background-color: $green;
   color: $white;
+  position: absolute;
+  top: 85%;
+  left: 70%;
+  z-index: 10
 }
 
 .icon-refuse {
   background-color: $red;
   color: $white;
+  position: absolute;
+  top: 85%;
+  left: 20%;
+  z-index: 10
 }
 
 .icon-delete {
   background-color: $red;
   color: $white;
+}
+
+.icon-photo {
+  background-color: $dark-light;
+  color: $dark;
+  position: absolute;
+  top: 85%;
+  left: 45%;
+  z-index: 10
 }

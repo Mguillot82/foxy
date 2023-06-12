@@ -13,12 +13,17 @@
   <% /Friends %>
 
   <%# Collections %>
-    <% <div class="col"> %>
-      <% <%= link_to user_collections_path(current_user) do %>
-        <% <i class="fa-solid fa-layer-group icon icon-footer"></i> %>
-      <% <% end %>
-      <% </a> %>
-    <% </div> %>
+    <div class="col">
+      <% if user_signed_in? %>
+        <%= link_to user_collections_path(current_user) do %>
+          <i class="fa-solid fa-layer-group icon icon-footer"></i>
+        <% end %>
+      <% else %>
+        <%= link_to root_path do %>
+        <i class="fa-solid fa-layer-group icon icon-footer"></i>
+        <% end %>
+      <% end %>
+    </div>
   <%# /Collections %>
 
   <%# Photo %>

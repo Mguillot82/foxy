@@ -14,7 +14,7 @@ class AnimalsController < ApplicationController
   end
 
   def create
-    @animal = Animal.find_or_create_by(animal_params)
+    @animal = Animal.find_or_create_by!(animal_params)
     authorize @animal
     respond_to do |format|
       format.json { render json: @animal }
