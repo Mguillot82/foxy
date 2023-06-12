@@ -11,4 +11,8 @@ class FriendPolicy < ApplicationPolicy
     # pour voir la show d'un ami il faut etre ami avec
     true
   end
+
+  def friends_requests?
+    true
+  end
 end

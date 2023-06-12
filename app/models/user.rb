@@ -15,4 +15,5 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   scope :accepted_friendships, -> { joins(:friendships).where(friendships: { status: 'accepted' }).distinct }
+  scope :pending_friendships, -> { joins(:friendships).where(friendships: { status: 'pending' }).distinct }
 end

@@ -7,4 +7,9 @@ class FriendsController < ApplicationController
     @friend = User.find(params[:id])
     authorize @friend, policy_class: FriendPolicy
   end
+
+  def friends_requests
+    @friends_requests = current_user.friends.joins(:friendships).where(friendships: { status: 'pending' })
+    authorize @friends_requests, policy_class: FriendPolicy
+  end
 end

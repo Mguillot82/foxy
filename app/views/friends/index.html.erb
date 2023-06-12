@@ -1,11 +1,18 @@
 <h1>Friends#index</h1>
 <p>Find me in app/views/friends/index.html.erb</p>
 <h1>Friends List</h1>
-<% @friends.each do |friend| %>
+
+<div class="friends-list">
   <div>
-    <ul>
-      <li><%= friend.username %></li>
-      <li><%= link_to 'view profile', friend_path(friend) %></li>
-    </ul>
+    <button class="new-friends"><%= link_to "New Friends Requests", friends_requests_friends_path %></button>
   </div>
-<% end %>
+
+  <% @friends.each do |friend| %>
+    <div>
+      <ul>
+        <li><%= friend.username %></li>
+        <li><%= link_to 'view profile', friend_path(friend) %></li>
+      </ul>
+    </div>
+  <% end %>
+</div>
