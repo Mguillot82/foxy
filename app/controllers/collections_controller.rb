@@ -5,6 +5,8 @@ class CollectionsController < ApplicationController
 
   def show
     @collection = Collection.find(params[:id])
+    @animals = @collection.catches.map(&:animal)
+
     authorize @collection
   end
 

@@ -10,7 +10,7 @@
         <i class="fa-solid fa-user-group icon icon-footer"></i>
       <% end %>
     </div>
-  <%# /Friends %>
+  <% /Friends %>
 
   <%# Collections %>
     <div class="col">
@@ -19,9 +19,10 @@
           <i class="fa-solid fa-layer-group icon icon-footer"></i>
         <% end %>
       <% else %>
+        <%= link_to root_path do %>
         <i class="fa-solid fa-layer-group icon icon-footer"></i>
+        <% end %>
       <% end %>
-      </a>
     </div>
   <%# /Collections %>
 
