@@ -5,4 +5,7 @@ class PagesController < ApplicationController
   end
 
   def style; end
+
+  def options
+  end
 end
