@@ -1,12 +1,10 @@
  <!-- SEARCH_BAR -->
-    <div class="col-4">
+    <div class="col-10">
       <%= form_with url: animals_path, method: :get do %>
-        <div class="search-form-control form-group">
-          <div id="form" class="search-form-control form-group">
-            <%= text_field_tag :query, params[:query], class: "form-control string required" %>
-              <%= button_tag type: 'submit', class: "btn text-white btn-flat" do %>
-                <i class="fas fa-search"></i>
-              <% end %>
+        <div class="form-group has-search">
+          <i class="fas fa-search form-control-feedback"></i>
+          <div id="form" class="">
+            <%= text_field_tag :query, params[:query], placeholder: "Search an animal", class: "form-control string required" %>
           </div>
         </div>
       <% end %>

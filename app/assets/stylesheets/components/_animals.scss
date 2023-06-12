@@ -1,0 +1,39 @@
+.animal-search {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 16px 8px 8px 16px;
+}
+
+.animal-searchbar {
+  display: flex;
+  background-color: $background;
+  border: solid 1px rgba($color: $secondary, $alpha: 0.5);
+}
+
+.animal-btn {
+  padding: 8px !important;
+  border-radius: 40px;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+  background-color: $background;
+  border: 1px solid rgba($color: $secondary, $alpha: 0.5);
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: $primary;
+}
