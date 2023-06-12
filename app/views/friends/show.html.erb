@@ -12,7 +12,7 @@
 <h2>Catches</h2>
 <ul>
   <% @friend.catches.each do |catch| %>
-    <li><%= catch.name %></li>
+    <li><%= catch.location %></li>
   <% end %>
 </ul>
 
@@ -20,7 +20,7 @@
 <ul>
   <% @friend.collections.each do |collection| %>
     <li><%= collection.name %></li>
-  <% end %>
+<% end %>
 </ul>
 
 <h2>Animals</h2>

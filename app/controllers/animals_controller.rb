@@ -5,8 +5,16 @@ class AnimalsController < ApplicationController
 
   before_action :set_animal, only: %i[show]
 
+  def new
+    @animal = Animal.new(animal_params)
+    authorize @animal
+    respond_to do |format|
+      format.text { render partial: 'pages/animal_validation', locals: { animal: @animal }, formats: [:html] }
+    end
+  end
+
   def create
-    @animal = Animal.find_or_create_by(animal_params)
+    @animal = Animal.find_or_create_by!(animal_params)
     authorize @animal
     respond_to do |format|
       format.json { render json: @animal }
