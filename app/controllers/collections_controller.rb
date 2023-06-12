@@ -8,11 +8,25 @@ class CollectionsController < ApplicationController
   def show
     @catches = @collection.catches
     @catches_all = Catch.where(user_id: current_user)
+    @catches_all = @catches_all.excluding(@catches)
     authorize @collection
   end
 
   def add_catch
-    
+    @added_catches = Catch.find(params[:catches])
+    @collection.catches << @added_catches
+    authorize @collection
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "catches_collection", locals: { catches: @collection.catches }, formats: [:html] }
+    end
+  end
+
+  def remove_catch
+    @collections_catches = CollectionsCatch.find_by(collection_id: params[:id], catch_id: params[:catches])
+    authorize @collection_catches
+    raise
   end
 
   def general

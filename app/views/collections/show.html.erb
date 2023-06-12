@@ -1,56 +1,64 @@
 <h1><%= @collection.name.capitalize %></h1>
 
-<div class="btn btn-outline-secondary">
-  <%= link_to 'Back to collections', user_collections_path(current_user) %>
-</div>
-<ul>
-    <li>Description : <%= @collection.description %></li>
-    <%# should add something to display not all animals but only those chosen %>
-    <%# <% @animals.each do |animal| %>
-      <%# <li><%= animal.photo_url</li> %>
-      <%# <li><%= animal.name</li> %>
-      <%# <%= link_to 'Delete an animal', collection_path(@collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-secondary' %>
-    <%# <% end %>
-</ul>
+<div data-controller='show-collection' data-show-collection-collection-value=<%= @collection.id %>>
+  <div class="btn btn-outline-secondary">
+    <%= link_to 'Back to collections', user_collections_path(current_user) %>
+  </div>
+  <ul>
+      <li>Description : <%= @collection.description %></li>
+      <%# should add something to display not all animals but only those chosen %>
+      <%# <% @animals.each do |animal| %>
+        <%# <li><%= animal.photo_url</li> %>
+        <%# <li><%= animal.name</li> %>
+        <%# <%= link_to 'Delete an animal', collection_path(@collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-secondary' %>
+      <%# <% end %>
+  </ul>
 
-<div data-controller='show-collection'>
+  <div class="catches-list"
+       data-show-collection-target="list">
+       <%= render 'catches_collection', catches: @collection.catches  %>
+  </div>
+
   <div class='btn btn-outline-secondary'
        data-action="click->show-collection#revealAnimals">
     Add an animal
   </div>
   <%# <%= render 'display_animals', collection: @collection %>
 
+  <div class="cards d-none"
+      data-show-collection-target="animal">
+    <% @catches_all.each do |catch| %>
+      <%# <%= link_to animal_path(animal) %>
+      <div class="card card-img"
+          style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= catch.animal.photo_url.present? ? animal.photo_url : 'https://lemagduchat.ouest-france.fr/images/dossiers/2021-03/mini/chaton-sante-071721-650-400.jpg' %>)" alt="<%= catch.animal.name %>"
+          data-action="click->show-collection#selectCatch"
+          data-show-collection-id-param=<%= catch.id %>>
+      <div class="card-name">
+        <%= catch.animal.name %>
+      </div>
+  </div>
+  <% end %>
 
-<div class="cards d-none"
-     data-show-collection-target= "animal">
-  <% @catches_all.each do |catch| %>
-    <%# <%= link_to animal_path(animal) %>
-    <div class="card card-img"
-         style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= catch.animal.photo_url.present? ? animal.photo_url : 'https://lemagduchat.ouest-france.fr/images/dossiers/2021-03/mini/chaton-sante-071721-650-400.jpg' %>)" alt="<%= catch.animal.name %>"
-         data-action="click->show-collection#addCatch"
-         data-show-collection-id-param=<%= catch.id %>>
-    <div class="card-name">
-      <%= catch.animal.name %>
+
+  <div class="add-catch">
+    <div class="btn btn-outline-secondary"
+         data-action="click->show-collection#addCatch">
+        Validate
     </div>
-    <%= link_to collection_path(@collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-      <i class="fa-regular fa-trash-can"></i>
-    <% end %>
-</div>
-<% end %>
+  </div>
 </div>
 
-
-  <div class='btn btn-outline-secondary'
-       data-action="click->show-collection#revealFormEdit">
+<div class='btn btn-outline-secondary'
+      data-action="click->show-collection#revealFormEdit">
     Edit a collection
-  </div>
-    <%# <%= render 'form_edit', collection: @collection %>
-  <div class="d-none"
-       data-show-collection-target= "form">
-    <%= simple_form_for [current_user, @collection] do |f| %>
-      <%= f.input :name %>
-      <%= f.input :description %>
-      <%= f.submit :edit, class: "btn btn-success text-white" %>
-    <% end %>
-  </div>
+</div>
+  <%# <%= render 'form_edit', collection: @collection %>
+<div class="d-none"
+      data-show-collection-target= "form">
+  <%= simple_form_for [current_user, @collection] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.submit :edit, class: "btn btn-success text-white" %>
+  <% end %>
+</div>
 </div>

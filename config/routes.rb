@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :animals, only: [:show], controller: 'catches/animals'
   end
 
-  # resources :collections_catches, only: [:destroy]
+  resources :collections_catches, only: [:destroy]
 
   # resources :friendships, only: [:destroy]
 
