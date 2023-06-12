@@ -1,25 +1,13 @@
-<div class="cards">
-  <% @animals.each do |animal| %>
-    <div>
-      <div class="card">
-        <%= link_to "", animal_path(animal) %>
-          <div class="d-flex-column">
-            <% if false %>
-              <div class="card-img" style="background-image : url(<%= cl_image_path animal.photo.key, height: 300, width: 400, crop: :fill %>)">
-            <% else %>
-              <div class="card-img" style="background-image : url('https://t4.ftcdn.net/jpg/04/50/96/23/240_F_450962330_w4RDU0GCIeKy0QvSxBuJ0MHp4mkuXWts.jpg')">
-            <% end %>
-          </div>
-            <div class="card-content">
-              <div class="card-title"><%= animal.name%></div>
-              <div class="card-address"><%= animal.scientific_name%></div>
-              <div class="card-rating"><%= animal.description%></div>
-              <div class="card-price"><%= animal.location %></div>
-              <div><%= animal.taxonomy.name%></div>
-            </div>
-          </div>
+<div class="animal-cards-list">
+    <% @animals.each do |animal| %>
+        <div class="animal-card">
+          <%= link_to "", animal_path(animal.id) %>
+          <% if false %>
+            <div class="animal-card-image" style="background-image : url(<%= cl_image_path animal.photo.key, height: 300, width: 400, crop: :fill %>)"></div>
+          <% else %>
+            <div class="animal-card-image" style="background-image : url('https://t4.ftcdn.net/jpg/04/50/96/23/240_F_450962330_w4RDU0GCIeKy0QvSxBuJ0MHp4mkuXWts.jpg')"></div>
+          <% end %>
+          <div class="animal-name"><%= animal.name %></div>
         </div>
-      </div>
-    </div>
-  <% end  %>
+    <% end  %>
 </div>
