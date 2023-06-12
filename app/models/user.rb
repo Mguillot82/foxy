@@ -15,4 +15,8 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   scope :accepted_friendships, -> { joins(:friendships).where(friendships: { status: 'accepted' }).distinct }
+
+  def create_general_collection
+    redirect_to collections_path
+  end
 end
