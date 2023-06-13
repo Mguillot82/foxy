@@ -7,11 +7,17 @@ import { application } from "./application"
 import CatchesAnimalsController from "./catches_animals_controller"
 application.register("catches-animals", CatchesAnimalsController)
 
+import FriendCardController from "./friend_card_controller"
+application.register("friend-card", FriendCardController)
+
 import HomeController from "./home_controller"
 application.register("home", HomeController)
 
 import IndexCollectionController from "./index_collection_controller"
 application.register("index-collection", IndexCollectionController)
+
+import MapController from "./map_controller"
+application.register("map", MapController)
 
 import ShowCollectionController from "./show_collection_controller"
 application.register("show-collection", ShowCollectionController)

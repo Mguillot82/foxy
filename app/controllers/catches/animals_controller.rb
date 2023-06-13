@@ -4,6 +4,10 @@ module Catches
 
     def show
       authorize @catch
+      @marker = {
+        lat: @catch.latitude.to_f,
+        lng: @catch.longitude.to_f
+      }
     end
 
     def animal
