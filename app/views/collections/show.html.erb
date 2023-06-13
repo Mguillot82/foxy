@@ -25,7 +25,7 @@
   <% if @collection != current_user.collections[0] %>
     <div class='btn btn-outline-secondary'
         data-action="click->show-collection#revealAnimals">
-      Add an animal
+      <i class="fa-solid fa-plus"></i>
     </div>
     <div class='collection-animals'>
       <%= render 'display_animals', collection: @catches_all %>
@@ -33,7 +33,7 @@
 
   <div class='btn btn-outline-secondary'
        data-action="click->show-collection#revealFormEdit">
-      Edit a collection
+      <i class="fa-regular fa-pen-to-square"></i>
   </div>
   <div>
     <%= render 'form_edit', collection: @collection %>
