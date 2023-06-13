@@ -1,0 +1,10 @@
+<h1>Send Friendship Request</h1>
+
+<%= form_with(url: invite_friends_path, method: :post) do |form| %>
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+
+  <%= form.submit "Send Request" %>
+<% end %>

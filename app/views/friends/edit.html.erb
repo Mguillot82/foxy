@@ -1,0 +1,10 @@
+<h1>Edit Friendship</h1>
+
+<%= form_with(model: @friendship, url: friend_path(@friendship.friend), method: :patch) do |form| %>
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status, options_for_select([["Accepted", "accepted"], ["Pending", "pending"], ["Declined", "declined"]]), include_blank: true %>
+  </div>
+
+  <%= form.submit "Update Friendship" %>
+<% end %>
