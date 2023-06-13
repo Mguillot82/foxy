@@ -1,0 +1,19 @@
+.friends-list {
+  text-align: center;
+
+  .new-friends {
+    width: 270px;
+    height: 60px;
+    border: solid #BC6C25 1px;
+    text-align: center;
+    border-radius: 50px;
+    background-color: #DDA15E;
+  }
+  .new-friends a {
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+}

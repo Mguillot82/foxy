@@ -31,4 +31,16 @@ class FriendPolicy < ApplicationPolicy
   def invite?
     true
   end
+
+  def friends_requests?
+    true
+  end
+
+  def reject?
+    user.friends.include?(record)
+  end
+
+  def add?
+    user.friends.include?(record)
+  end
 end

@@ -1,4 +1,5 @@
 class FriendsController < ApplicationController
+  before_action :set_friend, only: %i[show reject add]
   before_action :set_friendship, only: [:update, :destroy]
 
   def index
@@ -6,10 +7,26 @@ class FriendsController < ApplicationController
   end
 
   def show
-    @friend = User.find(params[:id])
     authorize @friend, policy_class: FriendPolicy
   end
 
+  def friends_requests
+    @friends_requests = current_user.friends.joins(:friendships).where(friendships: { status: 'pending' }).distinct
+    authorize @friends_requests, policy_class: FriendPolicy
+  end
+
+  def reject
+    authorize @friend, policy_class: FriendPolicy
+    Friendship.find_by(user_id: current_user.id, friend_id: @friend.id).update(status: "rejected")
+    redirect_to friends_requests_friends_path
+  end
+
+  def add
+    authorize @friend, policy_class: FriendPolicy
+    Friendship.find_by(user_id: current_user.id, friend_id: @friend.id).update(status: 'accepted')
+    redirect_to friends_requests_friends_path
+  end
+  
   def new
     @friendship = Friendship.new(user: current_user)
 
@@ -62,7 +79,11 @@ class FriendsController < ApplicationController
   end
 
   private
-
+  
+  def set_friend
+    @friend = User.find(params[:id])
+  end
+  
   def set_friendship
     @friendship = Friendship.find(params[:id])
   end

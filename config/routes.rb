@@ -7,15 +7,14 @@ Rails.application.routes.draw do
   get 'settings', to: 'pages#settings'
   get 'about', to: 'pages#about'
 
-  resources :users, only: [:show] do
-    resources :collections, except: %i[new destroy] do
+  resources :users, only: %i[show] do
+    resources :collections, except: %i[new] do
       collection do
         get 'general'
       end
     end
   end
   resources :friendships, only: %i[create]
-
 
   resources :collections, only: [:destroy] do
     member do
@@ -29,16 +28,19 @@ Rails.application.routes.draw do
   resources :animals, only: %i[show index new create]
 
   resources :catches, only: %i[create] do
-    resources :animals, only: [:show], controller: 'catches/animals'
+    resources :animals, only: %i[show], controller: 'catches/animals'
   end
 
-  resources :taxonomies, only: [:create]
+  resources :taxonomies, only: %i[create]
 
-  # resources :got_badges, only: [:create]
-
-  resources :friends, only: [:index, :show, :edit, :create, :new] do
+  resources :friends, only: %i[index show edit new create] do
     collection do
+      get 'friends_requests'
       post 'invite'
+    end
+    member do
+      patch 'reject'
+      patch 'add'
     end
   end
 end
