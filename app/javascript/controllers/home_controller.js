@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="home"
 export default class extends Controller {
-  static targets = ['camera', 'photo', 'button_picture', 'buttons_accept_refuse']
+  static targets = ['camera', 'photo', 'button_picture', 'buttons_accept_refuse', 'animal']
 
   connect() {
     navigator.geolocation
@@ -12,7 +12,7 @@ export default class extends Controller {
     });
 
     navigator.mediaDevices
-      .getUserMedia({video: true})
+      .getUserMedia({video: {width: screen.width, height: screen.height, facingMode: { exact: "environment" }}})
       .then((stream) => {
         this.stream = stream
         this.cameraTarget.srcObject = stream;
@@ -61,19 +61,32 @@ export default class extends Controller {
     fetch("https://api.inaturalist.org/v2/computervision/score_image",{
       method: "POST",
       headers: {'accept': 'application/json',
-                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODYzMjQ3Mjh9.1EGH_5w1C3C2lnqLnXbS8wbiOWZ8OW3JCvl7vD2T-e0LiyfaeBvF3SjoGqtEyOtXaiBbhIVsTy8ILqkba-NLuA'},
+                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODY2Mzk1NTh9.wqNDI26Syqrhji-RIiBIoTMMjUgXaP07NQN7KVFZVXUoj59p32c0AV_iDEMa3ZgvfiIpOSuewqcBV_Yv-OFPFA'},
       body: formData
       })
     .then(response => response.json())
     .then((api_data) => {
-      this.#createTaxonomy(api_data)
-
+      this.api_data = api_data;
+      this.photoTarget.classList.add('d-none');
+      this.buttons_accept_refuseTarget.classList.add('d-none');
+      this.animalTarget.classList.remove('d-none');
+      fetch('/animals/new?' + new URLSearchParams({
+        'animal[name]': api_data.results[0].taxon.english_common_name,
+        'animal[scientific_name]': api_data.results[0].taxon.name,
+        'animal[photo_url]': api_data.results[0].taxon.default_photo.medium_url,
+    }), {
+        headers: {"Accept": "text/plain"}
+      })
+      .then(response => response.text())
+      .then((data) => {
+        this.animalTarget.outerHTML = data
+      })
     })
   }
 
-  #createTaxonomy(api_data) {
+  createTaxonomy() {
     let token = document.getElementsByName('csrf-token')[0].content;
-    let taxonomy = api_data.results[0].taxon.iconic_taxon_name;
+    let taxonomy = this.api_data.results[0].taxon.iconic_taxon_name;
     fetch('/taxonomies', {
       method: "POST",
       headers : {
@@ -85,7 +98,7 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then((taxon_data) => {
-      this.#createAnimal(api_data, taxon_data);
+      this.#createAnimal(this.api_data, taxon_data);
     })
   }
 
@@ -94,7 +107,7 @@ export default class extends Controller {
     let animal_name = api_data.results[0].taxon.english_common_name;
     let animal_scientific_name = api_data.results[0].taxon.name;
     let animal_taxon = taxon_data.id;
-    let animal_photo = api_data.results[0].taxon.default_photo.url;
+    let animal_photo = api_data.results[0].taxon.default_photo.medium_url;
     fetch('/animals', {
       method: "POST",
       headers : {
@@ -107,6 +120,25 @@ export default class extends Controller {
     .then(response => response.json())
     .then((animal_data) => {
       console.log(animal_data);
+      this.#createCatch(api_data, taxon_data, animal_data);
+    })
+  }
+
+  #createCatch(api_data, taxon_data, animal_data) {
+    let token = document.getElementsByName('csrf-token')[0].content;
+    fetch('/catches', {
+      method: "POST",
+      headers : {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': token
+      },
+      body: JSON.stringify({'catch' : {'animal_id': animal_data.id, 'latitude': this.latitude, 'longitude': this.longitude, 'photo': this.cameraTarget}})
+    })
+    .then(response => response.json())
+    .then((catch_data) => {
+      let animal_id = catch_data.animal_id
+      window.location.href = "animals/" + animal_id
     })
   }
 

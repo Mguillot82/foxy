@@ -1,43 +1,121 @@
-<h1>User Profile</h1>
+<div class="profile-container">
+  <div class="profile-pic">
+    <%= image_tag @user.photo if @user.photo.attached? %>
+  </div>
+  <br>
+  <p><strong>Username:</strong> <%= @user.username %></p>
 
-<p><strong>Username:</strong> <%= @user.username %></p>
+  <p><strong>Email:</strong> <%= @user.email %></p>
 
-<p><strong>Email:</strong> <%= @user.email %></p>
+  <%# <h2>Catches</h2> %>
+  <%# <ul>
+    <% @user.catches.each do |catch| %>
+      <%# <li><%= catch.location %>
+      <%# </li> %>
+      <p><strong>Photo:</strong></p>
+      <%= cl_image_tag @user.photo.key if @user.photo.attached? %>
+    <%# <% end %>
+  <%# </ul> %>
 
-<p><strong>Photo:</strong></p>
-<%= cl_image_tag @user.photo.key if @user.photo.attached? %>
+  <h2>Collections</h2>
+  <ul>
+    <% @user.collections.each do |collection| %>
+      <li><%= collection.name %></li>
+    <% end %>
+  </ul>
 
-<h2>Catches</h2>
-<ul>
-  <% @user.catches.each do |catch| %>
-    <li><%= catch.name %></li>
-  <% end %>
-</ul>
+  <%# <h2>Animals</h2> %>
+  <%# <ul> %>
+    <%# <% @user.animals.each do |animal| %>
+      <%# <li><%= animal.name %>
+      <%# </li> %>
+    <%# <% end %>
+  </ul>
 
-<h2>Collections</h2>
-<ul>
-  <% @user.collections.each do |collection| %>
-    <li><%= collection.name %></li>
-  <% end %>
-</ul>
+   <h2>Badges</h2>
+  <ul>
+    <% @user.badges.each do |badge| %>
+      <li><%= badge.name %></li>
+    <% end %>
+  </ul>
 
-<h2>Animals</h2>
-<ul>
-  <% @user.animals.each do |animal| %>
-    <li><%= animal.name %></li>
-  <% end %>
-</ul>
-
-<h2>Badges</h2>
-<ul>
-  <% @user.badges.each do |badge| %>
-    <li><%= badge.name %></li>
-  <% end %>
-</ul>
-
-<h2>Friendships</h2>
-<ul>
-  <% @user.friendships.each do |friendship| %>
-    <li><%= friendship.friend.username %></li>
-  <% end %>
-</ul>
+  <%# <h2>Friendships</h2> %>
+  <ul>
+    <% @user.friendships.each do |friendship| %>
+      <li><%= friendship.friend.username %></li>
+    <% end %>
+  </ul>
+<%# Pour tester le scroll --> %>
+<p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr>
+<p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr><p>qsqds</p>
+<hr>
+<p>dddzd</p>
+<hr>
+<p>dejonod</p>
+<hr>
+</div>

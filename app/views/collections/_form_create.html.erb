@@ -1,5 +1,5 @@
 <div>
-  <%= simple_form_for [current_user, collection] do |f| %>
+  <%= simple_form_for [current_user, Collection.new] do |f| %>
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.submit :create, class: "btn btn-success text-white" %>

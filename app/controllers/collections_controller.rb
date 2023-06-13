@@ -1,11 +1,12 @@
 class CollectionsController < ApplicationController
   def index
     @collections = policy_scope(Collection)
-    @collection = Collection.new
   end
 
   def show
     @collection = Collection.find(params[:id])
+    @animals = @collection.catches.map(&:animal)
+
     authorize @collection
   end
 

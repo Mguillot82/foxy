@@ -2,6 +2,7 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
 require 'faker'
+require "open-uri"
 # Order of creation :
 # User.new
 # Taxonomy.new
@@ -12,6 +13,11 @@ require 'faker'
 # Collections_catch.new
 # Got_badge.new
 # Friendship.new
+
+nb_user = 10
+nb_animal = 3
+nb_badges = 3
+nb_friends = 5
 
 TAXONOMY = ['Cat', 'Dog', 'Bird', 'Horse', 'Animal']
 FAKER_CREATURE = [
@@ -38,31 +44,212 @@ FAKER_CREATURE = [
 ]
 
 BADGES = [
-    ["first", "bronze", "silver", "gold"],
-    ["You have caught one of its kind",
-      "You have caught five of its kind",
-      "You have caught ten of its kind",
-      "You have caught twenty of its kind"],
-    [1, 5, 10, 20],
-    ['Cat', 'Dog', 'Bird', 'Horse', 'Animal']
+  # ["first", "bronze", "silver", "gold"],
+  # [
+  #  "You have caught one of its kind",
+  #   "You have caught five of its kind",
+  #   "You have caught ten of its kind",
+  #   "You have caught twenty of its kind"
+  # ],
+  # [1, 5, 10, 20],
+  # ['Horse', 'Cat', 'Dog', 'Bird', 'Fox', 'Animal'],
+  # [
+
+  {
+    name: 'Animal First',
+    photo: nil,
+    condition: 1,
+    description: 'You have caught one of its kind',
+    category: 'Animal'
+  },
+  {
+    name: 'Animal Bronze',
+    photo: nil,
+    condition: 5,
+    description: 'You have caught five of its kind',
+    category: 'Animal'
+  },
+  {
+    name: 'Animal Silver',
+    photo: nil,
+    condition: 10,
+    description: 'You have caught ten of its kind',
+    category: 'Animal'
+  },
+  {
+    name: 'Animal Gold',
+    photo: nil,
+    condition: 20,
+    description: 'You have caught twenty of its kind',
+    category: 'Animal'
+  },
+  {
+    name: 'Horse First',
+    photo: nil,
+    condition: 1,
+    description: 'You have caught one of its kind',
+    category: 'Horse'
+  },
+  {
+    name: 'Horse Bronze',
+    photo: nil,
+    condition: 5,
+    description: 'You have caught five of its kind',
+    category: 'Horse'
+  },
+  {
+    name: 'Horse Silver',
+    photo: nil,
+    condition: 10,
+    description: 'You have caught ten of its kind',
+    category: 'Horse'
+  },
+  {
+    name: 'Horse Gold',
+    photo: nil,
+    condition: 20,
+    description: 'You have caught twenty of its kind',
+    category: 'Horse'
+  },
+  {
+    name: 'Cat First',
+    photo: 'development/jjyshghfz6livfsz1kzek5mm6ll4',
+    condition: 1,
+    description: 'You have caught one of its kind',
+    category: 'Cat'
+  },
+  {
+    name: 'Cat Bronze',
+    photo: 'development/dgsoat8t14tfairguufnxlp9zokq',
+    condition: 5,
+    description: 'You have caught five of its kind',
+    category: 'Cat'
+  },
+  {
+    name: 'Cat Silver',
+    photo: 'development/3yijx7ycdcbmsmeo1urw5gpufw0g',
+    condition: 10,
+    description: 'You have caught ten of its kind',
+    category: 'Cat'
+  },
+  {
+    name: 'Cat Gold',
+    photo: 'development/pz3c6bhi1tufapcb9c5bwpnljafu',
+    condition: 20,
+    description: 'You have caught twenty of its kind',
+    category: 'Cat'
+  },
+  {
+    name: 'Dog First',
+    photo: 'development/kht4j9wmgahyw41p3j060s3skts1',
+    condition: 1,
+    description: 'You have caught one of its kind',
+    category: 'Dog'
+  },
+  {
+    name: 'Dog Bronze',
+    photo: 'development/xkcohxnuttlgez0lslqang8mqy7p',
+    condition: 5,
+    description: 'You have caught five of its kind',
+    category: 'Dog'
+  },
+  {
+    name: 'Dog Silver',
+    photo: 'development/v9clxr2yiohvq9diygaq21m9evkq',
+    condition: 10,
+    description: 'You have caught ten of its kind',
+    category: 'Dog'
+  },
+  {
+    name: 'Dog Gold',
+    photo: 'development/s3qk4glwc59qqbattekbp5vyek9i',
+    condition: 20,
+    description: 'You have caught twenty of its kind',
+    category: 'Dog'
+  },
+  {
+    name: 'Bird First',
+    photo: 'development/t03d5lswslyv5jw3ilk44hav5or1',
+    condition: 1,
+    description: 'You have caught one of its kind',
+    category: 'Bird'
+  },
+  {
+    name: 'Bird Bronze',
+    photo: 'development/i154f7te4i7ftfo5vgotnkoil40q',
+    condition: 5,
+    description: 'You have caught five of its kind',
+    category: 'Bird'
+  },
+  {
+    name: 'Bird Silver',
+    photo: 'development/5grzr7ksfw34l3ljk5f3mpgh8x5v',
+    condition: 10,
+    description: 'You have caught ten of its kind',
+    category: 'Bird'
+  },
+  {
+    name: 'Bird Gold',
+    photo: 'development/vu4n0vfxa8n3ye8hzfukxm15wk9e',
+    condition: 20,
+    description: 'You have caught twenty of its kind',
+    category: 'Bird'
+  },
+  {
+    name: 'Fox First',
+    photo: 'development/xibn2jxqn4gp6exqx1epvwa5y0xd',
+    condition: 1,
+    description: 'You have caught one of its kind',
+    category: 'Fox'
+  },
+  {
+    name: 'Fox Bronze',
+    photo: 'development/2erdzodbhy1wg3cd9d6eteh39a1t',
+    condition: 5,
+    description: 'You have caught five of its kind',
+    category: 'Fox'
+  },
+  {
+    name: 'Fox Silver',
+    photo: 'development/7rdzcnbts6i69xos0494yij7krjf',
+    condition: 10,
+    description: 'You have caught ten of its kind',
+    category: 'Fox'
+  },
+  {
+    name: 'Fox Gold',
+    photo: 'development/0ehqwfwiwslw40u9byfwc473o6pr',
+    condition: 20,
+    description: 'You have caught twenty of its kind',
+    category: 'Fox'
+  }
 ]
 FRIENDSHIPS = [
   "pending",
   "accepted",
-  "refused"
+  "rejected"
 ]
 
 Friendship.destroy_all
+puts "friendship destroyed"
 GotBadge.destroy_all
+puts "GotBadge destroyed"
 CollectionsCatch.destroy_all
+puts "CollectionsCatch destroyed"
 Catch.destroy_all
+puts "Catch destroyed"
 Collection.destroy_all
+puts "Collection destroyed"
 Animal.destroy_all
+puts "Animal destroyed"
 Badge.destroy_all
+puts "Badge destroyed"
 Taxonomy.destroy_all
+puts "Taxonomy destroyed"
 User.destroy_all
+puts "User destroyed"
 
-10.times do
+nb_user.times do
   puts "Creating user..."
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
@@ -87,8 +274,6 @@ User.destroy_all
 end
 
 puts "____________________________"
-
-
 
 puts "Loading taxons..."
 TAXONOMY.each do |name|
@@ -126,7 +311,7 @@ puts "Creating catches"
 User.all.each do |user|
   puts "Creating catches for #{user.username} ..."
   Animal.all.each do |animal|
-    2.times do
+    nb_animal.times do
       catch = Catch.new(
         {
           user_id: user.id,
@@ -173,22 +358,34 @@ Catch.all.each do |catch|
   end
 end
 
-index = 0
-BADGES[3].each do |category|
-  BADGES[0].each do |name|
-    if index > 3 then index = 0 end
-    badge = Badge.new(
-      {
-        name: "#{category} #{name}",
-        description: BADGES[1][index],
-        condition: BADGES[2][index],
-        category:
-      }
-    )
-    index += 1
-    badge.save!
-    puts "Badges created #{badge.name}"
+# Upload badge photo
+# development/absolute_path = "/Users/nidhogg/code/Mguillot82/foxy/db/badges/"
+# upload badge photo on cloudinary
+# file = URI.open("#{absolute_path}#{category}-#{name.capitalize}.png")
+# sleep(1)
+# puts "image uploaded"
+# badge.photo.attach(
+#   io: file,
+#   filename: "#{category}-#{name.capitalize}",
+#   content_type: "image/png"
+# )
+
+BADGES.each do |tmp|
+  badge = Badge.new(
+    {
+      name: tmp[:name],
+      condition: tmp[:condition],
+      description: tmp[:description],
+      category: tmp[:category]
+    }
+  )
+  if badge[:photo].nil? == false
+    url_photo = Cloudinary::Api.resource(tmp[:photo])['url']
+    file = URI.open(url_photo)
+    badge.photo.image.attach(io: file, filename: tmp[:name])
   end
+  badge.save!
+  puts "Badges created #{badge}"
 end
 
 puts "____________________________"
@@ -196,7 +393,7 @@ puts "____________________________"
 puts "Creating Got Badges..."
 
 User.all.each do |user|
-  3.times do
+  nb_badges.times do
     badge_id = Badge.first.id.to_i + rand(19)
     got_badges = GotBadge.new(
       {
@@ -214,7 +411,7 @@ puts "____________________________"
 puts "Creating collections_catches..."
 
 User.all.each do |user|
-  5.times do
+  nb_friends.times do
     friend_id = User.first.id.to_i + rand(10)
     status = FRIENDSHIPS[rand(0..2)]
     friendship = Friendship.new(

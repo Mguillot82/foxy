@@ -1,23 +1,16 @@
-<div class="cards">
-  <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://animalaxy.fr/wp-content/uploads/2018/12/iStock-521375128.jpg')" alt="Panda roux">
-    <div class="card-name">
-      Name
-    </div>
-  </div>
-</div>
 
 <div class="cards">
-  <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://animalaxy.fr/wp-content/uploads/2018/12/iStock-521375128.jpg')" alt="Panda roux">
-    <div class="card-name">
-      Name
-    </div>
-  </div>
+  <% @animals.each do |animal| %>
+    <%# <%= link_to animal_path(animal) %>
+    <% if animal.photo_url.present? %>
+      <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= animal.photo_url %>)" alt="">
+    <% else %>
+      <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://lemagduchat.ouest-france.fr/images/dossiers/2021-03/mini/chaton-sante-071721-650-400.jpg')" alt="">
+    <% end %>
+        <div class="card-name">
+          <%= animal.name %>
+        </div>
+      </div>
+  <% end %>
 </div>
-
-<div class="cards">
-  <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://animalaxy.fr/wp-content/uploads/2018/12/iStock-521375128.jpg')" alt="Panda roux">
-    <div class="card-name">
-      Name
-    </div>
-  </div>
 </div>
