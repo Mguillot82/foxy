@@ -1,19 +1,24 @@
-<h1><%= @collection.name.capitalize %></h1>
+<div class="container">
+  <div data-controller='show-collection' data-show-collection-collection-value=<%= @collection.id %>>
+    <%= link_to user_collections_path(current_user) do %>
+      <div class="btn btn-outline-secondary">↩</div>
+    <% end %>
+    <%= link_to collection_path(@collection), data: {turbo_method: :delete} do %>
+      <div class="btn btn-danger">Delete collection</div>
+    <% end %>
+  <hr>
 
-<div data-controller='show-collection' data-show-collection-collection-value=<%= @collection.id %>>
-  <div class="btn btn-outline-secondary">
-    <%= link_to 'Back to collections', user_collections_path(current_user) %>
-  </div>
-  <ul>
-      <li>Description : <%= @collection.description %></li>
-  </ul>
+  <h1><%= @collection.name.capitalize %></h1>
+
+  <p>
+    Description : <%= @collection.description %>
+  </p>
 
   <div data-show-collection-target="list">
     <%= render 'catches_collection', catches: @collection.catches %>
   </div>
 
-  <% if @collection == current_user.collections[0] %>
-  <% else %>
+  <% if @collection != current_user.collections[0] %>
     <div class='btn btn-outline-secondary'
         data-action="click->show-collection#revealAnimals">
       Add an animal
@@ -30,4 +35,5 @@
     <%= render 'form_edit', collection: @collection %>
   </div>
   <% end %>
+  </div>
 </div>

@@ -54,6 +54,7 @@ export default class extends Controller {
 
   removeCatch(e) {
     e.stopPropagation()
+    alert('Are you sure?')
     const token = document.getElementsByName('csrf-token')[0].content;
     console.log(e)
     const removeCatchId = e.params.id
