@@ -12,7 +12,7 @@ export default class extends Controller {
     });
 
     navigator.mediaDevices
-      .getUserMedia({video: {width: screen.width, height: screen.height}})
+      .getUserMedia({video: {width: screen.width, height: screen.height, facingMode: { exact: "environment" }}})
       .then((stream) => {
         this.stream = stream
         this.cameraTarget.srcObject = stream;

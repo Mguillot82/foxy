@@ -16,4 +16,13 @@ class User < ApplicationRecord
 
   scope :accepted_friendships, -> { joins(:friendships).where(friendships: { status: 'accepted' }).distinct }
   scope :pending_friendships, -> { joins(:friendships).where(friendships: { status: 'pending' }).distinct }
+
+  after_save :create_general_collection
+
+  private
+
+  def create_general_collection
+    @general_collection = Collection.new(name: 'General', description: 'Your general collection with all your catches', user: self)
+    @general_collection.save!
+  end
 end
