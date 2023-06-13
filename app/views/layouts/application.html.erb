@@ -16,7 +16,9 @@
     <% else %>
       <%= render "shared/navbar_pages_antoine" %>
     <% end %>
-    <%= yield %>
+    <div style="margin-bottom: 80px">
+      <%= yield %>
+    </div>
     <%= render "shared/flashes" %>
     <%= render "shared/footer" %>
   </body>

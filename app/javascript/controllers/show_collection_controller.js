@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['form', 'animal', "list"]
+  static targets = ['form', 'animal', "list", "validate"]
   static values = {
     collection: String,
   }
@@ -9,17 +9,19 @@ export default class extends Controller {
   connect() {
     this.catchId = []
     console.log(this.collectionValue)
-    console.log(this.animalTarget)
+    console.log(this.formTarget)
   }
 
   revealFormEdit(event) {
+    console.log('test')
     event.preventDefault();
-    this.formTarget.classList.remove("d-none");
+    this.formTarget.classList.toggle("d-none");
   }
 
   revealAnimals(event) {
     event.preventDefault();
-    this.animalTarget.classList.remove("d-none")
+    this.animalTarget.classList.toggle("d-none")
+    this.validateTarget.classList.toggle("d-none")
   }
 
   selectCatch(e) {
@@ -51,7 +53,7 @@ export default class extends Controller {
   }
 
   removeCatch(e) {
-    e.preventDefault()
+    e.stopPropagation()
     const token = document.getElementsByName('csrf-token')[0].content;
     console.log(e)
     const removeCatchId = e.params.id
