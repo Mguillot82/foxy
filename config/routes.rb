@@ -25,7 +25,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :animals, only: %i[show index new create]
+  resources :animals, only: %i[show index new create] do
+    collection do
+      post 'get_loc_desc'
+    end
+  end
 
   resources :catches, only: %i[create] do
     resources :animals, only: [:show], controller: 'catches/animals'

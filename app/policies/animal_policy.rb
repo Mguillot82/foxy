@@ -26,4 +26,8 @@ class AnimalPolicy < ApplicationPolicy
   def index?
     true
   end
+
+  def get_loc_desc?
+    true
+  end
 end

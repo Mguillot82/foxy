@@ -69,19 +69,37 @@ export default class extends Controller {
     .then(response => response.json())
     .then((api_data) => {
       this.api_data = api_data;
-      this.photoTarget.classList.add('d-none');
-      this.buttons_accept_refuseTarget.classList.add('d-none');
-      this.animalTarget.classList.remove('d-none');
-      fetch('/animals/new?' + new URLSearchParams({
-        'animal[name]': api_data.results[0].taxon.english_common_name,
-        'animal[scientific_name]': api_data.results[0].taxon.name,
-        'animal[photo_url]': api_data.results[0].taxon.default_photo.medium_url,
-    }), {
-        headers: {"Accept": "text/plain"}
+      let wiki_url = api_data.results[0].taxon.wikipedia_url
+      console.log(wiki_url)
+      let token = document.getElementsByName('csrf-token')[0].content;
+
+      fetch('/animals/get_loc_desc', {
+        method: "POST",
+        headers: {'accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  'X-CSRF-Token': token},
+        body: JSON.stringify({'wiki_url': wiki_url})
       })
-      .then(response => response.text())
+      .then(response => response.json())
       .then((data) => {
-        this.animalTarget.outerHTML = data
+        console.log(data.description);
+        this.desc_loc_data = data
+        this.photoTarget.classList.add('d-none');
+        this.buttons_accept_refuseTarget.classList.add('d-none');
+        this.animalTarget.classList.remove('d-none');
+
+        fetch('/animals/new?' + new URLSearchParams({
+          'animal[name]': api_data.results[0].taxon.english_common_name,
+          'animal[scientific_name]': api_data.results[0].taxon.name,
+          'animal[photo_url]': api_data.results[0].taxon.default_photo.medium_url,
+          'animal[description]': this.desc_loc_data.description,
+      }), {
+          headers: {"Accept": "text/plain"}
+        })
+        .then(response => response.text())
+        .then((data) => {
+          this.animalTarget.outerHTML = data
+        })
       })
     })
   }
@@ -105,11 +123,13 @@ export default class extends Controller {
   }
 
   #createAnimal(api_data, taxon_data) {
+
     let token = document.getElementsByName('csrf-token')[0].content;
     let animal_name = api_data.results[0].taxon.english_common_name;
     let animal_scientific_name = api_data.results[0].taxon.name;
     let animal_taxon = taxon_data.id;
     let animal_photo = api_data.results[0].taxon.default_photo.medium_url;
+    let animal_description = this.desc_loc_data.description;
     fetch('/animals', {
       method: "POST",
       headers : {
@@ -117,7 +137,7 @@ export default class extends Controller {
         'Content-Type': 'application/json',
         'X-CSRF-Token': token
       },
-      body: JSON.stringify({'animal': {'name': animal_name, "scientific_name": animal_scientific_name, "description": "C'est un bel animal", "location": "Europe", "taxonomy_id": animal_taxon, "photo_url": animal_photo }})
+      body: JSON.stringify({'animal': {'name': animal_name, "scientific_name": animal_scientific_name, "description": animal_description, "location": "Europe", "taxonomy_id": animal_taxon, "photo_url": animal_photo }})
     })
     .then(response => response.json())
     .then((animal_data) => {
@@ -149,7 +169,8 @@ export default class extends Controller {
     .then(response => response.json())
     .then((catch_data) => {
       let animal_id = catch_data.animal_id
-      window.location.href = "animals/" + animal_id
+      let catch_id = catch_data.id
+      window.location.href = 'catches/'+ catch_id + '/animals/'+ animal_id
     })
   }
 
