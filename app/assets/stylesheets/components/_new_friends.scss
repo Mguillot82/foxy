@@ -2,13 +2,18 @@
   text-align: center;
 
   .new-friends {
-    color: black;
     width: 270px;
     height: 60px;
-    border: solid black 1mm;
-    font-size: 16px;
+    border: solid #BC6C25 1px;
     text-align: center;
     border-radius: 50px;
-    background-color: white;
+    background-color: #DDA15E;
+  }
+  .new-friends a {
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    vertical-align: middle;
   }
 }
