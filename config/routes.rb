@@ -13,8 +13,9 @@ Rails.application.routes.draw do
         get 'general'
       end
     end
-    # resources :friendships, only: %i[index create]
   end
+  resources :friendships, only: %i[create]
+
 
   resources :collections, only: [:destroy] do
     member do
@@ -33,5 +34,11 @@ Rails.application.routes.draw do
 
   resources :taxonomies, only: [:create]
 
-  resources :friends, only: [:index, :show]
+  # resources :got_badges, only: [:create]
+
+  resources :friends, only: [:index, :show, :edit, :create, :new] do
+    collection do
+      post 'invite'
+    end
+  end
 end

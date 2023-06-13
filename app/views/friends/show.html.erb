@@ -38,3 +38,12 @@
 </ul>
 
 <%=link_to 'back to friendships' , friends_path %>
+
+<% if policy(@friend).update? %>
+  <%= link_to "Edit", edit_friend_path(@friend) %>
+<% end %>
+
+<% if policy(@friend).destroy? %>
+  <%= link_to "Remove Friend", friend_path(@friend), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
