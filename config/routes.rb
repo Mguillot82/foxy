@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
 
   resources :users, only: [:show] do
-    resources :collections, except: %i[new] do
+    resources :collections, except: %i[new destroy] do
       collection do
         get 'general'
       end
@@ -17,7 +17,12 @@ Rails.application.routes.draw do
   end
 
   resources :collections, only: [:destroy] do
-    # resources :collections_catches, only: %i[create]
+    member do
+      post 'add_catch'
+    end
+    member do
+      delete 'remove_catch'
+    end
   end
 
   resources :animals, only: %i[show index new create]
@@ -26,13 +31,7 @@ Rails.application.routes.draw do
     resources :animals, only: [:show], controller: 'catches/animals'
   end
 
-  # resources :collections_catches, only: [:destroy]
-
-  # resources :friendships, only: [:destroy]
-
   resources :taxonomies, only: [:create]
-
-  # resources :got_badges, only: [:create]
 
   resources :friends, only: [:index, :show]
 end

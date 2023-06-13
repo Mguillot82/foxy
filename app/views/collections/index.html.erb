@@ -1,8 +1,22 @@
 <h1>Collections</h1>
 
+<%# ajouter descritpion de la collection générale %>
+
 <%= render 'shared/cards_collection' %>
 
-<div class='btn btn-outline-secondary'>Add a collection</div>
-<div>
-  <%= render 'form_create', collection: @collection %>
+<div data-controller='index-collection'>
+  <div class='btn btn-outline-secondary'
+       data-action="click->index-collection#revealFormEdit">
+      Add a collection
+  </div>
+
+    <%# <%= render 'form_create', collection: @collection %>
+  <div class="d-none"
+       data-index-collection-target= "form">
+    <%= simple_form_for [current_user, Collection.new] do |f| %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.submit :create, class: "btn btn-success text-white" %>
+    <% end %>
+  </div>
 </div>
