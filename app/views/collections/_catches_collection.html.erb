@@ -5,9 +5,11 @@
     <div class="card-name">
       <%= catch.animal.name %>
     </div>
-  <%= link_to collections_catch_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-    <i class="fa-regular fa-trash-can"></i>
+    <%= link_to remove_catch_collections_catch_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+      <i class="fa-regular fa-trash-can"
+         data-action='click->show-collection#removeCatch'
+         data-show-collection-id-param=<%= catch.id %>></i>
+    <% end %>
   <% end %>
   </div>
-<% end %>
 </div>

@@ -29,7 +29,7 @@ export default class extends Controller {
     } else {
       this.catchId.push(e.params.id)
     }
-    console.log(this.catchId)
+    // console.log(this.catchId)
   }
 
   addCatch() {
@@ -40,7 +40,7 @@ export default class extends Controller {
       headers: {
         "Accept": "text/plain",
         "Content-Type": "application/json",
-        'X-CSRF-Token': token
+        "X-CSRF-Token": token
       },
       body: JSON.stringify({'catches': this.catchId})
     })
@@ -48,5 +48,24 @@ export default class extends Controller {
       .then((data) => {
         this.listTarget.innerHTML = data
       })
+  }
+
+  removeCatch(e) {
+    const token = document.getElementsByName('csrf-token')[0].content;
+    const removeCatchId = e.params.id
+    const url = `/collections_catches/${removeCatchId}/remove_catch`
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        "Accept": "text/plain",
+        "Content-Type": "application/json",
+        "X-CSRF-Token": token
+      },
+      body: JSON.stringify({'removeCatches': removeCatchId})
+    })
+    .then(response => response.text())
+    .then((data) => {
+      this.listTarget.innerHTML = data
+    })
   }
 }

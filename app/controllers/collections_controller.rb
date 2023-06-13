@@ -25,8 +25,14 @@ class CollectionsController < ApplicationController
 
   def remove_catch
     @collections_catches = CollectionsCatch.find_by(collection_id: params[:id], catch_id: params[:catches])
+    p @collection_catches
     authorize @collection_catches
     raise
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "catches_collection", locals: { catches: @collection.catches }, formats: [:html] }
+    end
   end
 
   def general

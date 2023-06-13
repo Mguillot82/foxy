@@ -6,38 +6,20 @@
   </div>
   <ul>
       <li>Description : <%= @collection.description %></li>
-      <%# should add something to display not all animals but only those chosen %>
-      <%# <% @animals.each do |animal| %>
-        <%# <li><%= animal.photo_url</li> %>
-        <%# <li><%= animal.name</li> %>
-        <%# <%= link_to 'Delete an animal', collection_path(@collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-secondary' %>
-      <%# <% end %>
   </ul>
 
   <div class="catches-list"
        data-show-collection-target="list">
-       <%= render 'catches_collection', catches: @collection.catches  %>
+      <%= render 'catches_collection', catches: @collection.catches %>
   </div>
 
   <div class='btn btn-outline-secondary'
        data-action="click->show-collection#revealAnimals">
     Add an animal
   </div>
-  <%# <%= render 'display_animals', collection: @collection %>
-
-  <div class="cards d-none"
-      data-show-collection-target="animal">
-    <% @catches_all.each do |catch| %>
-      <%# <%= link_to animal_path(animal) %>
-      <div class="card card-img"
-          style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= catch.animal.photo_url.present? ? animal.photo_url : 'https://lemagduchat.ouest-france.fr/images/dossiers/2021-03/mini/chaton-sante-071721-650-400.jpg' %>)" alt="<%= catch.animal.name %>"
-          data-action="click->show-collection#selectCatch"
-          data-show-collection-id-param=<%= catch.id %>>
-      <div class="card-name">
-        <%= catch.animal.name %>
-      </div>
+  <div class='collection-animals'>
+    <%= render 'display_animals', collection: @catches_all %>
   </div>
-  <% end %>
 
 
   <div class="add-catch">
