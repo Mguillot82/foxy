@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  before_action :set_collection, only: %i[show add_catch update destroy]
+  before_action :set_collection, only: %i[show add_catch update destroy remove_catch]
 
   def index
     @collections = policy_scope(Collection)
@@ -24,10 +24,9 @@ class CollectionsController < ApplicationController
   end
 
   def remove_catch
-    @collections_catches = CollectionsCatch.find_by(collection_id: params[:id], catch_id: params[:catches])
-    p @collection_catches
-    authorize @collection_catches
-    raise
+    @collections_catches = CollectionsCatch.find_by(collection_id: params[:id], catch_id: params[:catch])
+    @collections_catches.destroy
+    authorize @collection
 
     respond_to do |format|
       format.html

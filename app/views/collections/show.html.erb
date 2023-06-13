@@ -8,9 +8,8 @@
       <li>Description : <%= @collection.description %></li>
   </ul>
 
-  <div class="catches-list"
-       data-show-collection-target="list">
-      <%= render 'catches_collection', catches: @collection.catches %>
+  <div data-show-collection-target="list">
+    <%= render 'catches_collection', catches: @collection.catches %>
   </div>
 
   <div class='btn btn-outline-secondary'

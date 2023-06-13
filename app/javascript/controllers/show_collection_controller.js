@@ -51,9 +51,11 @@ export default class extends Controller {
   }
 
   removeCatch(e) {
+    e.preventDefault()
     const token = document.getElementsByName('csrf-token')[0].content;
+    console.log(e)
     const removeCatchId = e.params.id
-    const url = `/collections_catches/${removeCatchId}/remove_catch`
+    const url = `/collections/${this.collectionValue}/remove_catch`
     fetch(url, {
       method: 'DELETE',
       headers: {
@@ -61,7 +63,7 @@ export default class extends Controller {
         "Content-Type": "application/json",
         "X-CSRF-Token": token
       },
-      body: JSON.stringify({'removeCatches': removeCatchId})
+      body: JSON.stringify({'catch': removeCatchId})
     })
     .then(response => response.text())
     .then((data) => {

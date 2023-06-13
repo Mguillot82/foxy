@@ -28,6 +28,10 @@ class CollectionPolicy < ApplicationPolicy
     user.id == record.user_id
   end
 
+  def remove_catch?
+    user.id == record.user_id
+  end
+
   def general?
     user.id == record[0].user_id || (user.friendships.find_by(friend_id: record[0].user_id) && (user.friendships.find_by(friend_id: record[0].user_id).status == 'accepted'))
   end
