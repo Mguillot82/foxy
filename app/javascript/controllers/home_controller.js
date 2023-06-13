@@ -70,7 +70,6 @@ export default class extends Controller {
     .then((api_data) => {
       this.api_data = api_data;
       let wiki_url = api_data.results[0].taxon.wikipedia_url
-      console.log(wiki_url)
       let token = document.getElementsByName('csrf-token')[0].content;
 
       fetch('/animals/get_loc_desc', {
@@ -82,7 +81,6 @@ export default class extends Controller {
       })
       .then(response => response.json())
       .then((data) => {
-        console.log(data.description);
         this.desc_loc_data = data
         this.photoTarget.classList.add('d-none');
         this.buttons_accept_refuseTarget.classList.add('d-none');
