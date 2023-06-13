@@ -63,7 +63,7 @@ export default class extends Controller {
     fetch("https://api.inaturalist.org/v2/computervision/score_image",{
       method: "POST",
       headers: {'accept': 'application/json',
-                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODY2Mzk1NTh9.wqNDI26Syqrhji-RIiBIoTMMjUgXaP07NQN7KVFZVXUoj59p32c0AV_iDEMa3ZgvfiIpOSuewqcBV_Yv-OFPFA'},
+                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODY3MjU2MTZ9.2WoJ62fmen1V5rZdP5y3GUqnQ3zgbGAZJRlqa1Q6W46C4HWyLFgL2UE-mBVvvyl-WnV09Wba11eK6ODpo8vTZw'},
       body: formData
       })
     .then(response => response.json())
@@ -141,7 +141,8 @@ export default class extends Controller {
     .then(response => response.json())
     .then((catch_data) => {
       let animal_id = catch_data.animal_id
-      window.location.href = "animals/" + animal_id
+      console.log(animal_id)
+      // window.location.href = "animals/" + animal_id
     })
   }
 
