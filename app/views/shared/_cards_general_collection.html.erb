@@ -1,7 +1,6 @@
 
 <div class="cards">
   <% @animals.each do |animal| %>
-    <%# <%= link_to animal_path(animal) %>
     <% if animal.photo_url.present? %>
       <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= animal.photo_url %>)" alt="">
     <% else %>
@@ -12,5 +11,5 @@
         </div>
       </div>
   <% end %>
-</div>
+  </div>
 </div>

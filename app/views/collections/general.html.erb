@@ -1,13 +1,3 @@
 <h1>Collection générale</h1>
 
 <%= render 'shared/cards_general_collection' %>
-
-<h1>All catches</h1>
-
-<ul>
-  <% @collection[0].catches.each do |catch| %>
-    <%= cl_image_tag catch.photo.key, height: 300, width: 400, crop: :fill %>
-    <li><%= catch.animal.name %></li>
-    <li><%= catch.location %></li>
-  <% end %>
-</ul>
