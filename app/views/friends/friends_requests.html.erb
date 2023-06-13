@@ -4,7 +4,11 @@
       <div class="d-flex requests">
 
         <div class="img-new-friends">
-          <img class="img-friend" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.tC40csI9zKVUdGjaH7qRFwAAAA%26pid%3DApi&f=1&ipt=8ebb635c0e96a64da12ad312da8d80d67635e3cf9b66c2a243f5ec1993bcf748&ipo=images" alt="">
+          <% if friend.photo.attached? %>
+            <%= cl_image_tag friend.photo.key, class: 'img-friend', alt: 'profil picture'  %>
+          <% else %>
+            <img class="img-friend"  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.fineartamerica.com%2Fimages%2Fartworkimages%2Fmediumlarge%2F1%2Fa-red-panda-profile-christopher-miles-carter.jpg&f=1&nofb=1&ipt=f6620bb105608b37ea4fb0d8cf67f7f847969e478745fb7397373810f39c1e96&ipo=images" alt="">
+          <% end %>
         </div>
 
         <div class="add-refuse">
