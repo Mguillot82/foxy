@@ -9,8 +9,7 @@
         </div>
       </div>
     <% end %>
-    <% if @collection == current_user.collections[0] %>
-    <% else %>
+    <% if @collection != current_user.collections[0] %>
       <span class="trash-bin" data-show-collection-id-param=<%= catch.id %> data-action='click->show-collection#removeCatch'>
         <i class="fa-regular fa-trash-can"></i>
       </span>

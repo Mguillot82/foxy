@@ -11,7 +11,10 @@
       <div class="card-name">
         <%= link_to collection.name, user_collection_path(current_user, collection) %>
       </div>
-        <%= link_to 'Delete a collection', collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-secondary' %>
+      <%# span %>
+        <%= link_to collection_path(collection), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-outline-secondary' do %>
+          <i class="fa-regular fa-trash-can"></i>
+        <% end %>
     <% end %>
     </div>
   <% end %>
