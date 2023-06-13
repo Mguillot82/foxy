@@ -2,5 +2,14 @@
   position: relative;
   margin: 10px;
   bottom: 24px;
-  color: $secondary-light;
+  color: $secondary;
+  font-size: 20px;
+  margin: 20px;
+}
+
+.trash-delete-collec {
+  position: relative;
+  color: $secondary;
+  font-size: 20px;
+  margin: 10px;
 }

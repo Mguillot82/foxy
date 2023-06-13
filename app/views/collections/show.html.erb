@@ -3,9 +3,13 @@
     <%= link_to user_collections_path(current_user) do %>
       <div class="btn btn-outline-secondary">↩</div>
     <% end %>
-    <%= link_to collection_path(@collection), data: {turbo_method: :delete} do %>
-      <div class="btn btn-danger">Delete collection</div>
+    <% if @collection != current_user.collections[0] %>
+    <div class='btn-add-collec'>
+      <%= link_to collection_path(@collection), data: {turbo_method: :delete} do %>
+        <i class="fa-regular fa-trash-can trash-delete-collec"></i>
+      <% end %>
     <% end %>
+    </div>
   <hr>
 
   <h1><%= @collection.name.capitalize %></h1>
