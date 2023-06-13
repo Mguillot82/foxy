@@ -1,13 +1,37 @@
 class CollectionsController < ApplicationController
+  before_action :set_collection, only: %i[show add_catch update destroy remove_catch]
+
   def index
     @collections = policy_scope(Collection)
   end
 
   def show
-    @collection = Collection.find(params[:id])
-    @animals = @collection.catches.map(&:animal)
-
+    @catches = @collection.catches
+    @catches_all = Catch.where(user_id: current_user)
+    @catches_all = @catches_all.excluding(@catches)
     authorize @collection
+  end
+
+  def add_catch
+    @added_catches = Catch.find(params[:catches])
+    @collection.catches << @added_catches
+    authorize @collection
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "catches_collection", locals: { catches: @collection.catches }, formats: [:html] }
+    end
+  end
+
+  def remove_catch
+    @collections_catches = CollectionsCatch.find_by(collection_id: params[:id], catch_id: params[:catch])
+    @collections_catches.destroy
+    authorize @collection
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: "catches_collection", locals: { catches: @collection.catches }, formats: [:html] }
+    end
   end
 
   def general
@@ -28,7 +52,6 @@ class CollectionsController < ApplicationController
   end
 
   def update
-    @collection = Collection.find(params[:id])
     if @collection.update(collection_params)
       authorize @collection
       redirect_to user_collection_path(current_user, @collection)
@@ -38,7 +61,6 @@ class CollectionsController < ApplicationController
   end
 
   def destroy
-    @collection = Collection.find(params[:id])
     @collection.destroy
     authorize @collection
 
@@ -49,5 +71,9 @@ class CollectionsController < ApplicationController
 
   def collection_params
     params.require(:collection).permit(:name, :description)
+  end
+
+  def set_collection
+    @collection = Collection.find(params[:id])
   end
 end

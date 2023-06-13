@@ -1,4 +1,5 @@
-<div>
+<div class="d-none"
+     data-index-collection-target= "form">
   <%= simple_form_for [current_user, Collection.new] do |f| %>
     <%= f.input :name %>
     <%= f.input :description %>
