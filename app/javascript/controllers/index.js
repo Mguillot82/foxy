@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import CatchesAnimalsController from "./catches_animals_controller"
+application.register("catches-animals", CatchesAnimalsController)
+
 import HomeController from "./home_controller"
 application.register("home", HomeController)

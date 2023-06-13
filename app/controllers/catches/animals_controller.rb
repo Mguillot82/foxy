@@ -6,6 +6,12 @@ module Catches
       authorize @catch
     end
 
+    def animal
+    end
+
+    def catch
+    end
+
     private
 
     def set_animal
