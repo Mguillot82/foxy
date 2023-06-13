@@ -33,6 +33,15 @@ class AnimalsController < ApplicationController
     end
   end
 
+  def get_loc_desc
+    wiki_url = params[:wiki_url]
+    @animal = ::Scrapper::ScrapperService.new.scrapper(wiki_url)
+    authorize @animal, policy_class: AnimalPolicy
+    respond_to do |format|
+      format.json { render json: @animal }
+    end
+  end
+
   private
 
   def animal_params
