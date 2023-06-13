@@ -20,26 +20,11 @@
     <%= render 'display_animals', collection: @catches_all %>
   </div>
 
-
-  <div class="add-catch">
-    <div class="btn btn-outline-secondary"
-         data-action="click->show-collection#addCatch">
-        Validate
-    </div>
+  <div class='btn btn-outline-secondary'
+       data-action="click->show-collection#revealFormEdit">
+      Edit a collection
   </div>
-</div>
-
-<div class='btn btn-outline-secondary'
-      data-action="click->show-collection#revealFormEdit">
-    Edit a collection
-</div>
-  <%# <%= render 'form_edit', collection: @collection %>
-<div class="d-none"
-      data-show-collection-target= "form">
-  <%= simple_form_for [current_user, @collection] do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.submit :edit, class: "btn btn-success text-white" %>
-  <% end %>
-</div>
+  <div>
+    <%= render 'form_edit', collection: @collection %>
+  </div>
 </div>

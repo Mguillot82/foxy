@@ -8,6 +8,6 @@ export default class extends Controller {
 
   revealFormEdit(event) {
     event.preventDefault();
-    this.formTarget.classList.remove("d-none");
+    this.formTarget.classList.toggle("d-none");
   }
 }
