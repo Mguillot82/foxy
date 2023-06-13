@@ -50,12 +50,9 @@
   text-shadow: 0px 0px 1px $primary;
   text-align: center;
   text-decoration: none;
-  // a {
-  //   display: flex;
-  //   text-align: center;
-  //   text-decoration: none;
-  //   justify-content: center;
-  // }
+  a {
+    color: $background;
+  }
 }
 
 .card-animal {
