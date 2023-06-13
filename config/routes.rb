@@ -38,5 +38,9 @@ Rails.application.routes.draw do
     collection do
       get 'friends_requests'
     end
+    member do
+      patch 'reject'
+      patch 'add'
+    end
   end
 end
