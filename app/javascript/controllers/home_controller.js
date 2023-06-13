@@ -130,6 +130,8 @@ export default class extends Controller {
     let animal_taxon = taxon_data.id;
     let animal_photo = api_data.results[0].taxon.default_photo.medium_url;
     let animal_description = this.desc_loc_data.description;
+    let animal_location = this.desc_loc_data.image_url;
+
     fetch('/animals', {
       method: "POST",
       headers : {
@@ -137,7 +139,7 @@ export default class extends Controller {
         'Content-Type': 'application/json',
         'X-CSRF-Token': token
       },
-      body: JSON.stringify({'animal': {'name': animal_name, "scientific_name": animal_scientific_name, "description": animal_description, "location": "Europe", "taxonomy_id": animal_taxon, "photo_url": animal_photo }})
+      body: JSON.stringify({'animal': {'name': animal_name, "scientific_name": animal_scientific_name, "description": animal_description, "location": animal_location, "taxonomy_id": animal_taxon, "photo_url": animal_photo }})
     })
     .then(response => response.json())
     .then((animal_data) => {
