@@ -128,21 +128,28 @@ export default class extends Controller {
 
   #createCatch(api_data, taxon_data, animal_data) {
     let token = document.getElementsByName('csrf-token')[0].content;
-    this.uploadFile(this.cameraTarget.src)
+    let photo = this.photoTarget.src
+    let base64ImageContent = photo.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+    let blob = this.base64ToBlob(base64ImageContent, 'image/jpeg');
+    let formData = new FormData();
+    formData.set('catch[photo]', blob);
+    formData.set('catch[animal_id]', animal_data.id);
+    formData.set('catch[latitude]', this.latitude);
+    formData.set('catch[longitude]', this.longitude);
+    // this.uploadFile(formData)
     fetch('/catches', {
       method: "POST",
       headers : {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        'enctype': "multipart/form-data",
         'X-CSRF-Token': token
       },
-      body: JSON.stringify({'catch' : {'animal_id': animal_data.id, 'latitude': this.latitude, 'longitude': this.longitude, 'photo': this.coverBlob}})
+      body: formData
     })
     .then(response => response.json())
     .then((catch_data) => {
       let animal_id = catch_data.animal_id
-      console.log(animal_id)
-      // window.location.href = "animals/" + animal_id
+      window.location.href = "animals/" + animal_id
     })
   }
 
@@ -167,18 +174,5 @@ export default class extends Controller {
     }
 
     return new Blob(byteArrays, {type: mime});
-  }
-
-  uploadFile(file) {
-    const url = "/rails/active_storage/direct_uploads";
-    const upload = new DirectUpload(file, url);
-
-    upload.create((error, blob) => {
-      if (error) {
-        console.log(error);
-      } else {
-        this.coverBlob = blob.signed_id;
-      }
-    })
   }
 }
