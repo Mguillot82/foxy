@@ -29,7 +29,6 @@ export default class extends Controller {
     } else {
       this.catchId.push(e.params.id)
     }
-    // console.log(this.catchId)
   }
 
   addCatch() {
@@ -47,6 +46,7 @@ export default class extends Controller {
       .then(response => response.text())
       .then((data) => {
         this.listTarget.innerHTML = data
+        this.catchId = []
       })
   }
 
