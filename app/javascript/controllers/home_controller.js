@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { DirectUpload } from "@rails/activestorage"
 
 // Connects to data-controller="home"
 export default class extends Controller {
@@ -13,6 +14,7 @@ export default class extends Controller {
 
     navigator.mediaDevices
       .getUserMedia({video: {width: screen.width, height: screen.height}})
+      // .getUserMedia({video: {width: screen.width, height: screen.height, facingMode: { exact: "environment" }}})
       .then((stream) => {
         this.stream = stream
         this.cameraTarget.srcObject = stream;
@@ -61,7 +63,7 @@ export default class extends Controller {
     fetch("https://api.inaturalist.org/v2/computervision/score_image",{
       method: "POST",
       headers: {'accept': 'application/json',
-                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODY2Mzk1NTh9.wqNDI26Syqrhji-RIiBIoTMMjUgXaP07NQN7KVFZVXUoj59p32c0AV_iDEMa3ZgvfiIpOSuewqcBV_Yv-OFPFA'},
+                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODY3MjU2MTZ9.2WoJ62fmen1V5rZdP5y3GUqnQ3zgbGAZJRlqa1Q6W46C4HWyLFgL2UE-mBVvvyl-WnV09Wba11eK6ODpo8vTZw'},
       body: formData
       })
     .then(response => response.json())
@@ -126,14 +128,23 @@ export default class extends Controller {
 
   #createCatch(api_data, taxon_data, animal_data) {
     let token = document.getElementsByName('csrf-token')[0].content;
+    let photo = this.photoTarget.src
+    let base64ImageContent = photo.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+    let blob = this.base64ToBlob(base64ImageContent, 'image/jpeg');
+    let formData = new FormData();
+    formData.set('catch[photo]', blob);
+    formData.set('catch[animal_id]', animal_data.id);
+    formData.set('catch[latitude]', this.latitude);
+    formData.set('catch[longitude]', this.longitude);
+    // this.uploadFile(formData)
     fetch('/catches', {
       method: "POST",
       headers : {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        'enctype': "multipart/form-data",
         'X-CSRF-Token': token
       },
-      body: JSON.stringify({'catch' : {'animal_id': animal_data.id, 'latitude': this.latitude, 'longitude': this.longitude, 'photo': this.cameraTarget}})
+      body: formData
     })
     .then(response => response.json())
     .then((catch_data) => {
@@ -163,5 +174,5 @@ export default class extends Controller {
     }
 
     return new Blob(byteArrays, {type: mime});
-}
+  }
 }

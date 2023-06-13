@@ -1,23 +1,33 @@
 <h1><%= @collection.name.capitalize %></h1>
 
-<div class="btn btn-outline-secondary">
-  <%= link_to 'Back to collections', user_collections_path(current_user) %>
+<div data-controller='show-collection' data-show-collection-collection-value=<%= @collection.id %>>
+  <div class="btn btn-outline-secondary">
+    <%= link_to 'Back to collections', user_collections_path(current_user) %>
+  </div>
+  <ul>
+      <li>Description : <%= @collection.description %></li>
+  </ul>
+
+  <div data-show-collection-target="list">
+    <%= render 'catches_collection', catches: @collection.catches %>
+  </div>
+
+  <% if @collection == current_user.collections[0] %>
+  <% else %>
+    <div class='btn btn-outline-secondary'
+        data-action="click->show-collection#revealAnimals">
+      Add an animal
+    </div>
+    <div class='collection-animals'>
+      <%= render 'display_animals', collection: @catches_all %>
+    </div>
+
+  <div class='btn btn-outline-secondary'
+       data-action="click->show-collection#revealFormEdit">
+      Edit a collection
+  </div>
+  <div>
+    <%= render 'form_edit', collection: @collection %>
+  </div>
+  <% end %>
 </div>
-<ul>
-    <li>Description : <%= @collection.description %></li>
-</ul>
-
-<div class='btn btn-outline-secondary'>Add an animal</div>
-<div>
-  <%= render 'add_animals', collection: @collection %>
-</div>
-
-<div class='btn btn-outline-secondary'>Edit a collection</div>
-<div>
-  <%= render 'form_edit', collection: @collection %>
-</div>
-
-<%# add js to open the editor %>
-
-<%# add a button to add photos to collection %>
-<%# add a button to delete photos from collection %>

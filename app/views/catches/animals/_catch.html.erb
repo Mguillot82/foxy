@@ -1,0 +1,15 @@
+<div class="card-animal-background" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= @animal.photo_url%>)">
+</div>
+<div class="card-animal-catch-content">
+  <div class="card-animal-name">
+    <div class="card-animal-title"><%= @animal.name%></div>
+  </div>
+  <div class="card-animal-catch">
+    <div class="card-animal-catch-secondary">
+      <p>Catch the</p>
+      <p><%= @catch.created_at.to_date %></p>
+      <p>In <%= @catch.location %></p>
+    </div>
+    <div class="card-animal-catch-photo"><%= cl_image_tag @catch.photo.key, :aspect_ratio=>"1.0", :gravity=>"auto", :width=>135, :crop=>"fill" %></div>
+  </div>
+</div>

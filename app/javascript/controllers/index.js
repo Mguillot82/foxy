@@ -4,5 +4,14 @@
 
 import { application } from "./application"
 
+import CatchesAnimalsController from "./catches_animals_controller"
+application.register("catches-animals", CatchesAnimalsController)
+
 import HomeController from "./home_controller"
 application.register("home", HomeController)
+
+import IndexCollectionController from "./index_collection_controller"
+application.register("index-collection", IndexCollectionController)
+
+import ShowCollectionController from "./show_collection_controller"
+application.register("show-collection", ShowCollectionController)

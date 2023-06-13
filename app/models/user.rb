@@ -15,4 +15,13 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   scope :accepted_friendships, -> { joins(:friendships).where(friendships: { status: 'accepted' }).distinct }
+
+  after_save :create_general_collection
+
+  private
+
+  def create_general_collection
+    @general_collection = Collection.new(name: 'General', description: 'Your general collection with all your catches', user: self)
+    @general_collection.save!
+  end
 end
