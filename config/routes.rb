@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'style', to: 'pages#style'
   get 'settings', to: 'pages#settings'
-  get 'about',  to: 'pages#about'
+  get 'about', to: 'pages#about'
 
   resources :users, only: [:show] do
     resources :collections, except: %i[new] do
@@ -13,8 +13,9 @@ Rails.application.routes.draw do
         get 'general'
       end
     end
-    # resources :friendships, only: %i[index create]
   end
+  resources :friendships, only: %i[create]
+
 
   resources :collections, only: [:destroy] do
     # resources :collections_catches, only: %i[create]
@@ -34,5 +35,9 @@ Rails.application.routes.draw do
 
   # resources :got_badges, only: [:create]
 
-  resources :friends, only: [:index, :show]
+  resources :friends, only: [:index, :show, :edit, :create, :new] do
+    collection do
+      post 'invite'
+    end
+  end
 end
