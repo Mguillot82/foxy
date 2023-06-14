@@ -68,9 +68,9 @@
 .card-animal-content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin: 16px;
+  justify-content: center;
+  align-items: middle;
+  margin: 16px 0px;
 }
 
 .card-animal-title {
@@ -192,7 +192,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin: 4px 16px 16px 16px;
+  margin: 4px 0px 16px 0px;
 }
 
 .card-animal-location {

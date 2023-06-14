@@ -1,10 +1,12 @@
 <div class="card-animal">
   <div class="card-animal-background" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= @animal.photo_url%>)">
   </div>
-  <div class="back_button">
-    <%= link_to url_for(:back) do %>
-      <div class="btn btn-outline-secondary btn-back">↩</div>
-    <% end %>
+  <div class="container-body">
+    <div class="back_button">
+      <%= link_to url_for(:back) do %>
+        <div class="btn btn-outline-secondary btn-back">↩</div>
+      <% end %>
+    </div>
+    <%= render 'animals/animal'%>
   </div>
-  <%= render 'animals/animal'%>
 </div>
