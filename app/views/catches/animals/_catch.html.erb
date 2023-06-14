@@ -8,6 +8,8 @@
       <p><%= @catch.created_at.to_date %></p>
       <p>In <%= @catch.location %></p>
     </div>
-    <div class="card-animal-catch-photo"><%= cl_image_tag @catch.photo.key, :aspect_ratio=>"1.0", :gravity=>"auto", :width=>135, :crop=>"fill" %></div>
+      <% if @catch.photo.attached? %>
+        <div class="card-animal-catch-photo"><%= cl_image_tag @catch.photo.key, :aspect_ratio=>"1.0", :gravity=>"auto", :width=>135, :crop=>"fill" %></div>
+      <% end %>
   </div>
 </div>
