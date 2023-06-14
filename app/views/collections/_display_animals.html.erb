@@ -1,15 +1,15 @@
 
 <div class="cards d-none"
       data-show-collection-target="animal">
-    <% @catches_all.each do |catch| %>
-      <div class="card card-img"
-          style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= catch.animal.photo_url.present? ? catch.animal.photo_url : 'https://lemagduchat.ouest-france.fr/images/dossiers/2021-03/mini/chaton-sante-071721-650-400.jpg' %>)" alt="<%= catch.animal.name %>"
-          data-action="click->show-collection#selectCatch"
-          data-show-collection-id-param=<%= catch.id %>>
+  <% @catches_all.each do |catch| %>
+    <div class="card card-img"
+        style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= catch.animal.photo_url.present? ? catch.animal.photo_url : 'https://lemagduchat.ouest-france.fr/images/dossiers/2021-03/mini/chaton-sante-071721-650-400.jpg' %>)" alt="<%= catch.animal.name %>"
+        data-action="click->show-collection#selectCatch"
+        data-show-collection-id-param=<%= catch.id %>>
       <div class="card-name">
         <%= catch.animal.name %>
       </div>
-  </div>
+    </div>
   <% end %>
 </div>
 <div class="btn btn-outline-secondary d-none"
@@ -17,4 +17,3 @@
       data-action="click->show-collection#addCatch click->show-collection#revealAnimals">
     Validate
 </div>
-<%# add color change on click %>
