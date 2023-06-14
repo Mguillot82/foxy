@@ -11,10 +11,12 @@ export default class extends Controller {
       this.latitude = position.coords.latitude;
       this.longitude = position.coords.longitude;
     });
+    console.log(screen.width)
+    console.log(screen.height)
 
     navigator.mediaDevices
-      .getUserMedia({video: {width: screen.width, height: screen.height}})
-      // .getUserMedia({video: {width: screen.width, height: screen.height, facingMode: { exact: "environment" }}})
+      // .getUserMedia({video: {width: screen.width, height: screen.height}})
+      .getUserMedia({video: {width: screen.height - 190 , height: screen.width, facingMode: { exact: "environment" }}})
       .then((stream) => {
         this.stream = stream
         this.cameraTarget.srcObject = stream;
