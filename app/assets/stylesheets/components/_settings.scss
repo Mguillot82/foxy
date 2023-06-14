@@ -1,43 +1,79 @@
 .settings-container {
-  min-height: 80vh;
-
+  position: absolute;
+  min-width: 100%;
+  min-height: 60vh;
 }
 
 .settings-banner {
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  background-color: $primary;
+  border-radius: 0px 0px 16px 16px;
+  z-index: 0;
+
 }
 
 .settings-banner-title {
-
+  position: relative;
+  display: flex;
+  padding: 16px;
+  z-index: 1;
 }
 
 .settings-card {
+  position: relative;
+  top: 80px;
+  z-index: 10;
+  padding: 16px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0px 0px 4px 4px rgba($color: $primary, $alpha: 0.2);
 
 }
 
 .settings-card-header {
+  display: flex;
+  justify-content: space-between;
 
 }
 
 .settings-element {
-
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 0px 16px 0px;
 }
 
 .settings-icon-light {
+  color: $background;
+  padding: 16px;
 
 }
 
 .settings-title-light {
 
+  font-size: 24px;
+  font-weight: 700;
+  color: $background;
 }
 
 .settings-anchor {
+  color: $background;
+  font-weight: 400;
 
 }
 
 .settings-subtitle {
-
+  margin: 0px 0px 16px 0px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba($color: $primary, $alpha: 0.4);
 }
 
 .settings-element-title {
+  margin-left: 16px;
+}
 
+.settings-icons {
+  margin-right: 16px;
 }
