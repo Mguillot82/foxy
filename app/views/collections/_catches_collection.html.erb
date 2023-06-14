@@ -1,19 +1,17 @@
 <div class="cards">
   <% catches.each do |catch| %>
-  <div>
     <%= link_to catch_animal_path(catch.id, catch.animal.id), class: "link" do %>
-      <div class="card card-img"
+      <div class="card card-collect-animal-img"
            style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= catch.animal.photo_url.present? ? catch.animal.photo_url : 'https://lemagduchat.ouest-france.fr/images/dossiers/2021-03/mini/chaton-sante-071721-650-400.jpg' %>)" alt="<%= catch.animal.name %>">
         <div class="card-name">
           <%= catch.animal.name %>
         </div>
       </div>
+      <% if @collection != current_user.collections[0] %>
+        <span class="trash-bin" data-show-collection-id-param=<%= catch.id %> data-action='click->show-collection#removeCatch'>
+          <i class="fa-regular fa-trash-can"></i>
+        </span>
+      <% end %>
     <% end %>
-    <% if @collection != current_user.collections[0] %>
-      <span class="trash-bin" data-show-collection-id-param=<%= catch.id %> data-action='click->show-collection#removeCatch'>
-        <i class="fa-regular fa-trash-can"></i>
-      </span>
-    <% end %>
-  </div>
   <% end %>
 </div>
