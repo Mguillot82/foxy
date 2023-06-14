@@ -316,10 +316,13 @@ User.all.each do |user|
         {
           user_id: user.id,
           animal_id: animal.id,
-          location: Faker::Address.city
+          latitude: Faker::Address.latitude,
+          longitude: Faker::Address.longitude
         }
       )
       catch.save!
+      puts "#{catch.latitude} created !"
+      puts "#{catch.longitude} created !"
       puts "#{catch.location} created !"
     end
   end
