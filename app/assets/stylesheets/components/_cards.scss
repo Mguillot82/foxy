@@ -1,11 +1,12 @@
 .cards {
   display: grid;
-  grid-gap: 16px;
+  gap: 16px;
   grid-template-columns: repeat(2, 1fr);
 }
 
 .card {
-  display: grid;
+  display: flex;
+  justify-content: center;
   border-radius: 8px;
   box-shadow: 0 0 4px rgba(0,0,0,0.2);
   padding: 10px 10px;
@@ -23,6 +24,17 @@
 .card-img {
   width: 100%;
   height: 80px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  i {
+    color: $secondary-light;
+  }
+}
+
+.card-collect-animal-img {
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
   border-radius: 8px;
