@@ -1,13 +1,15 @@
-<h1>Collections</h1>
+<div class="container-body">
+  <h1>Collections</h1>
 
-<div data-controller='index-collection'>
-  <div class='btn-add-collec'
-       data-action="click->index-collection#revealFormEdit">
-      <i class="fa-solid fa-folder-plus"></i>
+  <div data-controller='index-collection'>
+    <div class='btn-add-collec'
+        data-action="click->index-collection#revealFormEdit">
+        <i class="fa-solid fa-folder-plus"></i>
+    </div>
+    <div>
+      <%= render 'form_create', collection: @collection %>
+    </div>
   </div>
-  <div>
-    <%= render 'form_create', collection: @collection %>
-  </div>
+
+  <%= render 'shared/cards_collection', collections: @collections %>
 </div>
-
-<%= render 'shared/cards_collection', collections: @collections %>
