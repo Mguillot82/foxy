@@ -1,4 +1,11 @@
 <div class="card-animal container-mobile" data-controller='catches-animals'>
+  <div class="card-animal-background" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= @animal.photo_url%>)">
+  </div>
+  <div class="back_button">
+    <%= link_to url_for(:back) do %>
+      <div class="btn btn-outline-secondary btn-back">↩</div>
+    <% end %>
+  </div>
   <div  data-catches-animals-target='animal'>
     <%= render 'animals/animal'%>
   </div>

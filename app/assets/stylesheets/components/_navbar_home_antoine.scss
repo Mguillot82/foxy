@@ -3,8 +3,9 @@
   align-items: center;
   justify-content: space-between;
   height: 70px;
-  background-color: white;
+  background-color: transparent;
   padding: 0 10px;
+  z-index: 20;
 }
 
 .navbar-logo img {
