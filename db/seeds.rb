@@ -224,6 +224,7 @@ BADGES = [
     category: 'Fox'
   }
 ]
+
 FRIENDSHIPS = [
   "pending",
   "accepted",
@@ -362,8 +363,9 @@ Catch.all.each do |catch|
 end
 
 # Upload badge photo
-# development/absolute_path = "/Users/nidhogg/code/Mguillot82/foxy/db/badges/"
-# upload badge photo on cloudinary
+# development/
+# absolute_path = "/Users/nidhogg/code/Mguillot82/foxy/db/badges/"
+# # upload badge photo on cloudinary
 # file = URI.open("#{absolute_path}#{category}-#{name.capitalize}.png")
 # sleep(1)
 # puts "image uploaded"
@@ -382,10 +384,13 @@ BADGES.each do |tmp|
       category: tmp[:category]
     }
   )
-  if badge[:photo].nil? == false
+
+  if tmp[:photo]
     url_photo = Cloudinary::Api.resource(tmp[:photo])['url']
+    sleep(1)
+    p url_photo
     file = URI.open(url_photo)
-    badge.photo.image.attach(io: file, filename: tmp[:name])
+    badge.photo.attach(io: file, filename: tmp[:name])
   end
   badge.save!
   puts "Badges created #{badge}"
