@@ -1,4 +1,51 @@
-<div class="container-body">
-  <h1>Bonjour BadBatches ! Ceci est notre page settings</h1>
-  <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>
-</div>
+<div class='settings-container'>
+  <div class='settings-banner'>
+    <div class='settings-banner-title'>
+      <div class='settings-icon-light'>icone</div>
+      <div class='settings-title-light'>Settings</div>
+    </div>
+  </div>
+  <div class='settings-card container-body'>
+    <div class='settings-card-header'>
+      <div>photo user</div>
+      <div >Username</div>
+      <div class='settings-anchor'>
+        <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>
+      </div>
+    </div>
+    <hr class='settings-hr'>
+    <div class='setting-element settings-subtitle'>account settings</div>
+    <div class='settings-element'>
+      <div class='settings-element-title'>Edit profile</div>
+      <div class='settings-icons'>icone</div>
+    </div>
+    <div class='settings-element'>
+      <div class='settings-element-title'>Change Password</div>
+      <div class='settings-icons'>icone</div>
+    </div>
+    <div class='settings-element'>
+      <div class='settings-element-title'>Manage Friends</div>
+      <div class='settings-icons'>icone</div>
+    </div>
+    <div class='settings-element'>
+      <div class='settings-element-title'>Push notifications</div>
+      <div class='settings-icons'>icone</div>
+    </div>
+    <div class='settings-element'>
+      <div class='settings-element-title'>Dark mode</div>
+      <div class='settings-icons'>icone</div>
+    </div>
+    <hr class='settings-hr'>
+    <div class='settings-element settings-subtitle'>
+      <div class='settings-element-title'>More</div>
+      <div class='settings-icons'>icone</div>
+    </div>
+    <div class='settings-element'>
+      <div class='settings-element-title'>About Us</div>
+      <div class='settings-icons'>icone</div>
+    </div>
+    <div class='settings-element'>
+      <div class='settings-element-title'>Privacy policy</div>
+      <div class='settings-icons'>icone</div>
+    </div>
+  </div>
