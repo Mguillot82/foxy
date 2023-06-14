@@ -2,7 +2,6 @@
   display: grid;
   grid-gap: 16px;
   grid-template-columns: repeat(2, 1fr);
-  padding: 10px 10px;
 }
 
 .card {
@@ -18,7 +17,7 @@
 }
 
 .selected {
-  box-shadow: 5px 5px 5px rgba($color: $primary, $alpha: 0.8);
+  box-shadow: 5px 5px 5px rgba($color: $primary, $alpha: 0.7);
 }
 
 .card-img {
@@ -68,9 +67,9 @@
 .card-animal-content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin: 16px;
+  justify-content: center;
+  align-items: middle;
+  margin: 16px 0px;
 }
 
 .card-animal-title {
@@ -192,7 +191,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin: 4px 16px 16px 16px;
+  margin: 4px 0px 16px 0px;
 }
 
 .card-animal-location {

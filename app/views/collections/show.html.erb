@@ -1,31 +1,34 @@
-<div data-controller='show-collection' data-show-collection-collection-value=<%= @collection.id %>>
-  <%= link_to user_collections_path(current_user) do %>
-    <div class="btn btn-outline-secondary">↩</div>
-  <% end %>
-  <% if @collection != current_user.collections[0] %>
-  <div class='btn-add-collec'>
-    <%= link_to collection_path(@collection), data: {turbo_method: :delete} do %>
-      <i class="fa-regular fa-trash-can trash-delete-collec"></i>
+<div class="container-body">
+  <div data-controller='show-collection' data-show-collection-collection-value=<%= @collection.id %>>
+    <%= link_to user_collections_path(current_user) do %>
+      <div class="btn btn-outline-secondary btn-back">↩</div>
     <% end %>
-  <% end %>
-  </div>
-<hr>
-
-  <h1><%= @collection.name.capitalize %></h1>
-
-  <p>
-    Description : <%= @collection.description %>
-  </p>
-
-  <% if @collection != current_user.collections[0] %>
-    <div class='btn-edit'
-          data-action="click->show-collection#revealFormEdit">
-        <i class="fa-regular fa-pen-to-square"></i>
+    <% if @collection != current_user.collections[0] %>
+    <div class='btn-add-collec'>
+      <%= link_to collection_path(@collection), data: {turbo_method: :delete} do %>
+        <i class="fa-regular fa-trash-can trash-delete-collec"></i>
+      <% end %>
+    <% end %>
     </div>
-    <div>
-      <%= render 'form_edit', collection: @collection %>
-    </div>
-  <% end %>
+  <hr>
+
+    <%= render 'animals/searchbar' %>
+
+    <h1><%= @collection.name.capitalize %></h1>
+
+    <p>
+      Description : <%= @collection.description %>
+    </p>
+
+    <% if @collection != current_user.collections[0] %>
+      <div class='btn-edit'
+            data-action="click->show-collection#revealFormEdit">
+          <i class="fa-regular fa-pen-to-square"></i>
+      </div>
+      <div>
+        <%= render 'form_edit', collection: @collection %>
+      </div>
+    <% end %>
 
   <div data-show-collection-target="list">
     <%= render 'catches_collection', catches: @collection.catches %>
@@ -40,4 +43,5 @@
       <%= render 'display_animals', collection: @catches_all %>
     </div>
   <% end %>
+  </div>
 </div>
