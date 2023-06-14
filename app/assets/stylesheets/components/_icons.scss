@@ -51,10 +51,13 @@
 }
 
 .icon-photo {
-  background-color: $dark-light;
+  height: 60px;
+  width: 60px;
+  background-color: $background;
   color: $dark;
   position: absolute;
-  top: 85%;
-  left: 45%;
-  z-index: 10
+  top: 80%;
+  left: 42%;
+  z-index: 10;
+  border: solid 8px $dark-light;
 }
