@@ -10,10 +10,10 @@ module BadgesManager
       pending_badges_id = []
       user_badges = []
       @params[:user_badges].each do |badge|
-        user_badges << badge.id
+        user_badges << badge.badge_id
       end
       @params[:badges].each do |badge_id|
-        pending_badges_id << badge_id unless user_badges.find(badge_id)
+        pending_badges_id << badge_id unless user_badges.include?(badge_id)
       end
       return pending_badges_id
       # matched_badges = user_badges.where(badge_id: @params[:badges])

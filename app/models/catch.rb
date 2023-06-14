@@ -6,9 +6,8 @@ class Catch < ApplicationRecord
   has_one_attached :photo
 
   reverse_geocoded_by :latitude, :longitude do |obj, results|
-    if geo == results.first
-      obj.location = geo.city
-    end
+    geo = results.first
+    obj.location = geo.city
   end
   after_validation :reverse_geocode
 

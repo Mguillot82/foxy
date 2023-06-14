@@ -8,7 +8,7 @@ module BadgesManager
     end
 
     def call
-      params = { user_id: @user.id, user_badges: user.got_badges, taxonomy_id: @taxonomy.id, taxonomy: @taxonomy.name }
+      params = { user_id: @user.id, user_badges: @user.got_badges, taxonomy_id: @taxonomy.id, taxonomy: @taxonomy.name }
       counter = CatchesServices::CatchesCounterByTaxonomy.call(params)
       params[:counter] = counter
       badges = BadgesManager::BadgesGetter.call(params)
