@@ -3,6 +3,7 @@ class FriendsController < ApplicationController
   before_action :set_friendship, only: [:update, :destroy]
 
   def index
+    @friends_requests = User.joins(:friendships).where(friendships: { status: 'pending', friend: current_user }).distinct
     @friends = policy_scope(User, policy_scope_class: FriendPolicy::Scope)
   end
 
@@ -11,22 +12,24 @@ class FriendsController < ApplicationController
   end
 
   def friends_requests
-    @friends_requests = current_user.friends.joins(:friendships).where(friendships: { status: 'pending' }).distinct
+    @friends_requests = User.joins(:friendships).where(friendships: { status: 'pending', friend: current_user }).distinct
     authorize @friends_requests, policy_class: FriendPolicy
   end
 
   def reject
     authorize @friend, policy_class: FriendPolicy
-    Friendship.find_by(user_id: current_user.id, friend_id: @friend.id).update(status: "rejected")
+    Friendship.find_by(user_id: @friend.id, friend_id: current_user.id).update(status: "rejected")
+    Friendship.create(user_id: current_user.id, friend_id: @friend.id, status: "rejected")
     redirect_to friends_requests_friends_path
   end
 
   def add
     authorize @friend, policy_class: FriendPolicy
-    Friendship.find_by(user_id: current_user.id, friend_id: @friend.id).update(status: 'accepted')
+    Friendship.find_by(user_id: @friend.id, friend_id: current_user.id).update(status: 'accepted')
+    Friendship.create(user_id: current_user.id, friend_id: @friend.id, status: 'accepted')
     redirect_to friends_requests_friends_path
   end
-  
+
   def new
     @friendship = Friendship.new(user: current_user)
 
@@ -38,6 +41,7 @@ class FriendsController < ApplicationController
     @friendship = Friendship.new(user: current_user, friend: friend)
     authorize @friends, policy_class: FriendPolicy
     if @friendship.save
+      Friendship.create(user: friend, friend: current_user)
       redirect_to friend_path(friend), notice: 'Friendship added.'
     else
       redirect_to friend_path(friend), alert: "Couldn't create friendship."
@@ -64,9 +68,10 @@ class FriendsController < ApplicationController
   def invite
     friend = User.find_by(username: params[:username])
 
+    authorize @friend, policy_class: FriendPolicy
     if friend
       @friendship = current_user.friendships.build(friend: friend)
-      authorize @friendship, policy_class: FriendPolicy
+
 
       if @friendship.save
         redirect_to friends_path, notice: 'Friendship request sent.'
@@ -79,11 +84,11 @@ class FriendsController < ApplicationController
   end
 
   private
-  
+
   def set_friend
     @friend = User.find(params[:id])
   end
-  
+
   def set_friendship
     @friendship = Friendship.find(params[:id])
   end

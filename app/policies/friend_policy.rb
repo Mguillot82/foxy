@@ -37,10 +37,10 @@ class FriendPolicy < ApplicationPolicy
   end
 
   def reject?
-    user.friends.include?(record)
+    !Friendship.where(user: record, friend: user).empty?
   end
 
   def add?
-    user.friends.include?(record)
+    !Friendship.where(user: record, friend: user).empty?
   end
 end
