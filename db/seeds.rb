@@ -417,19 +417,3 @@ end
 puts "____________________________"
 
 puts "Creating collections_catches..."
-
-User.all.each do |user|
-  nb_friends.times do
-    friend_id = User.first.id.to_i + rand(10)
-    status = FRIENDSHIPS[rand(0..2)]
-    friendship = Friendship.new(
-      {
-        user_id: user.id,
-        status:,
-        friend_id:
-      }
-    )
-    friendship.save!
-  end
-  puts "Got friendships for user #{user.username} created"
-end
