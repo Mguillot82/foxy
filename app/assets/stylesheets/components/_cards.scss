@@ -12,10 +12,13 @@
   padding: 10px 10px;
 }
 
+.link {
+  display: block;
+  width: 100%;
+}
+
 .selected {
-  .card-name {
-    color: $primary;
-  }
+  box-shadow: 5px 5px 5px rgba($color: $primary, $alpha: 0.8);
 }
 
 .card-img {
