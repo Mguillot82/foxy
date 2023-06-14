@@ -9,7 +9,7 @@ module Scrapper
       description = []
 
       div_description = html_doc.search("#mw-content-text .mw-parser-output")
-      div_description.search('>p:not([class])').first(3).each do |content|
+      div_description.search('>p:not([class])').first(2).each do |content|
         description << content.text.strip
       end
       image_place = html_doc.search(".image img")[1]
