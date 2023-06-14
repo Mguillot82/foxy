@@ -1,28 +1,24 @@
 <div class="container-requests">
   <div class="row row-new-friends">
     <% @friends_requests.each do |friend| %>
-      <div class="d-flex requests">
-
-        <div class="img-new-friends">
-          <% if friend.photo.attached? %>
-            <%= cl_image_tag friend.photo.key, class: 'img-friend', alt: 'profil picture'  %>
-          <% else %>
-            <img class="img-friend"  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.fineartamerica.com%2Fimages%2Fartworkimages%2Fmediumlarge%2F1%2Fa-red-panda-profile-christopher-miles-carter.jpg&f=1&nofb=1&ipt=f6620bb105608b37ea4fb0d8cf67f7f847969e478745fb7397373810f39c1e96&ipo=images" alt="">
-          <% end %>
-        </div>
-
-        <div class="add-refuse">
-          <div>
-            <p class="center-username"><%= friend.username %></p>
+        <div class="d-flex requests">
+          <div class="img-new-friends">
+            <% if friend.photo.attached? %>
+              <%= cl_image_tag friend.photo.key, class: 'img-friend', alt: 'profil picture'  %>
+            <% else %>
+              <img class="img-friend"  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.fineartamerica.com%2Fimages%2Fartworkimages%2Fmediumlarge%2F1%2Fa-red-panda-profile-christopher-miles-carter.jpg&f=1&nofb=1&ipt=f6620bb105608b37ea4fb0d8cf67f7f847969e478745fb7397373810f39c1e96&ipo=images" alt="">
+            <% end %>
           </div>
-
-          <div class="buttons-requests">
-            <%= link_to "Reject", reject_friend_path(friend), class: 'button-request btn btn-outline-secondary p-2', data: { turbo_method: :patch, action: "click->friend-card#removeCard" } %>
-            <%= link_to "Accept", add_friend_path(friend), class: 'button-request text-color-white btn btn-secondary p-2', data: { turbo_method: :patch, action: "click->friend-card#removeCard" } %>
+          <div class="add-refuse">
+            <div>
+              <p class="center-username"><%= friend.username %></p>
+            </div>
+            <div class="buttons-requests">
+              <%= link_to "Reject", reject_friend_path(friend), class: 'button-request btn btn-outline-secondary p-2', data: { turbo_method: :patch, action: "click->friend-card#removeCard" } %>
+              <%= link_to "Accept", add_friend_path(friend), class: 'button-request text-color-white btn btn-secondary p-2', data: { turbo_method: :patch, action: "click->friend-card#removeCard" } %>
+            </div>
           </div>
         </div>
-
-      </div>
     <% end %>
   </div>
 </div>

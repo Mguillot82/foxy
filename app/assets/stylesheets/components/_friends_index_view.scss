@@ -1,0 +1,22 @@
+.container-friends-index-view {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 8px 16px;
+  width: 330px;
+  height: 92px;
+  border: 1px solid $grey;
+  margin: 12px auto;
+  box-shadow: 0px 2px 8px #C2C0C0;
+  border-radius: 8px;
+
+  & > img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+
+  & > p {
+    margin: 0;
+  }
+}
