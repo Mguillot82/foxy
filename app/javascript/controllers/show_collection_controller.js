@@ -31,6 +31,8 @@ export default class extends Controller {
     } else {
       this.catchId.push(e.params.id)
     }
+    const select = e.currentTarget
+    select.classList.toggle("selected")
   }
 
   addCatch() {

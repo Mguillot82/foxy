@@ -19,7 +19,7 @@
   </p>
 
   <% if @collection != current_user.collections[0] %>
-  <div class='btn btn-outline-secondary btn-edit'
+  <div class='btn-edit'
        data-action="click->show-collection#revealFormEdit">
       <i class="fa-regular fa-pen-to-square"></i>
   </div>
@@ -33,7 +33,7 @@
   </div>
 
   <% if @collection != current_user.collections[0] %>
-    <div class='btn btn-outline-secondary'
+    <div class='btn-add-animal'
         data-action="click->show-collection#revealAnimals">
       <i class="fa-solid fa-plus"></i>
     </div>

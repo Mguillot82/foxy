@@ -2,30 +2,19 @@
   display: grid;
   grid-gap: 16px;
   grid-template-columns: repeat(2, 1fr);
-  grid-auto-flow: row dense;
-  grid-auto-rows: auto;
   padding: 10px 10px;
 }
 
 .card {
-  box-sizing: border-box;
   display: grid;
-  grid-template-columns: 100%;
   border-radius: 8px;
-  border : none;
-  overflow: hidden;
-  background-color: $background;
   box-shadow: 0 0 4px rgba(0,0,0,0.2);
   padding: 10px 10px;
 }
 
-.card:active {
-  transition: all 0.250s ease;
-  padding: 4px;
-  background-color: rgba($primary-light, 1);
-  box-shadow: 8px 8px 16px rgba(0,0,0,0.4);
+.selected {
   .card-name {
-    color: $background;
+    color: $primary;
   }
 }
 
@@ -47,7 +36,6 @@
   font-weight: bold;
   font-size: 90%;
   color: $background;
-  text-shadow: 0px 0px 1px $primary;
   text-align: center;
   text-decoration: none;
   a {
