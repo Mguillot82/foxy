@@ -2,7 +2,6 @@
   display: grid;
   grid-gap: 16px;
   grid-template-columns: repeat(2, 1fr);
-  padding: 10px 10px;
 }
 
 .card {
@@ -18,7 +17,7 @@
 }
 
 .selected {
-  box-shadow: 5px 5px 5px rgba($color: $primary, $alpha: 0.8);
+  box-shadow: 5px 5px 5px rgba($color: $primary, $alpha: 0.7);
 }
 
 .card-img {

@@ -8,8 +8,6 @@ export default class extends Controller {
 
   connect() {
     this.catchId = []
-    console.log(this.collectionValue)
-    console.log(this.formTarget)
   }
 
   revealFormEdit(event) {

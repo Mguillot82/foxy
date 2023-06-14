@@ -1,15 +1,14 @@
 
 <div class="cards">
   <% @animals.each do |animal| %>
-    <% if animal.photo_url.present? %>
-      <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= animal.photo_url %>)" alt="">
-    <% else %>
-      <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://lemagduchat.ouest-france.fr/images/dossiers/2021-03/mini/chaton-sante-071721-650-400.jpg')" alt="">
-    <% end %>
-        <div class="card-name">
-          <%= animal.name %>
+    <div>
+      <%= link_to catch_animal_path(animal.catch.id, animal), class: "link" do %>
+        <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= animal.photo_url.present? ? animal.photo_url : 'https://lemagduchat.ouest-france.fr/images/dossiers/2021-03/mini/chaton-sante-071721-650-400.jpg' %>)" alt="<%= animal.name %>">
+          <div class="card-name">
+            <%= animal.name %>
+          </div>
         </div>
-      </div>
+      <% end %>
+    </div>
   <% end %>
-  </div>
 </div>
