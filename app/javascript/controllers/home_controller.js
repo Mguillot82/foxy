@@ -11,8 +11,6 @@ export default class extends Controller {
       this.latitude = position.coords.latitude;
       this.longitude = position.coords.longitude;
     });
-    console.log(screen.width)
-    console.log(screen.height)
 
     navigator.mediaDevices
       // .getUserMedia({video: {width: screen.width, height: screen.height}})
