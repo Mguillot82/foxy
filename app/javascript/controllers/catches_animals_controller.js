@@ -5,9 +5,6 @@ export default class extends Controller {
   static targets = ['animal', 'catch', 'btnanimal', 'btncatch',]
 
   connect() {
-    console.log('connected')
-    console.log(this.animalTarget);
-    console.log(this.catchTarget);
   }
 
   catch(event) {

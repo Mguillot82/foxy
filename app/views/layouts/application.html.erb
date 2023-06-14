@@ -7,10 +7,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js' data-turbo-track="reload" defer=true></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
   </head>
   <body>
     <% if current_page?(root_path) %>
@@ -18,7 +19,7 @@
     <% else %>
       <%= render "shared/navbar_pages_antoine" %>
     <% end %>
-    <div style="margin-bottom: 80px">
+    <div class="container-mobile">
       <%= yield %>
     </div>
     <%= render "shared/flashes" %>
