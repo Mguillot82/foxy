@@ -35,10 +35,22 @@
 }
 
 .btn-edit {
-  width: fit-content;
   position: absolute;
   top: 150px;
   right: 10px;
+  color: $secondary;
+  font-size: 20px;
+  margin: 10px;
+}
+
+.btn-add-animal {
+  // position: absolute;
+  // top: 450px;
+  // left: 10px;
+  color: $secondary;
+  font-size: 20px;
+  margin: 5px;
+  // place plus fixed
 }
 
 .btn-catches-animals {
