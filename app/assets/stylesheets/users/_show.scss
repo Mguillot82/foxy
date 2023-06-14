@@ -1,7 +1,6 @@
 .profile-container {
   text-align: center;
   box-sizing: border-box;
-  position: absolute;
   width: 330px;
   height: auto;
   left: 15px;
@@ -9,6 +8,8 @@
   border: 1px solid #283618;
   box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
+  margin: auto;
+  margin-top: 24px;
 }
 
 
@@ -21,8 +22,13 @@
     }
   }
 
-  p {
-    strong {
-      font-weight: bold;
-    }
+  .badge-photo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .badge-display {
+    margin: 0;
+    padding: 0;
+    text-align: center;
   }
