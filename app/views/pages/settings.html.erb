@@ -5,13 +5,15 @@
       <div class='settings-title-light'>Settings</div>
     </div>
   </div>
-  <div class='settings-card container-body'>
+  <div class='settings-card'>
     <div class='settings-card-header'>
-      <% if current_user.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, class: 'img-friend', alt: 'profil picture'  %>
-      <% else %>
-        <img class='settings-user-img'  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.fineartamerica.com%2Fimages%2Fartworkimages%2Fmediumlarge%2F1%2Fa-red-panda-profile-christopher-miles-carter.jpg&f=1&nofb=1&ipt=f6620bb105608b37ea4fb0d8cf67f7f847969e478745fb7397373810f39c1e96&ipo=images" alt="">
-      <% end %>
+      <div>
+        <% if current_user.photo.attached? %>
+          <%= cl_image_tag(current_user.photo.key, :height=>60, :width=>60, :gravity=>"auto", :crop=>"fill")  if current_user.photo.attached? %>
+        <% else %>
+          <img class='settings-user-img'  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.fineartamerica.com%2Fimages%2Fartworkimages%2Fmediumlarge%2F1%2Fa-red-panda-profile-christopher-miles-carter.jpg&f=1&nofb=1&ipt=f6620bb105608b37ea4fb0d8cf67f7f847969e478745fb7397373810f39c1e96&ipo=images" alt="">
+        <% end %>
+      </div>
       <div class='settings-username'><%= current_user.username %></div>
       <div class='settings-anchor'>
         <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>

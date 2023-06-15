@@ -2,16 +2,16 @@
   <div class="title-pages">
     <h1>Collections</h1>
   </div>
-  <div data-controller='index-collection'>
-    <div class='btn-add-collec'
-        data-action="click->index-collection#revealFormEdit">
-        <i class="fa-solid fa-folder-plus"></i>
+  <% if @collection != current_user.collections[0] && current_user.id == params[:user_id].to_i %>
+    <div data-controller='index-collection'>
+      <div class='btn-add-collec'
+          data-action="click->index-collection#revealFormEdit">
+          <i class="fa-solid fa-folder-plus"></i>
+      </div>
+      <div>
+        <%= render 'form_create', collection: @collection %>
+      </div>
     </div>
-    <div>
-      <%= render 'form_create', collection: @collection %>
-    </div>
-  </div>
-
-
-  <%= render 'shared/cards_collection', collections: @collections, id: params[:user_id] %>
+  <% end %>
+    <%= render 'shared/cards_collection', collections: @collections, id: params[:user_id].to_i %>
 </div>
