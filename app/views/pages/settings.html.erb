@@ -45,28 +45,36 @@
     </div>
     <div class='settings-element'>
       <div class='settings-element-title'>Push notifications</div>
-      <div class='settings-icons'>
         <label class="switch">
 	        <input type="checkbox" />
 	        <span></span>
         </label>
-      </div>
     </div>
     <div class='settings-element'>
       <div class='settings-element-title'>Dark mode</div>
-      <div class='settings-icons'><i class="fa-light fa-chevron-right"></i></div>
+        <label class="switch">
+	        <input type="checkbox" />
+	        <span></span>
+        </label>
     </div>
     <hr class='settings-hr'>
     <div class='settings-element settings-subtitle'>
       <div class='settings-element-title'>More</div>
-      <div class='settings-icons'><i class="fa-light fa-chevron-right"></i></div>
     </div>
     <div class='settings-element'>
       <div class='settings-element-title'>About Us</div>
-      <div class='settings-icons'><i class="fa-light fa-chevron-right"></i></div>
+      <div class='settings-icons'>
+        <%= link_to root_path(current_user) do %>
+          <i class="fa-solid fa-chevron-right"></i>
+        <% end %>
+      </div>
     </div>
     <div class='settings-element'>
       <div class='settings-element-title'>Privacy policy</div>
-      <div class='settings-icons'><i class="fa-light fa-chevron-right"></i></div>
+      <div class='settings-icons'>
+        <%= link_to root_path(current_user) do %>
+          <i class="fa-solid fa-chevron-right"></i>
+        <% end %>
+      </div>
     </div>
   </div>
