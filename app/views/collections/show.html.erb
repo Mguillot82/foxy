@@ -1,6 +1,6 @@
 <div class="container-body">
   <div data-controller='show-collection' data-show-collection-collection-value=<%= @collection.id %>>
-    <%= link_to user_collections_path(current_user) do %>
+    <%= link_to url_for(:back) do %>
       <div class="btn btn-outline-secondary btn-back">↩</div>
     <% end %>
     <% if @collection != current_user.collections[0] %>
@@ -12,7 +12,7 @@
     </div>
   <hr>
 
-    <%= render 'animals/searchbar' %>
+    <%= render 'searchbar_collection' %>
 
     <h1><%= @collection.name.capitalize %></h1>
 
@@ -31,7 +31,7 @@
     <% end %>
 
   <div data-show-collection-target="list">
-    <%= render 'catches_collection', catches: @collection.catches %>
+    <%= render 'catches_collection', catches: @catches %>
   </div>
 
   <% if @collection != current_user.collections[0] %>

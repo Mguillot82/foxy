@@ -13,8 +13,8 @@ export default class extends Controller {
     });
 
     navigator.mediaDevices
-      .getUserMedia({video: {width: screen.width, height: screen.height}})
-      // .getUserMedia({video: {width: screen.width, height: screen.height, facingMode: { exact: "environment" }}})
+      // .getUserMedia({video: {width: screen.width, height: screen.height}})
+      .getUserMedia({video: {width: screen.height - 190 , height: screen.width, facingMode: { exact: "environment" }}})
       .then((stream) => {
         this.stream = stream
         this.cameraTarget.srcObject = stream;
@@ -63,7 +63,7 @@ export default class extends Controller {
     fetch("https://api.inaturalist.org/v2/computervision/score_image",{
       method: "POST",
       headers: {'accept': 'application/json',
-                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODY3MjU2MTZ9.2WoJ62fmen1V5rZdP5y3GUqnQ3zgbGAZJRlqa1Q6W46C4HWyLFgL2UE-mBVvvyl-WnV09Wba11eK6ODpo8vTZw'},
+                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODY4MzQ4NzN9.nIQFMpykg3RViW-DPwasVcigCV89rxNO3FYvIvv4sHep90WBEar2xNn-qxEntCxQgycWNBbYOB1RDMAgEq0IaA'},
       body: formData
       })
     .then(response => response.json())

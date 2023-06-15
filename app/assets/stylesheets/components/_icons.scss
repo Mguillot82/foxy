@@ -31,18 +31,22 @@
   background-color: $green;
   color: $white;
   position: absolute;
-  top: 85%;
+  top: 80%;
   left: 70%;
-  z-index: 10
+  z-index: 10;
+  height: 60px;
+  width: 60px;
 }
 
 .icon-refuse {
   background-color: $red;
   color: $white;
   position: absolute;
-  top: 85%;
+  top: 80%;
   left: 20%;
-  z-index: 10
+  z-index: 10;
+  height: 60px;
+  width: 60px;
 }
 
 .icon-delete {

@@ -17,6 +17,7 @@
 .settings-banner-title {
   position: relative;
   display: flex;
+  align-items: center;
   padding: 16px;
   z-index: 1;
 }
@@ -35,19 +36,28 @@
 .settings-card-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
 
+.settings-user-img {
+  height: 60px;
+  max-width: 60px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 8px 1px rgba($color: $primary, $alpha: 0.4);
 }
 
 .settings-element {
   display: flex;
   justify-content: space-between;
-  margin: 0px 0px 16px 0px;
+  align-items: center;
+  margin: 0px 0px 8px 0px;
+  padding: 24px 0px 0px 0px;
 }
 
 .settings-icon-light {
+  font-size: 24px;
   color: $background;
   padding: 16px;
-
 }
 
 .settings-title-light {
@@ -58,8 +68,11 @@
 }
 
 .settings-anchor {
-  color: $background;
-  font-weight: 400;
+  font-weight: 600;
+  margin: 16px;
+  padding: 8px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 8px 2px rgba($color: $primary, $alpha: 0.2);
 
 }
 
@@ -67,7 +80,7 @@
   margin: 0px 0px 16px 0px;
   font-size: 16px;
   font-weight: 500;
-  color: rgba($color: $primary, $alpha: 0.4);
+  color: rgba($color: $primary, $alpha: 0.6);
 }
 
 .settings-element-title {
@@ -76,4 +89,57 @@
 
 .settings-icons {
   margin-right: 16px;
+}
+
+.settings-username {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.switch {
+	display: inline-block;
+	position: relative;
+	width: 56px;
+	height: 32px;
+	cursor: pointer;
+	overflow: hidden;
+  input {
+      position: absolute;
+      top: -30px;
+      left: -30px;
+      width: 0;
+      height: 0;
+  }
+}
+
+.switch input + span {
+  position: absolute;
+ top: 0;
+ bottom: 0;
+ left: 0;
+ right: 0;
+ background: $secondary-light;
+ border-radius: 20px;
+}
+
+.switch input:checked + span {
+	background: $primary;
+}
+
+.switch input + span:before {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 4px;
+	width: 24px;
+	height: 24px;
+	background: white;
+	border-radius: 50%;
+	transform: translateY(-50%);
+	transition: all .5s;
+}
+
+.switch input:checked + span:before {
+	left: 28px;
 }
