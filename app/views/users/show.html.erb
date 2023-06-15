@@ -1,24 +1,29 @@
-<div class="profile-container">
-  <div class="profile-pic">
-    <%= cl_image_tag(@user.photo.key, :height=>180, :width=>180, :gravity=>"auto", :crop=>"fill") if @user.photo.attached? %>
+<div>
+  <div class="title-pages">
+    <h1>Profile</h1>
   </div>
-  <br>
-  <p><strong>Username:</strong><%= @user.username %></p>
+  <div class="profile-container">
+    <div class="profile-pic" >
+      <%= cl_image_tag(@user.photo.key, :height=>180, :width=>180, :gravity=>"auto", :crop=>"fill", style: 'margin-top: 25px') if @user.photo.attached? %>
+    </div>
+    <br>
+    <p><strong>Username:</strong><%= @user.username %></p>
 
-  <p><strong>Email:</strong> <%= @user.email %></p>
+    <p><strong>Email:</strong> <%= @user.email %></p>
 
-  <h2>Badges</h2>
-  <div>
-    <ul class="badge-display">
-      <% @user.badges.each do |badge| %>
-        <% if badge.photo.attached? %>
-          <%= cl_image_tag badge.photo.key, class:"badge-photo" %>
-        <p><%= badge.name %></p>
+    <h2>Badges</h2>
+    <div>
+      <ul class="badge-display">
+        <% @user.badges.each do |badge| %>
+          <% if badge.photo.attached? %>
+            <%= cl_image_tag badge.photo.key, class:"badge-photo" %>
+          <p><%= badge.name %></p>
+          <% end %>
         <% end %>
-      <% end %>
-    </ul>
-  </div>
+      </ul>
+    </div>
 
-  <h2>Collections</h2>
-  <%= render 'shared/cards_collection', collections: @user.collections, id: params[:id] %>
+    <h2>Collections</h2>
+    <%= render 'shared/cards_collection', collections: @user.collections, id: params[:id] %>
+  </div>
 </div>
