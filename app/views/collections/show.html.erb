@@ -12,7 +12,7 @@
     </div>
   <hr>
 
-    <%= render 'animals/searchbar' %>
+    <%= render 'searchbar_collection' %>
 
     <h1><%= @collection.name.capitalize %></h1>
 
@@ -31,7 +31,7 @@
     <% end %>
 
   <div data-show-collection-target="list">
-    <%= render 'catches_collection', catches: @collection.catches %>
+    <%= render 'catches_collection', catches: @catches %>
   </div>
 
   <% if @collection != current_user.collections[0] %>
