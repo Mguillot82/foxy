@@ -1,8 +1,9 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: %i[show add_catch update destroy remove_catch]
+  skip_after_action :verify_policy_scoped
 
   def index
-    @collections = policy_scope(Collection)
+    @collections = CollectionPolicy::Scope.new(current_user, Collection, User.find(params[:user_id])).resolve
   end
 
   def show
