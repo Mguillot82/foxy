@@ -30,7 +30,7 @@
   <%= link_to 'view other collections' , user_collections_path(@friend), class:"btn btn-back btn-secondary" %>
   <br>
   <br>
-  <%=link_to 'back to friendships' , friends_path, class:"btn btn-back btn-secondary" %>
+  <%=link_to 'back to friendships' , friends_path, class:"btn btn-back btn-primary" %>
 
   <% if policy(@friend).update? %>
     <%= link_to "Edit", edit_friend_path(@friend) %>
