@@ -13,7 +13,7 @@ export default class extends Controller {
     });
 
     navigator.mediaDevices
-//        .getUserMedia({video: {width: screen.width, height: screen.height}})
+   // .getUserMedia({video: {width: screen.width, height: screen.height}})
       .getUserMedia({video: {width: screen.height - 190 , height: screen.width, facingMode: { exact: "environment" }}})
       .then((stream) => {
         this.stream = stream
@@ -63,7 +63,7 @@ export default class extends Controller {
     fetch("https://api.inaturalist.org/v2/computervision/score_image",{
       method: "POST",
       headers: {'accept': 'application/json',
-                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODY4MzQ4NzN9.nIQFMpykg3RViW-DPwasVcigCV89rxNO3FYvIvv4sHep90WBEar2xNn-qxEntCxQgycWNBbYOB1RDMAgEq0IaA'},
+                'Authorization': 'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjo2OTk3OTkzLCJleHAiOjE2ODY5MjE0MjB9.ey16D5GOxku1ApfxPT_5f0QCvys6hm1LYOhz__baJNh_Tx69o0l1BzTbQOBVnkHAEvnM5EP9YKkwOS8M0b6ObQ'},
       body: formData
       })
     .then(response => response.json())
@@ -141,7 +141,6 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then((animal_data) => {
-      console.log(animal_data);
       this.#createCatch(api_data, taxon_data, animal_data);
     })
   }
@@ -168,6 +167,23 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then((catch_data) => {
+      this.#gotBadges(taxon_data, catch_data)
+    })
+  }
+
+  #gotBadges(taxon_data, catch_data) {
+    let token = document.getElementsByName('csrf-token')[0].content;
+    fetch('/grant_user_badge', {
+      method: "POST",
+      headers : {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': token
+      },
+      body: JSON.stringify({'taxonomy_id': taxon_data.id})
+    })
+    .then(response => response.json())
+    .then((badge_data) => {
       let animal_id = catch_data.animal_id
       let catch_id = catch_data.id
       window.location.href = 'catches/'+ catch_id + '/animals/'+ animal_id
