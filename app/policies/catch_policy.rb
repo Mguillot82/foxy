@@ -7,10 +7,10 @@ class CatchPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user.id == user.id
+    record.user_id == user.id || (user.friendships.find_by(friend_id: record.user_id) && (user.friendships.find_by(friend_id: record.user_id).status == 'accepted'))
   end
 
   def create?
-    record.user.id == user.id
+    record.user_id == user.id
   end
 end
