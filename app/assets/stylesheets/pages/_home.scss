@@ -8,6 +8,8 @@ canvas {
   height: 200px;
   background-size: cover;
   background-position: center;
+  position: relative;
+  left: -16px;
 }
 
 .text-primary-light {
@@ -21,9 +23,11 @@ canvas {
 .camera {
   position: absolute;
   top: 0;
+  left: 0;
 }
 
 .photo {
   position: absolute;
   top: 0;
+  left: 0;
 }
