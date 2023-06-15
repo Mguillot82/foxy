@@ -13,8 +13,8 @@ export default class extends Controller {
     });
 
     navigator.mediaDevices
-      // .getUserMedia({video: {width: screen.width, height: screen.height}})
-      .getUserMedia({video: {width: screen.height - 190 , height: screen.width, facingMode: { exact: "environment" }}})
+      .getUserMedia({video: {width: screen.width, height: screen.height}})
+      // .getUserMedia({video: {width: screen.height - 190 , height: screen.width, facingMode: { exact: "environment" }}})
       .then((stream) => {
         this.stream = stream
         this.cameraTarget.srcObject = stream;
@@ -168,6 +168,23 @@ export default class extends Controller {
     })
     .then(response => response.json())
     .then((catch_data) => {
+      this.#gotBadges(taxon_data)
+    })
+  }
+
+  #gotBadges(taxon_data) {
+    let token = document.getElementsByName('csrf-token')[0].content;
+    fetch('/grant_user_badge', {
+      method: "POST",
+      headers : {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': token
+      },
+      body: JSON.stringify({'taxonomy_id': taxon_data.id})
+    })
+    .then(response => response.json())
+    .then((badge_data) => {
       let animal_id = catch_data.animal_id
       let catch_id = catch_data.id
       window.location.href = 'catches/'+ catch_id + '/animals/'+ animal_id

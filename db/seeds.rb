@@ -172,28 +172,28 @@ BADGES = [
     photo: 'development/t03d5lswslyv5jw3ilk44hav5or1',
     condition: 1,
     description: 'You have caught one of its kind',
-    category: 'Bird'
+    category: 'Aves'
   },
   {
     name: 'Bird Bronze',
     photo: 'development/i154f7te4i7ftfo5vgotnkoil40q',
     condition: 5,
     description: 'You have caught five of its kind',
-    category: 'Bird'
+    category: 'Aves'
   },
   {
     name: 'Bird Silver',
     photo: 'development/5grzr7ksfw34l3ljk5f3mpgh8x5v',
     condition: 10,
     description: 'You have caught ten of its kind',
-    category: 'Bird'
+    category: 'Aves'
   },
   {
     name: 'Bird Gold',
     photo: 'development/vu4n0vfxa8n3ye8hzfukxm15wk9e',
     condition: 20,
     description: 'You have caught twenty of its kind',
-    category: 'Bird'
+    category: 'Aves'
   },
   {
     name: 'Fox First',

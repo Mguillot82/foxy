@@ -47,4 +47,6 @@ Rails.application.routes.draw do
       patch 'add'
     end
   end
+
+  post 'grant_user_badge', controller: 'badges'
 end
