@@ -22,7 +22,6 @@ class User < ApplicationRecord
   private
 
   def create_general_collection
-    @general_collection = Collection.new(name: 'General', description: 'Your general collection with all your catches', user: self)
-    @general_collection.save!
+    @general_collection = Collection.find_or_create_by(name: 'General', description: 'Your general collection with all your catches', user: self)
   end
 end
