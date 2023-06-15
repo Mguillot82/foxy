@@ -7,35 +7,19 @@
 
   <p><strong>Email:</strong> <%= @user.email %></p>
 
-  <%# <h2>Catches</h2> %>
-  <%# <ul>
-    <% @user.catches.each do |catch| %>
-      <%# <li><%= catch.location %>
-      <%# </li> %>
-
-    <%# <% end %>
-  <%# </ul> %>
-   <h2>Badges</h2>
-    <div>
-      <ul class="badge-display">
-        <% @user.badges.each do |badge| %>
-          <% if badge.photo.attached? %>
-            <%= cl_image_tag badge.photo.key, class:"badge-photo" %>
-          <p><%= badge.name %></p>
-          <% end %>
+  <h2>Badges</h2>
+  <div>
+    <ul class="badge-display">
+      <% @user.badges.each do |badge| %>
+        <% if badge.photo.attached? %>
+          <%= cl_image_tag badge.photo.key, class:"badge-photo" %>
+        <p><%= badge.name %></p>
         <% end %>
-      </ul>
-    </div>
+      <% end %>
+    </ul>
+  </div>
 
   <h2>Collections</h2>
 
-  <%= render 'shared/cards_collection', collections: @user.collections %>
+  <%= render 'shared/cards_collection', collections: @user.collections, id: params[:id] %>
 </div>
-
-  <%# <h2>Animals</h2> %>
-  <%# <ul> %>
-    <%# <% @user.animals.each do |animal| %>
-      <%# <li><%= animal.name %>
-      <%# </li> %>
-    <%# <% end %>
-  <%# </ul> %>
