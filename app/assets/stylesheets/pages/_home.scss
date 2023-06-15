@@ -8,6 +8,8 @@ canvas {
   height: 200px;
   background-size: cover;
   background-position: center;
+  position: relative;
+  left: -16px;
 }
 
 .text-primary-light {
