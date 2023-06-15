@@ -1,10 +1,26 @@
-<h1>Send Friendship Request</h1>
-
-<%= form_with(url: invite_friends_path, method: :post) do |form| %>
-  <div class="field">
-    <%= form.label :username %>
-    <%= form.text_field :username %>
+<div class='container-body'>
+  <div class='friends-user-card'>
+    <div class='friends-username'><%= current_user.id %></div>
+    <div class='friends-share-id friends-text-white'>SHARE YOUR ID</div>
+    <div class='friends-copy-id'>COPY ID</div>
   </div>
-
-  <%= form.submit "Send Request" %>
-<% end %>
+  <div class='friends-break'>
+    <hr class='friends-hr'>
+    <div>AJOUTER DES AMIS</div>
+    <hr class='friends-hr'>
+  </div>
+  <div class='friends-search-card'>
+    <div class='friends-text-white'>Saisir le pseudo d'un ami pour l'AJOUTER</div>
+    <div class='friends-search-bar'>
+      <%= form_with(url: invite_friends_path, method: :post) do |form| %>
+      <div class="field">
+        <%= form.label :username %>
+        <%= form.text_field :username %>
+      </div>
+    </div>
+  </div>
+  <div class='friends-request-card'>
+    <div class='friends-request-button'><%= form.submit "Send Request" %></div>
+    <% end %>
+  </div>
+</div>
