@@ -8,11 +8,7 @@ class CollectionPolicy < ApplicationPolicy
     # NOTE: Be explicit about which records you allow access to!
 
     def resolve
-      if user.id == @friend.id
-        scope.where(user_id: user.id)
-      else
-        scope.where(user_id: @friend.id)
-      end
+      scope.where(user_id: @friend.id)
     end
   end
 
