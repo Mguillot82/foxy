@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <title>Foxy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,7 +16,9 @@
       <%= render "shared/navbar_pages_antoine" %>
     <% end %>
     <div class="container-mobile">
-      <%= yield %>
+      <div class="container-body">
+        <%= yield %>
+      </div>
     </div>
     <%= render "shared/flashes" %>
     <%= render "shared/footer" %>

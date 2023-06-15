@@ -1,6 +1,7 @@
-<div class="container-body">
-  <h1>Collections</h1>
-
+<div>
+  <div class="title-pages">
+    <h1>Collections</h1>
+  </div>
   <div data-controller='index-collection'>
     <div class='btn-add-collec'
         data-action="click->index-collection#revealFormEdit">
@@ -10,6 +11,7 @@
       <%= render 'form_create', collection: @collection %>
     </div>
   </div>
+
 
   <%= render 'shared/cards_collection', collections: @collections, id: params[:user_id] %>
 </div>

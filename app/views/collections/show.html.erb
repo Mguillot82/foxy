@@ -1,4 +1,4 @@
-<div class="container-body">
+<div>
   <div data-controller='show-collection' data-show-collection-collection-value=<%= @collection.id %>>
     <%= link_to url_for(:back) do %>
       <div class="btn btn-outline-secondary btn-back">↩</div>
@@ -15,10 +15,10 @@
     <%= render 'searchbar_collection' %>
 
     <h1><%= @collection.name.capitalize %></h1>
-
     <p>
       Description : <%= @collection.description %>
     </p>
+
 
     <% if @collection != current_user.collections[0] %>
       <div class='btn-edit'
