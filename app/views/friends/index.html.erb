@@ -1,5 +1,5 @@
 <div>
-  <div class="d-flex justify-content-between m-3">
+  <div>
     <h1>Friends</h1>
     <%= link_to new_friend_path do %>
       <i class="fa-solid fa-user-plus"></i>
@@ -12,14 +12,19 @@
     <% end %>
     </div>
     <% @friends.each do |friend| %>
-      <div class="container-friends-index-view">
-        <% if friend.photo.attached? %>
-          <%= cl_image_tag friend.photo.key, class: '& > img', alt: 'profil picture'  %>
-        <% else %>
-          <img class="& > img"  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.fineartamerica.com%2Fimages%2Fartworkimages%2Fmediumlarge%2F1%2Fa-red-panda-profile-christopher-miles-carter.jpg&f=1&nofb=1&ipt=f6620bb105608b37ea4fb0d8cf67f7f847969e478745fb7397373810f39c1e96&ipo=images" alt="">
-        <% end %>
-        <%= link_to friend.username, friend_path(friend) %>
-      </div>
+      <%= link_to friend_path(friend) do %>
+        <div class="container-friends-index-view">
+          <% if friend.photo.attached? %>
+            <%= cl_image_tag(@user.photo.key, :height=>60, :width=>60, :gravity=>"auto", :crop=>"fill", class: '& > img', alt: 'profil picture')  %>
+          <% else %>
+            <img class="& > img"  src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.fineartamerica.com%2Fimages%2Fartworkimages%2Fmediumlarge%2F1%2Fa-red-panda-profile-christopher-miles-carter.jpg&f=1&nofb=1&ipt=f6620bb105608b37ea4fb0d8cf67f7f847969e478745fb7397373810f39c1e96&ipo=images" alt="">
+          <% end %>
+          <div>
+            <%= friend.username %>
+            <p>Friend since : <%= friend.updated_at.strftime("%d-%m-%Y") %></p>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

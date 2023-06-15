@@ -42,29 +42,26 @@
 
 .animal-card {
   width: 100%;
-  height: 60px;
+  height: 92px;
   display: flex;
-  justify-content: start;
-  border: 1px solid $secondary;
+  align-items: center;
+  gap: 50px;
+  border: 1px solid $grey;
   border-radius: 8px;
-  margin: 16px 0px;
+  box-shadow: 0px 2px 8px #C2C0C0;
+  margin: 12px auto;
   overflow: hidden;
 }
 
 .animal-card-image {
-  width: 30%;
+  width: 40%;
+  height: 100%;
   background-size: cover;
-  background-position: left;
-  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.animal-name {
-  max-width: 60%;
-  flex-grow: 2;
-  color: #283618;
-  font-size: 20px;
-  font-weight: 900;
-  align-self: center;
-  text-align: center;
-  padding: 8px 16px 8px 16px;
+.animal-card-name {
+  width: 60%;
+  text-align: start;
+  padding: 0px 4px 0px 0px;
 }
