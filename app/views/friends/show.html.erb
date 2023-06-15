@@ -7,21 +7,6 @@
   <br>
   <p><strong>Username:</strong> <%= @friend.username %></p>
 
-  <%# <p><strong>Email:</strong> <%= @friend.email %>
-  <%# </p> %>
-
-
-
-  <%# <h2>Catches</h2> %>
-  <%# <ul> %>
-    <%# <% @friend.catches.each do |catch| %>
-      <%# <li><%= catch.location %>
-      <%# </li> %>
-    <%# <% end %>
-  <%# </ul> %>
-
-
-
   <h2>Badges</h2>
   <div>
     <ul class="badge-display">
@@ -37,7 +22,7 @@
 
   <%= render 'shared/cards_collection', collections: @friend.collections %>
   <br>
-  <%=link_to 'back to friendships' , friends_path, class:"btn btn-back" %>
+  <%=link_to 'back to friendships' , friends_path, class:"btn btn-back btn-secondary" %>
 
   <% if policy(@friend).update? %>
     <%= link_to "Edit", edit_friend_path(@friend) %>
@@ -46,18 +31,10 @@
   <% if policy(@friend).destroy? %>
     <%= link_to "Remove Friend", friend_path(@friend), method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
+  <hr class="invisible-hr">
 </div>
-  <%# <ul> %>
-    <%# <% @friend.collections.each do |collection| %>
-      <%# <li><%= collection.name %>
-      <%# </li> %>
-  <%# <% end %>
-  <%# </ul> %>
-
-  <%# <h2>Animals</h2> %>
-  <%# <ul> %>
-    <%# <% @friend.animals.each do |animal| %>
-      <%# <li><%= animal.name %>
-      <%# </li> %>
-    <%# <% end %>
-  <%# </ul> %>
+<style>
+  .invisible-hr {
+    color: white;
+  }
+</style>
