@@ -19,9 +19,16 @@
     </ul>
   </div>
   <h2>Collections</h2>
-
-  <%= render 'shared/cards_collection', collections: @friend.collections %>
+  <div class="centerd-render-element">
+      <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://animalaxy.fr/wp-content/uploads/2018/12/iStock-521375128.jpg')" alt="Panda roux">
+        <div class="card-name">
+          <%= link_to 'General', user_collection_path(@friend, @friend.collections[0]) %>
+        </div>
+      </div>
+  </div>
   <br>
+  <%= link_to 'view other collections' , user_collections_path(@friend), class:"btn btn-back btn-secondary" %>
+
   <%=link_to 'back to friendships' , friends_path, class:"btn btn-back btn-secondary" %>
 
   <% if policy(@friend).update? %>
@@ -31,10 +38,4 @@
   <% if policy(@friend).destroy? %>
     <%= link_to "Remove Friend", friend_path(@friend), method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
-  <hr class="invisible-hr">
 </div>
-<style>
-  .invisible-hr {
-    color: white;
-  }
-</style>
