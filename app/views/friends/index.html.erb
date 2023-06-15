@@ -12,7 +12,6 @@
     <% end %>
     </div>
     <% @friends.each do |friend| %>
-
       <%= link_to friend_path(friend) do %>
         <div class="container-friends-index-view">
           <% if friend.photo.attached? %>

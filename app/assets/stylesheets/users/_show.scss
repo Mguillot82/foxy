@@ -10,6 +10,7 @@
   border-radius: 8px;
   margin: auto;
   margin-top: 24px;
+  padding: 20px;
 }
 
 
@@ -31,4 +32,9 @@
     margin: 0;
     padding: 0;
     text-align: center;
+  }
+
+  .centered-render-element {
+    display: flex;
+    justify-content: center;
   }
