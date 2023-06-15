@@ -5,7 +5,7 @@
       <div class='settings-title-light'>Settings</div>
     </div>
   </div>
-  <div class='settings-card container-body'>
+  <div class='settings-card'>
     <div class='settings-card-header'>
       <% if current_user.photo.attached? %>
         <%= cl_image_tag current_user.photo.key, class: 'img-friend', alt: 'profil picture'  %>
