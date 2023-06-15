@@ -9,6 +9,10 @@ class CollectionsController < ApplicationController
     @catches = @collection.catches
     @catches_all = Catch.where(user_id: current_user)
     @catches_all = @catches_all.excluding(@catches)
+
+    if params[:query].present?
+      @catches = Catch.catch_search(params[:query]).joins(:collections_catches).where(user_id: params[:user_id]).where(collections_catches: {collection_id: params[:id]})
+    end
     authorize @collection
   end
 
