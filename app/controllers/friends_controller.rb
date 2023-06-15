@@ -20,14 +20,14 @@ class FriendsController < ApplicationController
     authorize @friend, policy_class: FriendPolicy
     Friendship.find_by(user_id: @friend.id, friend_id: current_user.id).update(status: "rejected")
     Friendship.create(user_id: current_user.id, friend_id: @friend.id, status: "rejected")
-    redirect_to friends_requests_friends_path
+    redirect_to friends_path
   end
 
   def add
     authorize @friend, policy_class: FriendPolicy
     Friendship.find_by(user_id: @friend.id, friend_id: current_user.id).update(status: 'accepted')
     Friendship.create(user_id: current_user.id, friend_id: @friend.id, status: 'accepted')
-    redirect_to friends_requests_friends_path
+    redirect_to friends_path
   end
 
   def new
