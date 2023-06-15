@@ -1,6 +1,6 @@
 <div class="container-body">
   <div data-controller='show-collection' data-show-collection-collection-value=<%= @collection.id %>>
-    <%= link_to user_collections_path(current_user) do %>
+    <%= link_to url_for(:back) do %>
       <div class="btn btn-outline-secondary btn-back">↩</div>
     <% end %>
     <% if @collection != current_user.collections[0] %>
