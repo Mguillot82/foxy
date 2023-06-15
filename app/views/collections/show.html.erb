@@ -3,7 +3,7 @@
     <%= link_to url_for(:back) do %>
       <div class="btn btn-outline-secondary btn-back">↩</div>
     <% end %>
-    <% if @collection != current_user.collections[0] %>
+    <% if @collection != current_user.collections[0] && current_user.id == params[:user_id].to_i %>
     <div class='btn-add-collec'>
       <%= link_to collection_path(@collection), data: {turbo_method: :delete} do %>
         <i class="fa-regular fa-trash-can trash-delete-collec"></i>
@@ -20,7 +20,7 @@
       Description : <%= @collection.description %>
     </p>
 
-    <% if @collection != current_user.collections[0] %>
+    <% if @collection != current_user.collections[0] && current_user.id == params[:user_id].to_i %>
       <div class='btn-edit'
             data-action="click->show-collection#revealFormEdit">
           <i class="fa-regular fa-pen-to-square"></i>
@@ -34,7 +34,7 @@
     <%= render 'catches_collection', catches: @catches %>
   </div>
 
-  <% if @collection != current_user.collections[0] %>
+  <% if @collection != current_user.collections[0] && current_user.id == params[:user_id].to_i %>
     <div class='btn-add-animal'
         data-action="click->show-collection#revealAnimals">
       <i class="fa-solid fa-plus"></i>
