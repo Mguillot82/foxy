@@ -27,9 +27,9 @@ class AnimalsController < ApplicationController
 
   def index
     if params[:query].present?
-      @animals = policy_scope(Animal).animal_search(params[:query])
+      @animals = policy_scope(Animal).order(name: :asc).animal_search(params[:query])
     else
-      @animals = policy_scope(Animal)
+      @animals = policy_scope(Animal).order(name: :asc)
     end
   end
 
