@@ -3,7 +3,7 @@
     <%= image_tag @user.photo if @user.photo.attached? %>
   </div>
   <br>
-  <p><strong>Username:</strong> <%= @user.username %></p>
+  <p><strong>Username:</strong><%= @user.username %></p>
 
   <p><strong>Email:</strong> <%= @user.email %></p>
 
@@ -30,6 +30,8 @@
   <h2>Collections</h2>
 
   <%= render 'shared/cards_collection', collections: @user.collections %>
+  <br>
+  <br>
 </div>
 
   <%# <h2>Animals</h2> %>
