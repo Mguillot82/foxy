@@ -11,6 +11,6 @@ class Badge < ApplicationRecord
     where('category = ?', taxonomy)
   }
   scope :badges_by_condition, lambda { |params|
-    where(category: params[:taxonomy]).where('badges.condition < ?', params[:counter])
+    where(category: params[:taxonomy]).where('badges.condition <= ?', params[:counter])
   }
 end
