@@ -21,7 +21,7 @@ class CollectionPolicy < ApplicationPolicy
   end
 
   def show?
-    user.id == record.user_id
+    user.id == record.user_id || (user.friendships.find_by(friend_id: record.user_id) && (user.friendships.find_by(friend_id: record.user_id).status == 'accepted'))
   end
 
   def add_catch?

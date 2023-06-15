@@ -1,48 +1,42 @@
-<h1>Friends#show</h1>
-<p>Find me in app/views/friends/show.html.erb</p>
+<br>
 <h1>Friend Profile</h1>
+<div class="profile-container">
+  <div class="profile-pic">
+    <%= image_tag @friend.photo if @friend.photo.attached? %>
+  </div>
+  <br>
+  <p><strong>Username:</strong> <%= @friend.username %></p>
 
-<p><strong>Username:</strong> <%= @friend.username %></p>
+  <h2>Badges</h2>
+  <div>
+    <ul class="badge-display">
+      <% @friend.badges.each do |badge| %>
+        <% if badge.photo.attached? %>
+          <%= cl_image_tag badge.photo.key, class:"badge-photo" %>
+        <p><%= badge.name %></p>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <h2>Collections</h2>
+  <div class="centerd-render-element">
+      <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://animalaxy.fr/wp-content/uploads/2018/12/iStock-521375128.jpg')" alt="Panda roux">
+        <div class="card-name">
+          <%= link_to 'General', user_collection_path(@friend, @friend.collections[0]) %>
+        </div>
+      </div>
+  </div>
+  <br>
+  <%= link_to 'view other collections' , user_collections_path(@friend), class:"btn btn-back btn-secondary" %>
+  <br>
+  <br>
+  <%=link_to 'back to friendships' , friends_path, class:"btn btn-back btn-primary" %>
 
-<p><strong>Email:</strong> <%= @friend.email %></p>
-
-<p><strong>Photo:</strong></p>
-<%= image_tag @friend.photo if @friend.photo.attached? %>
-
-<h2>Catches</h2>
-<ul>
-  <% @friend.catches.each do |catch| %>
-    <li><%= catch.location %></li>
+  <% if policy(@friend).update? %>
+    <%= link_to "Edit", edit_friend_path(@friend) %>
   <% end %>
-</ul>
 
-<h2>Collections</h2>
-<ul>
-  <% @friend.collections.each do |collection| %>
-    <li><%= collection.name %></li>
-<% end %>
-</ul>
-
-<h2>Animals</h2>
-<ul>
-  <% @friend.animals.each do |animal| %>
-    <li><%= animal.name %></li>
+  <% if policy(@friend).destroy? %>
+    <%= link_to "Remove Friend", friend_path(@friend), method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
-</ul>
-
-<h2>Badges</h2>
-<ul>
-  <% @friend.badges.each do |badge| %>
-    <li><%= badge.name %></li>
-  <% end %>
-</ul>
-
-<%=link_to 'back to friendships' , friends_path %>
-
-<% if policy(@friend).update? %>
-  <%= link_to "Edit", edit_friend_path(@friend) %>
-<% end %>
-
-<% if policy(@friend).destroy? %>
-  <%= link_to "Remove Friend", friend_path(@friend), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+</div>
