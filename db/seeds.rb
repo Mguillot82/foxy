@@ -44,7 +44,7 @@ BADGES = [
     category: 'Aves'
   },
   {
-    name: '1 Mammalia',
+    name: 'First Mammalia',
     photo: 'development/xibn2jxqn4gp6exqx1epvwa5y0xd',
     condition: 1,
     description: 'You have caught one mammalia',
