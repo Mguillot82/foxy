@@ -1,10 +1,12 @@
 .cards {
   >a {
-    width: 100%;
+    width: 330px;
     height: 92px;
     margin-bottom: 16px;
     box-shadow: 0px 2px 8px $grey;
     border-radius: 8px;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 
