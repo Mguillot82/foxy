@@ -24,6 +24,23 @@
     </div>
 
     <h2>Collections</h2>
-    <%= render 'shared/cards_collection', collections: @user.collections, id: params[:id] %>
+    <div class="cards">
+      <% @user.collections.each do |collection| %>
+        <% if collection.catches.empty? %>
+          <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://animalaxy.fr/wp-content/uploads/2018/12/iStock-521375128.jpg');  width: 100%;" alt="Panda roux">
+            <div class="card-name">
+              <%= link_to collection.name, user_collection_path(@user, collection) %>
+            </div>
+          </div>
+        <% else %>
+          <div class="card card-img" style="background-image : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= collection.catches[0].animal.photo_url %>');  width: 100%;" alt="<%= collection.catches[0].animal.name %>">
+            <div class="card-name">
+              <%= link_to collection.name, user_collection_path(@user, collection) %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
   </div>
 </div>
