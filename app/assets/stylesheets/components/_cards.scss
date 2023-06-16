@@ -29,22 +29,24 @@
 }
 
 .card-img {
-  width: 100%;
-  height: 80px;
+  width: 330px;
+  height: 92px;
   background-size: cover;
   background-position: center;
   border-radius: 8px;
+  margin: 16px auto;
   i {
     color: $secondary-light;
   }
 }
 
 .card-collect-animal-img {
-  width: 100%;
-  height: 100%;
+  width: 330px;
+  height: 92px;
   background-size: cover;
   background-position: center;
   border-radius: 8px;
+  margin: 16px auto;
   i {
     color: $secondary-light;
   }
