@@ -2,9 +2,9 @@
   <div class="background-home" style="background-image : url(<%= animal.photo_url%>)">
   </div>
   <div class="container">
-    <h1><%= animal.name%></h1>
+    <h1 style='margin-top: 24px;'><%= animal.name%></h1>
     <p><%= animal.scientific_name %></p>
-    <p class='text-primary-light'><%= animal.description %></p>
+    <p class='text-primary-light' style='text-align: justify;'><%= animal.description %></p>
     <div class="d-flex justify-content-evenly">
       <%= button_to "Refuse", root_path, class:'btn btn-outline-secondary btn-home-acceptrefuse' %>
       <button data-action="click->home#createTaxonomy" class = "btn btn-secondary btn-home-acceptrefuse" >Accept</button>
