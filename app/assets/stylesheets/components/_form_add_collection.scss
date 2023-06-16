@@ -1,11 +1,13 @@
 .group-form {
   position: absolute;
   z-index: 10;
-  width: 330px;
+  width: 91.66%;
   border: 1px solid $grey;
   border-radius: 8px;
   background-color: white;
   padding: 16px;
+  left: 50%;
+  transform: translateX(-50%);
 
   input[type=submit] {
     width: 30%;
